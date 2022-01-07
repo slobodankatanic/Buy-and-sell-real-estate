@@ -1,0 +1,26 @@
+.center-hv {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.custom-input {
+    border-radius: 30px;
+    background-color: #f3f3f3;
+    border-width: 1px;
+}
+
+.custom-button {
+    border-radius: 30px;
+    background-color: #712ff3;
+    padding: 5px;
+}
+
+.custom-button:hover, .custom-button:focus {
+    background-color: #712ff3;
+}
+
+.error-msg {
+    font-size: small;
+    font-weight: bold;
+}

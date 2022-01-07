@@ -1,0 +1,30 @@
+<table class="login-table m-auto mt-5 w-25">
+    <tr>
+        <td class="text-center h2">LOGIN</td>
+    </tr>
+    <tr>
+        <td>
+            <input class="form-control custom-input" placeholder="Username" type="text" name="username" id="username" [(ngModel)]="username">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input class="form-control custom-input" placeholder="Password" type="password" name="password" id="password" [(ngModel)]="password">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span class="error-msg text-danger">{{message}}</span>
+        </td>
+    </tr>
+    <tr class="text-center">
+        <td>
+            <button (click)="login()" class="btn-primary custom-button w-100">Login</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div>Don't have an account? Register <a routerLink="/register">here</a></div>
+        </td>
+    </tr>
+</table>
