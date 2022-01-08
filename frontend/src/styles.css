@@ -1,3 +1,7 @@
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
 .center-hv {
     display: flex;
     align-items: center;
@@ -21,6 +25,15 @@
 }
 
 .error-msg {
-    font-size: small;
+    font-size: medium;
+    font-weight: 500;
+}
+
+a, a:link, a:active, a:hover {
+    color: black;
     font-weight: bold;
+}
+
+a:active, a:hover {
+    color: #868686;
 }

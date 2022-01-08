@@ -1,1 +1,81 @@
-<p>register works!</p>
+<table class="register-table m-auto mt-2 w-auto">
+    <tr>
+        <td colspan="2" class="text-center h2">REGISTER</td>
+    </tr>
+    <tr>
+        <td>
+            <input class="form-control custom-input" placeholder="Firstname" type="text" name="firstname" id="firstname" [(ngModel)]="firstname">
+        </td>
+        <td>
+            <input class="form-control custom-input" placeholder="Lastname" type="text" name="lastname" id="lastname" [(ngModel)]="lastname">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input class="form-control custom-input" placeholder="Username" type="text" name="username" id="username" [(ngModel)]="username">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input class="form-control custom-input" placeholder="Password" type="password" name="password" id="password" [(ngModel)]="password">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input class="form-control custom-input" placeholder="Confirm password" type="password" name="confirm-password" id="confirm-password" [(ngModel)]="confirmPassword">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input class="form-control custom-input" placeholder="Telephone" type="text" name="telephone" id="telephone" [(ngModel)]="telephone">
+        </td>
+        <td>
+            <input class="form-control custom-input" placeholder="City" type="text" name="city" id="city" [(ngModel)]="city">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input class="form-control custom-input" placeholder="Email" type="text" name="email" id="email" [(ngModel)]="email">
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">Date of birth (DOB) : </td>
+        <td>
+            <input class="form-control custom-input p-2" type="date" name="dob" id="dob" [(ngModel)]="dob">
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center">User type : </td>
+        <td class="text-center">
+            <input (click)="buyerClicked()" type="radio" name="user-type" id="user-type-buyer" checked>
+            <label for="user-type-buyer">Buyer</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <input (click)="agentClicked()" type="radio" name="user-type" id="user-type-agent">
+            <label for="user-type-agent">Agent</label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <select class="custom-input w-100 p-2" name="agency" id="agency" [(ngModel)]="agency" disabled>
+                <option value="Choose agency" disabled>Choose agency</option>
+                <option value="a2">Agency 2</option>
+                <option value="a3">Agency 3</option>
+                <option value="a4">Agency 4</option>
+                <option value="a5">Agency 5</option>
+            </select>
+        </td>
+        <td>
+            <input disabled class="form-control custom-input" placeholder="Agent licence" type="text" name="licence" id="licence" [(ngModel)]="licence">
+        </td>
+    </tr>
+    <tr class="text-center">
+        <td colspan="2">
+            <button (click)="register()" class="btn-primary custom-button w-100">Register</button>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div class="text-center">Already have an account? Log in <a routerLink="/login">here</a></div>
+        </td>
+    </tr>
+</table>

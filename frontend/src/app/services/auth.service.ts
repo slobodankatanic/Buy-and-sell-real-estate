@@ -21,4 +21,9 @@ export class AuthService {
       data,
       { observe: 'response' });
   }
+
+  register(firstname, lastname, username, password, city,
+    dateOfBirth, telephone, email, type, agency, licence) {
+
+  }
 }
