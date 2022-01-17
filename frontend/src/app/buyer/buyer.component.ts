@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { City } from '../models/city';
 
 @Component({
   selector: 'app-buyer',
@@ -8,6 +9,17 @@ import { Component, OnInit } from '@angular/core';
 export class BuyerComponent implements OnInit {
 
   constructor() { }
+
+  cities: City[] = [
+    {
+      id: 1,
+      name: "Sombor"
+    },
+    {
+      id: 2,
+      name: "Loznica"
+    }
+  ];
 
   ngOnInit(): void {
   }

@@ -1,0 +1,8 @@
+table {
+    border-collapse: separate;
+    border-spacing: 0 25px;
+}
+
+.custom-border {
+    background-color: rgb(245, 245, 245);
+}

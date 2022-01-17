@@ -1,1 +1,68 @@
-Bajern
+<h2 class="text-center">Search realestates</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 custom-border">
+            <table class="m-auto text-end w-100">
+                <tr>
+                    <td>Type:</td>
+                    <td>
+                        <select class="form-select">
+                            <option value="">Apartment</option>
+                            <option value="">House</option>
+                            <option value="">Cottage</option>
+                            <option value="">Store</option>
+                            <option value="">Warehouse</option>
+                        </select>
+                    </td>
+                    <td class="ps-4">Max price:</td>
+                    <td>
+                        <input type="text" class="form-control" name="" id="">
+                    </td>
+                    <td class="ps-4">Min area:</td>
+                    <td>
+                        <input type="text" class="form-control" name="" id="">
+                    </td>
+                    <td class="ps-4">Rooms:</td>
+                    <td>
+                        <select class="form-control">
+                            <option>1</option>
+                            <option>1.5</option>
+                            <option>2</option>
+                            <option>2.5</option>
+                            <option>3</option>
+                            <option>3.5</option>
+                            <option>4</option>
+                            <option>4.5</option>
+                            <option>5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>City:</td>
+                    <td>
+                        <select class="form-select">
+                            <option *ngFor="let city of cities">{{city.name}}</option>
+                        </select>
+                    </td>
+                    <td class="ps-4">Municipality:</td>
+                    <td>
+                        <select class="form-select">
+                            <option *ngFor="let city of cities">{{city.name}}</option>
+                        </select>
+                    </td>
+                    <td class="ps-4">Microlocation:</td>
+                    <td>
+                        <select class="form-select">
+                            <option *ngFor="let city of cities">{{city.name}}</option>
+                        </select>
+                    </td>
+                    <td class="ps-4" colspan="2">
+                        <button class="w-100 btn btn-dark">Search</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>

@@ -68,9 +68,19 @@
             <input disabled class="form-control custom-input" placeholder="Agent licence" type="text" name="licence" id="licence" [(ngModel)]="licence">
         </td>
     </tr>
+    <tr>
+        <td colspan="2">
+            <div>
+                <re-captcha (resolved)="resolved($event)" siteKey="6LdsahseAAAAAFVVDIkqBu6uK809aLhJYPqg6O51"></re-captcha>
+            </div>
+            <!-- <div [hidden]="!captcha">
+                <p>{{ email }}</p>
+            </div> -->
+        </td>
+    </tr>
     <tr class="text-center">
         <td colspan="2">
-            <button (click)="register()" class="btn-primary custom-button w-100">Register</button>
+            <button id="register-button" disabled (click)="register()" class="btn-primary custom-button w-100">Register</button>
         </td>
     </tr>
     <tr>

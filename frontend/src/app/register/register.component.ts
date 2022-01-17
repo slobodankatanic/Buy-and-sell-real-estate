@@ -8,7 +8,11 @@ import { AuthService } from '../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {
+    this.captcha = "";
+  }
+
+  captcha: string;
 
   firstname: string;
   lastname: string;
@@ -26,18 +30,25 @@ export class RegisterComponent implements OnInit {
   }
 
   agentClicked() {
-    (<HTMLInputElement> document.getElementById("agency")).disabled = false;
-    (<HTMLInputElement> document.getElementById("licence")).disabled = false;
+    (<HTMLInputElement>document.getElementById("agency")).disabled = false;
+    (<HTMLInputElement>document.getElementById("licence")).disabled = false;
   }
 
   buyerClicked() {
-    (<HTMLInputElement> document.getElementById("agency")).disabled = true;
-    (<HTMLInputElement> document.getElementById("licence")).disabled = true;
+    (<HTMLInputElement>document.getElementById("agency")).disabled = true;
+    (<HTMLInputElement>document.getElementById("licence")).disabled = true;
   }
 
   register() {
     if (this.dob) {
       alert(this.dob)
+    }
+  }
+
+  resolved(captchaResponse: string) {
+    this.captcha = captchaResponse;
+    if (this.captcha != "") {
+      (<HTMLInputElement>document.getElementById("register-button")).disabled = false;
     }
   }
 

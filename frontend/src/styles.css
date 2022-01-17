@@ -16,13 +16,25 @@ body {
 
 .custom-button {
     border-radius: 30px;
+    padding: 5px;
+}
+
+.custom-button:disabled {
+    border-radius: 30px;
+    padding: 5px;
+    background-color: #698ddb;
+}
+
+/* .custom-button, .custom-button .disabled {
+    border-radius: 30px;
     background-color: #712ff3;
     padding: 5px;
 }
 
-.custom-button:hover, .custom-button:focus {
+.custom-button:hover, .custom-button:focus,
+.custom-button:hover .disabled, .custom-button:focus .disabled {
     background-color: #712ff3;
-}
+} */
 
 .error-msg {
     font-size: medium;
