@@ -10,13 +10,15 @@
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href=""><span class="act-item">Basic search</span></a>
+                                <a class="nav-link" [routerLink]="['/buyer/home']">
+                                    <span class="act-item">Basic search</span>
+                                </a>
                             </li>
                             <li id="dodaj-recept" class="nav-item">
                                 <a class="nav-link" href="">Advanced search</a>
                             </li>
                             <li id="moj-nalog" class="nav-item ml-lg-5 ml-sm-0">
-                                <a class="nav-link" href="">Change password</a>
+                                <a class="nav-link" [routerLink]="['/user/changePassword']">Change password</a>
                             </li>
                             <li id="odjava-stavka" class="nav-item ml-lg-5 ml-sm-0 pr-0">
                                 <a id="odjava" class="nav-link" href="" (click)="logout()">Log out</a>
@@ -86,18 +88,19 @@
                             <mat-option value="4">4</mat-option>
                             <mat-option value="4.5">4.5</mat-option>
                             <mat-option value="5">5</mat-option>
+                            <mat-option value="5.5">5+</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
                 <div class="col-xl-3 col-sm-6 col-12 p-2 p-xl-0">
                     <mat-form-field appearance="fill">
-                        <mat-label>Min area</mat-label>
+                        <mat-label>Min area in m<sup>2</sup></mat-label>
                         <input type="number" [(ngModel)]="minArea" matInput>
                     </mat-form-field>
                 </div>
                 <div class="col-xl-3 col-sm-6 col-12 p-2 p-xl-0">
                     <mat-form-field appearance="fill">
-                        <mat-label>Max price</mat-label>
+                        <mat-label>Max price in €</mat-label>
                         <input type="number" [(ngModel)]="maxPrice" matInput>
                     </mat-form-field>
                 </div>
@@ -105,6 +108,29 @@
                     <button (click)="search()" class="h-75 w-50 btn btn-dark">Search</button>
                 </div>
             </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <h3 *ngIf="noResultsMessage.length > 0" class="text-info">
+                {{noResultsMessage}}
+            </h3>
+            <table>
+                <tr>
+                    <th>{{Name}}</th>
+                    <th>{{Type}}</th>
+                    <th>{{Rooms}}</th>
+                    <th>{{Price}}</th>
+                </tr>
+                <tr *ngFor="let realEstate of realEstates">
+                    <td>{{realEstate.name}}</td>
+                    <td>{{realEstate.type}}</td>
+                    <td>{{realEstate.rooms}}</td>
+                    <td>{{realEstate.price}}</td>
+                </tr>
+            </table>
         </div>
         <div class="col-2"></div>
     </div>

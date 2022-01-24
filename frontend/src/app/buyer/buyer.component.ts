@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { City } from '../models/city';
 import { User } from '../models/user';
 import { FormControl, Validators } from '@angular/forms';
+import { RealEstate } from '../models/realestate';
+import { RealestateService } from '../services/realestate.service';
 
 @Component({
   selector: 'app-buyer',
@@ -11,7 +13,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class BuyerComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private realEstateServce: RealestateService) { }
 
   cities: City[] = [
     {
@@ -24,11 +26,24 @@ export class BuyerComponent implements OnInit {
     }
   ];
 
+  realEstates: RealEstate[] = [];
+  noResultsMessage: string = "";
+
   ngOnInit(): void {
     let user: User = JSON.parse(sessionStorage.getItem("user"));
 
     if (!(user && user.type == "buyer")) {
-      this.router.navigate(["login"]);
+      this.logout();
+    } else {
+      this.realEstateServce.getBasicSearchResult(this.type, this.city, this.municipality,
+        this.microlocation, this.maxPrice, this.minArea, this.rooms)
+          .subscribe((realEstates: RealEstate[]) => {
+            if (realEstates && realEstates.length > 0) {
+              this.realEstates = realEstates;
+            } else {
+              this.noResultsMessage = "No results";
+            }
+          })
     }
   }
 
@@ -38,12 +53,12 @@ export class BuyerComponent implements OnInit {
   }
 
   type: string = "";
-  maxPrice: string
-  municipality: string;
-  rooms: number;
-  city: string;
-  minArea: string;
-  microlocation: string;
+  maxPrice: string = ""
+  municipality: string = "";
+  rooms: string = "";
+  city: string = "";
+  minArea: string = "";
+  microlocation: string = "";
 
   disabledMunicipality: boolean = true;
   disabledMicrolocation: boolean = true;

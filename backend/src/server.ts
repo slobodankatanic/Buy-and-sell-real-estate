@@ -3,6 +3,7 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import authRouter from './routers/auth.routes';
+import realEstateRouter from './routers/realestate.routes';
 
 const app = express();
 
@@ -18,6 +19,7 @@ connection.once('open', () => {
 const router = express.Router();
 
 router.use('/auth', authRouter)
+router.use('/realestates', realEstateRouter)
 
 app.use('/', router)
 
