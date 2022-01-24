@@ -19,7 +19,7 @@ let User = new Schema({
         type: String
     },
     type: {
-        type: Number
+        type: String
     },
     city: {
         type: String

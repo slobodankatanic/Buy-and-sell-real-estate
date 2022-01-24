@@ -1,67 +1,110 @@
-<h2 class="text-center">Search realestates</h2>
-<div class="container-fluid">
+<div class="container-fluid p-0 overflow-hidden">
     <div class="row">
+        <div class="col header">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container">
+                    <a class="navbar-brand" href=""><img class="logo img-fluid" src="../../assets/logo.png" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href=""><span class="act-item">Basic search</span></a>
+                            </li>
+                            <li id="dodaj-recept" class="nav-item">
+                                <a class="nav-link" href="">Advanced search</a>
+                            </li>
+                            <li id="moj-nalog" class="nav-item ml-lg-5 ml-sm-0">
+                                <a class="nav-link" href="">Change password</a>
+                            </li>
+                            <li id="odjava-stavka" class="nav-item ml-lg-5 ml-sm-0 pr-0">
+                                <a id="odjava" class="nav-link" href="" (click)="logout()">Log out</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center">Search real estates</h2>
+        </div>
         <div class="col-2"></div>
-        <div class="col-8 custom-border">
-            <table class="m-auto text-end w-100">
-                <tr>
-                    <td>Type:</td>
-                    <td>
-                        <select class="form-select">
-                            <option value="">Apartment</option>
-                            <option value="">House</option>
-                            <option value="">Cottage</option>
-                            <option value="">Store</option>
-                            <option value="">Warehouse</option>
-                        </select>
-                    </td>
-                    <td class="ps-4">Max price:</td>
-                    <td>
-                        <input type="text" class="form-control" name="" id="">
-                    </td>
-                    <td class="ps-4">Min area:</td>
-                    <td>
-                        <input type="text" class="form-control" name="" id="">
-                    </td>
-                    <td class="ps-4">Rooms:</td>
-                    <td>
-                        <select class="form-control">
-                            <option>1</option>
-                            <option>1.5</option>
-                            <option>2</option>
-                            <option>2.5</option>
-                            <option>3</option>
-                            <option>3.5</option>
-                            <option>4</option>
-                            <option>4.5</option>
-                            <option>5</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>City:</td>
-                    <td>
-                        <select class="form-select">
-                            <option *ngFor="let city of cities">{{city.name}}</option>
-                        </select>
-                    </td>
-                    <td class="ps-4">Municipality:</td>
-                    <td>
-                        <select class="form-select">
-                            <option *ngFor="let city of cities">{{city.name}}</option>
-                        </select>
-                    </td>
-                    <td class="ps-4">Microlocation:</td>
-                    <td>
-                        <select class="form-select">
-                            <option *ngFor="let city of cities">{{city.name}}</option>
-                        </select>
-                    </td>
-                    <td class="ps-4" colspan="2">
-                        <button class="w-100 btn btn-dark">Search</button>
-                    </td>
-                </tr>
-            </table>
+        <div class="m-auto col-8 p-4 text-center custom-border">
+            <div class="row mb-xl-3 mb-0">
+                <div class="col-xl-3 col-sm-6 col-12 p-xl-0 p-2">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Type</mat-label>
+                        <mat-select [formControl]="typeControl" [(ngModel)]="type" required>
+                            <mat-option value="apartment">Apartment</mat-option>
+                            <mat-option value="house">House</mat-option>
+                            <mat-option value="cottage">Cottage</mat-option>
+                            <mat-option value="store">Store</mat-option>
+                            <mat-option value="warehouse">Warehouse</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12 p-2 p-xl-0">
+                    <mat-form-field appearance="fill">
+                        <mat-label>City</mat-label>
+                        <mat-select [(ngModel)]="city" (selectionChange)="citySelected()">
+                            <mat-option *ngFor="let city of cities" value="{{city.name}}">{{city.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12 p-2 p-xl-0">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Municipality</mat-label>
+                        <mat-select id="municipality" disabled="{{disabledMunicipality}}" [(ngModel)]="municipality" (selectionChange)="municipalitySelected()">
+                            <mat-option *ngFor="let city of cities" value="{{city.name}}">{{city.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-3 text-center col-sm-6 col-12 p-2 p-xl-0">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Microlocation</mat-label>
+                        <mat-select id="microlocation" disabled="{{disabledMicrolocation}}" [(ngModel)]="microlocation">
+                            <mat-option *ngFor="let city of cities" value="{{city.name}}">{{city.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-sm-6 col-12 p-2 p-xl-0">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Rooms</mat-label>
+                        <mat-select [(ngModel)]="rooms">
+                            <mat-option value="1">1</mat-option>
+                            <mat-option value="1.5">1.5</mat-option>
+                            <mat-option value="2">2</mat-option>
+                            <mat-option value="2.5">2.5</mat-option>
+                            <mat-option value="3">3</mat-option>
+                            <mat-option value="3.5">3.5</mat-option>
+                            <mat-option value="4">4</mat-option>
+                            <mat-option value="4.5">4.5</mat-option>
+                            <mat-option value="5">5</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12 p-2 p-xl-0">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Min area</mat-label>
+                        <input type="number" [(ngModel)]="minArea" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12 p-2 p-xl-0">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Max price</mat-label>
+                        <input type="number" [(ngModel)]="maxPrice" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-3 text-center col-sm-6 col-12 p-2 p-xl-0">
+                    <button (click)="search()" class="h-75 w-50 btn btn-dark">Search</button>
+                </div>
+            </div>
         </div>
         <div class="col-2"></div>
     </div>

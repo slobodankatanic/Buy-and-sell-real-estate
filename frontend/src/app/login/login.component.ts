@@ -18,6 +18,11 @@ export class LoginComponent implements OnInit {
   message: string;
 
   ngOnInit(): void {
+    let user: User = JSON.parse(sessionStorage.getItem("user"));
+
+    if (user) {
+      this.router.navigate([user.type + "/home"]);
+    }
   }
 
   login() {
@@ -25,7 +30,10 @@ export class LoginComponent implements OnInit {
       next: (response) => {
         if (response.status == 200) {
           let user: User = <User> response.body;
-          if (user.type == 0) {
+
+          sessionStorage.setItem("user", JSON.stringify(user));
+
+          if (user.type == "buyer") {
             this.router.navigate(['/buyer/home'])
           } else {
 
