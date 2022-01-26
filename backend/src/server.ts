@@ -4,6 +4,9 @@ import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import authRouter from './routers/auth.routes';
 import realEstateRouter from './routers/realestate.routes';
+import cityRouter from './routers/city.routes';
+import microlocationRouter from './routers/microlocation.routes';
+import municipalityRouter from './routers/municipality.routes';
 
 const app = express();
 
@@ -20,7 +23,12 @@ const router = express.Router();
 
 router.use('/auth', authRouter)
 router.use('/realestates', realEstateRouter)
+router.use('/cities', cityRouter)
+router.use('/microlocations', microlocationRouter)
+router.use('/municipalities', municipalityRouter)
 
 app.use('/', router)
+
+app.use(express.static('files'))
 
 app.listen(4000, () => console.log(`Express server running on port 4000`));

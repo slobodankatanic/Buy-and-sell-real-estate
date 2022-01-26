@@ -8,6 +8,10 @@ const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const auth_routes_1 = __importDefault(require("./routers/auth.routes"));
+const realestate_routes_1 = __importDefault(require("./routers/realestate.routes"));
+const city_routes_1 = __importDefault(require("./routers/city.routes"));
+const microlocation_routes_1 = __importDefault(require("./routers/microlocation.routes"));
+const municipality_routes_1 = __importDefault(require("./routers/municipality.routes"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
@@ -18,6 +22,11 @@ connection.once('open', () => {
 });
 const router = express_1.default.Router();
 router.use('/auth', auth_routes_1.default);
+router.use('/realestates', realestate_routes_1.default);
+router.use('/cities', city_routes_1.default);
+router.use('/microlocations', microlocation_routes_1.default);
+router.use('/municipalities', municipality_routes_1.default);
 app.use('/', router);
+app.use(express_1.default.static('files'));
 app.listen(4000, () => console.log(`Express server running on port 4000`));
 //# sourceMappingURL=server.js.map

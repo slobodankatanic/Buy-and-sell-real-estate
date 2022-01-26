@@ -2,8 +2,12 @@ export class RealEstate {
     "id" : number;
     "type" : string;
     "name" : string;
+    "cityId" : number;
+    "city" : string;
     "municipalityId" : number;
+    "municipality" : string;
     "microlocationId" : number;
+    "microlocation" : string;
     "street" : string;
     "area" : number;
     "rooms" : number;

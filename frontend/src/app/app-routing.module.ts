@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BuyerComponent } from './buyer/buyer.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoginComponent } from './login/login.component';
+import { RealestateComponent } from './realestate/realestate.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
@@ -14,6 +15,9 @@ const routes: Routes = [
 
   // buyer
   { path: 'buyer/home', component: BuyerComponent },
+
+  // realestate
+  { path: 'realestate/details/:id', component: RealestateComponent },
 
   // change password
   { path: 'user/changePassword', component: ChangePasswordComponent }

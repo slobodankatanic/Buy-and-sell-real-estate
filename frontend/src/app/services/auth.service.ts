@@ -26,4 +26,14 @@ export class AuthService {
     dateOfBirth, telephone, email, type, agency, licence) {
 
   }
+
+  changePassword(currentPass, newPass, confirmPass) {
+    const data = {
+      current: currentPass,
+      new: newPass,
+      confirm: confirmPass
+    }
+
+    return this.httpClient.post(`${this.uri}/users/changePassword`, data)
+  }
 }

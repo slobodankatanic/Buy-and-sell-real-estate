@@ -5,6 +5,9 @@ import { User } from '../models/user';
 import { FormControl, Validators } from '@angular/forms';
 import { RealEstate } from '../models/realestate';
 import { RealestateService } from '../services/realestate.service';
+import { CommonService } from '../services/common.service';
+import { Microlocation } from '../models/microlocation';
+import { Municipality } from '../models/municipality';
 
 @Component({
   selector: 'app-buyer',
@@ -13,21 +16,16 @@ import { RealestateService } from '../services/realestate.service';
 })
 export class BuyerComponent implements OnInit {
 
-  constructor(private router: Router, private realEstateServce: RealestateService) { }
+  constructor(private router: Router,
+    private realEstateServce: RealestateService,
+    private commonService: CommonService) { }
 
-  cities: City[] = [
-    {
-      id: 1,
-      name: "Sombor"
-    },
-    {
-      id: 2,
-      name: "Sankt Peterburg"
-    }
-  ];
+  cities: City[] = [];
+  municipalities: Municipality[] = [];
+  microlocations: Microlocation[] = []
 
   realEstates: RealEstate[] = [];
-  noResultsMessage: string = "";
+  noResultsMessage: string = "No results";
 
   ngOnInit(): void {
     let user: User = JSON.parse(sessionStorage.getItem("user"));
@@ -35,15 +33,9 @@ export class BuyerComponent implements OnInit {
     if (!(user && user.type == "buyer")) {
       this.logout();
     } else {
-      this.realEstateServce.getBasicSearchResult(this.type, this.city, this.municipality,
-        this.microlocation, this.maxPrice, this.minArea, this.rooms)
-          .subscribe((realEstates: RealEstate[]) => {
-            if (realEstates && realEstates.length > 0) {
-              this.realEstates = realEstates;
-            } else {
-              this.noResultsMessage = "No results";
-            }
-          })
+      this.commonService.getAllCities().subscribe((allCities: City[]) => {
+        this.cities = allCities;
+      })
     }
   }
 
@@ -53,12 +45,12 @@ export class BuyerComponent implements OnInit {
   }
 
   type: string = "";
-  maxPrice: string = ""
-  municipality: string = "";
-  rooms: string = "";
-  city: string = "";
-  minArea: string = "";
-  microlocation: string = "";
+  maxPrice: number;
+  municipality: number = 0;
+  rooms: number;
+  city: number = 0;
+  minArea: number;
+  microlocation: number = 0;
 
   disabledMunicipality: boolean = true;
   disabledMicrolocation: boolean = true;
@@ -66,19 +58,46 @@ export class BuyerComponent implements OnInit {
   errorMessage: string = "";
 
   citySelected() {
-    this.municipality = "";
+    this.municipality = 0;
     this.disabledMunicipality = false;
     this.disabledMicrolocation = true;
+
+    let name = '';
+    this.cities.forEach(item => {
+      if (item.id == this.city) {
+        name = item.name;
+      }
+    })
+
+    this.commonService.getMunicipalitiesForCity(name).subscribe((muns: Municipality[]) => {
+      this.municipalities = muns;
+    });
   }
 
   municipalitySelected() {
     this.disabledMicrolocation = false;
-    this.microlocation = "";
+    this.microlocation = 0;
+
+    this.commonService.getMicrolocationsForMunicipality(this.municipality).subscribe((micros: Microlocation[]) => {
+      this.microlocations = micros;
+    });
   }
 
   search() {
     if (this.type == "") {
       this.typeControl.markAsTouched();
+    } else {
+      this.realEstateServce.getBasicSearchResult(this.type, this.city, this.municipality,
+        this.microlocation, this.maxPrice, this.minArea, this.rooms)
+        .subscribe((realEstates: RealEstate[]) => {
+          if (realEstates && realEstates.length > 0) {
+            this.realEstates = realEstates;
+            this.noResultsMessage = "";
+          } else {
+            this.noResultsMessage = "No results";
+            this.realEstates = []
+          }
+        })
     }
   }
 

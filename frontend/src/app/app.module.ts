@@ -14,7 +14,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from "@angular/material/input"
 import { MatSelectModule } from '@angular/material/select'
 import { MatButtonModule } from '@angular/material/button';
-import { ChangePasswordComponent } from './change-password/change-password.component'
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { RealestateComponent } from './realestate/realestate.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +26,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     LoginComponent,
     RegisterComponent,
     BuyerComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    RealestateComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,9 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDividerModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
