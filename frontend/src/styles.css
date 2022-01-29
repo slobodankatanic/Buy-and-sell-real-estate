@@ -13,6 +13,10 @@ body {
     justify-content: space-around;
 }
 
+a.hover-link:hover {
+    color: rgb(201, 197, 197);
+}
+
 .custom-input {
     border-radius: 30px;
     background-color: #f3f3f3;
@@ -27,7 +31,7 @@ body {
 .custom-button:disabled {
     border-radius: 30px;
     padding: 5px;
-    background-color: #698ddb;
+    background-color: #686868;
 }
 
 /* .custom-button, .custom-button .disabled {
