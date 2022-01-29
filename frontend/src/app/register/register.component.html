@@ -71,7 +71,7 @@
     <tr>
         <td colspan="2">
             <div>
-                <re-captcha (resolved)="resolved($event)"
+                <re-captcha (resolved)="resolved($event)" (expiredCallback)="onChange1()"
                     siteKey="6LdsahseAAAAAFVVDIkqBu6uK809aLhJYPqg6O51"></re-captcha>
             </div>
         </td>
@@ -83,7 +83,7 @@
     </tr>
     <tr>
         <td colspan="2">
-            <div class="text-center">Already have an account? Log in <a routerLink="/login">here</a></div>
+            <div class="text-center">Already have an account? Log in <a class="hover-link" routerLink="/login">here</a></div>
         </td>
     </tr>
 </table>

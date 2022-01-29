@@ -52,4 +52,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  onChange1() {
+    alert(1);
+  }
 }

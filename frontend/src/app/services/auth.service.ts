@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -28,10 +29,13 @@ export class AuthService {
   }
 
   changePassword(currentPass, newPass, confirmPass) {
+    let user: User = JSON.parse(sessionStorage.getItem("user"));
+
     const data = {
-      current: currentPass,
-      new: newPass,
-      confirm: confirmPass
+      currentPassword: currentPass,
+      newPassword: newPass,
+      confirmPassword: confirmPass,
+      username: user.username
     }
 
     return this.httpClient.post(`${this.uri}/users/changePassword`, data)
