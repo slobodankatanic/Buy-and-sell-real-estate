@@ -1,3 +1,5 @@
+import { Characteristic } from "./characteristic";
+
 export class RealEstate {
     "id" : number;
     "type" : string;
@@ -19,21 +21,12 @@ export class RealEstate {
     "parking" : string;
     "monthlyUtilities" : number;
     "price" : number;
+    "averagePrice" : number;
     "about" : string;
     "sold" : number;
     "lastChange" : string;
     "images" : Array<string>;
     "transportLines" : Array<number>;
     "advertiserId" : number;
-    "teracce" : number;
-    "basement" : number;
-    "internet" : number;
-    "loggia" : number;
-    "garage" : number;
-    "interphone" : number;
-    "balcony" : number;
-    "garden" : number;
-    "telephone" : number;
-    "elevator" : number;
-    "airConditioning" : number;
+    "characteristics": Array<Characteristic>
 }

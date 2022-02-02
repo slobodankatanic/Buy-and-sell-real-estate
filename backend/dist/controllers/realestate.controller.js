@@ -7,6 +7,49 @@ exports.RealEstateController = void 0;
 const realestate_1 = __importDefault(require("../models/realestate"));
 class RealEstateController {
     constructor() {
+        this.getById = (req, res) => {
+            let id = req.query.id;
+            realestate_1.default.findOne({ "id": id }, (err, re) => {
+                if (err) {
+                    console.log(err);
+                }
+                if (re) {
+                    res.json(re);
+                }
+            });
+        };
+        this.getAveragePrice = (req, res) => {
+            let type = req.query.type;
+            let microlocationId = req.query.microlocation;
+            if (type == "all") {
+                realestate_1.default.find({ "microlocationId": microlocationId }, (err, realEstates) => {
+                    let total = 0.0;
+                    realEstates.forEach(re => {
+                        total += re.get('price') / re.get('area');
+                    });
+                    if (realEstates.length > 0) {
+                        res.json({ "averagePrice": total / realEstates.length });
+                    }
+                    else {
+                        res.json({ "averagePrice": 0.0 });
+                    }
+                });
+            }
+            else {
+                realestate_1.default.find({ "type": type, "microlocationId": microlocationId }, (err, realEstates) => {
+                    let total = 0.0;
+                    realEstates.forEach(re => {
+                        total += re.get('price') / re.get('area');
+                    });
+                    if (realEstates.length > 0) {
+                        res.json({ "averagePrice": total / realEstates.length });
+                    }
+                    else {
+                        res.json({ "averagePrice": 0.0 });
+                    }
+                });
+            }
+        };
         this.getBasicSearchResult = (req, res) => {
             let type = req.body.type;
             let cityId = req.body.city;

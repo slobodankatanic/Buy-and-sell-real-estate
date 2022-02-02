@@ -66,6 +66,9 @@ let RealEstate = new Schema({
     price: {
         type: Number
     },
+    averagePrice: {
+        type: Number
+    },
     about: {
         type: String
     },

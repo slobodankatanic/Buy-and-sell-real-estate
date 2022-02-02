@@ -1,1 +1,186 @@
-<h2>{{id}}</h2>
+<div class="container-fluid p-0 overflow-hidden">
+    <div class="row">
+        <div class="col header">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container">
+                    <a class="navbar-brand" href=""><img class="logo img-fluid" src="../../assets/logo.png" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['/buyer/home']">
+                                    <span class="act-item">Basic search</span>
+                                </a>
+                            </li>
+                            <li id="dodaj-recept" class="nav-item">
+                                <a class="nav-link" href="">Advanced search</a>
+                            </li>
+                            <li id="moj-nalog" class="nav-item ml-lg-5 ml-sm-0">
+                                <a class="nav-link" [routerLink]="['/user/changePassword']">Change password</a>
+                            </li>
+                            <li id="odjava-stavka" class="nav-item ml-lg-5 ml-sm-0 pr-0">
+                                <a id="odjava" class="nav-link" [routerLink]="['/login']" (click)="logout()">Log out</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="row realestate-info m-0 p-3">
+        <div class="col-1"></div>
+        <div class="col text-left">
+            <h2 class="p-0 m-0">{{realEstate.name}}</h2>
+        </div>
+        <div class="col text-right custom-title">
+            <div>{{realEstate.city}} - {{realEstate.municipality}} - {{realEstate.microlocation}}</div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row m-4">
+        <div class="col-1"></div>
+        <div class="col">
+            <div class="row mb-3">
+                <div class="col">
+                    <div id="carouselExampleIndicators" class="carousel slide w-auto najbolji-recepti" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="h-100 carousel-inner">
+                            <div id="prvi-slajd" class="carousel-item active bg-dark">
+                                <img id="img-r1" src="{{realEstate.images[0]}}" class="h-50 w-auto d-block img-fluid">
+                                <div class="carousel-caption">
+                                    <h2 id="rh1"></h2>
+                                    <p id="rp1"></p>
+                                </div>
+                            </div>
+                            <div id="drugi-slajd" class="carousel-item bg-dark">
+                                <div class="carousel-caption">
+                                    <h2 id="rh2"></h2>
+                                    <p id="rp2"></p>
+                                </div>
+                                <img id="img-r2" class="h-50 d-block img-fluid" src="{{realEstate.images[0]}}">
+                            </div>
+                            <div id="treci-slajd" class="carousel-item bg-dark">
+                                <div class="carousel-caption">
+                                    <h2 id="rh3"></h2>
+                                    <p id="rp3"></p>
+                                </div>
+                                <img id="img-r3" class="h-50 d-block img-fluid" src="{{realEstate.images[0]}}">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-card class="example-card card-font card-bg">
+                        <mat-card-title>Description</mat-card-title>
+                        <mat-card-content class="custom-text">
+                          {{realEstate.about}}
+                        </mat-card-content>
+                        <mat-divider inset class="pb-3"></mat-divider>
+                        <mat-card-content class="text-center custom-text">
+                            Average price on location: <b>{{realEstate.averagePrice}}</b>€/m<sup>2</sup>
+                          </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col-8">
+                    <mat-card class="card-font p-0 m-0">
+                        <mat-card-title class="card-bg-price text-center price-text">{{realEstate.price}}€</mat-card-title>
+                    </mat-card>
+                </div>
+                <div class="col text-right">
+                    <button (click)="addToFavorites()" class="btn btn-dark">Add to favorites</button>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <mat-card class="card-font card-bg">
+                        <mat-card-title>Type: {{realEstate.type}}</mat-card-title>
+                    </mat-card>
+                </div>
+                <div class="col">
+                    <mat-card class="card-font card-bg">
+                        <mat-card-title>Area: {{realEstate.area}}m<sup>2</sup></mat-card-title>
+                    </mat-card>
+                </div>
+                <div class="col">
+                    <mat-card class="card-font card-bg">
+                        <mat-card-title>Rooms: {{realEstate.rooms}}</mat-card-title>
+                    </mat-card>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <mat-card class="example-card card-font card-bg">
+                        <mat-card-content>
+                            <div class="row">
+                                <div class="col text-left custom-text">
+                                    Advertiser: &nbsp;<b>{{advertiser}}</b><br>
+                                    Construction year: &nbsp;<b>{{realEstate.constructionYear}}</b><br>
+                                    State: &nbsp;<b>{{realEstate.state}}</b><br>
+                                    Heating: &nbsp;<b>{{realEstate.heating}}</b>
+                                </div>
+                                <div class="col text-left custom-text">
+                                    Floor: &nbsp;<b>{{realEstate.floor}}</b><br>
+                                    Total floors: &nbsp;<b>{{realEstate.totalFloors}}</b><br>
+                                    Parking: &nbsp;<b>{{realEstate.parking}}</b>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <mat-card class="example-card card-font card-bg">
+                        <mat-card-title>Have</mat-card-title>
+                        <mat-card-content>
+                            <mat-chip-list cdkDropList cdkDropListOrientation="horizontal">
+                                <mat-chip class="charact-chip-exists"
+                                    *ngFor="let characteristic of characteristicsExists">
+                                    {{characteristic}}
+                                </mat-chip>
+                            </mat-chip-list>
+                        </mat-card-content>
+                        <mat-divider inset class="pb-3"></mat-divider>
+                        <mat-card-title>Don't have</mat-card-title>
+                        <mat-card-content>
+                            <mat-chip-list cdkDropList cdkDropListOrientation="horizontal">
+                                <mat-chip class="charact-chip-dont-exists"
+                                    *ngFor="let characteristic of characteristicsDontExists">
+                                    {{characteristic}}
+                                </mat-chip>
+                            </mat-chip-list>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row footer">
+        <div class="col">
+            <p id="autori" class="p-0 m-0 mt-4">Sreten Živković 0008/2018, Slobodan Katanić 0133/2018</p><br>
+            <p id="fakultet" class="p-0 m-0">Department of Software Engineering University of Belgrade School of Electrical Engineering</p><br>
+            <p class="p-0 m-0 mb-3">© Copyright 2021</p>
+        </div>
+    </div>
+</div>

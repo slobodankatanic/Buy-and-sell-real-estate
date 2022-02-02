@@ -24,4 +24,13 @@ export class RealestateService {
 
       return this.httpClient.post(`${this.uri}/realestates/getBasic`, data);
   }
+
+  getAveragePrice(type, microlocationId) {
+    return this.httpClient.get(`${this.uri}/realestates/getAveragePrice?type=${type}&microlocation=${microlocationId}`);
+  }
+
+  getById(realEstateId) {
+    return this.httpClient.get(`${this.uri}/realestates/get?id=${realEstateId}`);
+  }
+
 }

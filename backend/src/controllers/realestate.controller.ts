@@ -2,6 +2,55 @@ import * as express from 'express';
 import RealEstate from '../models/realestate'
 
 export class RealEstateController {
+
+    getById = (req: express.Request, res: express.Response) => {
+        let id = req.query.id;
+
+        RealEstate.findOne({"id": id}, (err, re) => {
+            if (err) {
+                console.log(err);
+            }
+            if (re) {
+                res.json(re);
+            }
+        })
+    }
+
+    getAveragePrice = (req: express.Request, res: express.Response) => {
+        let type = req.query.type;
+        let microlocationId = req.query.microlocation;
+
+        if (type == "all") {
+            RealEstate.find({ "microlocationId": microlocationId }, (err, realEstates) => {
+                let total = 0.0;
+
+                realEstates.forEach(re => {
+                    total += re.get('price') / re.get('area');
+                })
+
+                if (realEstates.length > 0) {
+                    res.json({ "averagePrice": total / realEstates.length });
+                } else {
+                    res.json({ "averagePrice": 0.0 });
+                }
+            })
+        } else {
+            RealEstate.find({ "type": type, "microlocationId": microlocationId }, (err, realEstates) => {
+                let total = 0.0;
+
+                realEstates.forEach(re => {
+                    total += re.get('price') / re.get('area');
+                })
+
+                if (realEstates.length > 0) {
+                    res.json({ "averagePrice": total / realEstates.length });
+                } else {
+                    res.json({ "averagePrice": 0.0 });
+                }
+            })
+        }
+    }
+
     getBasicSearchResult = (req: express.Request, res: express.Response) => {
         let type = req.body.type;
         let cityId = req.body.city;

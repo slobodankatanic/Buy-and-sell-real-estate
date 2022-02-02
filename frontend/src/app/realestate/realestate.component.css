@@ -1,0 +1,39 @@
+.charact-chip-exists {
+    background-color: rgb(52, 58, 64);
+    color: white;
+}
+
+.custom-hr {
+    border-width: 5px;
+    border-color: rgb(52, 58, 64);
+}
+
+.realestate-info {
+    background-color: rgb(194, 197, 201);
+}
+
+.custom-title {
+    font-size: 25px;
+    vertical-align: middle;
+}
+
+.custom-text {
+    font-size: 17px;
+}
+
+.card-bg {
+    background-color: rgb(241, 241, 241);
+}
+
+.card-bg-price {
+    background-color: rgb(52, 58, 64);
+    color: white;
+}
+
+.price-text {
+    font-size: 28px;
+}
+
+.custom-list-font {
+    font-size: 18px;
+}

@@ -16,6 +16,8 @@ import { MatSelectModule } from '@angular/material/select'
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatCardModule } from '@angular/material/card';
 
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { RealestateComponent } from './realestate/realestate.component'
@@ -41,7 +43,9 @@ import { RealestateComponent } from './realestate/realestate.component'
     MatButtonModule,
     ReactiveFormsModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatChipsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

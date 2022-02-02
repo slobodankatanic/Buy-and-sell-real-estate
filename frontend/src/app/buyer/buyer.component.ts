@@ -91,6 +91,12 @@ export class BuyerComponent implements OnInit {
         this.microlocation, this.maxPrice, this.minArea, this.rooms)
         .subscribe((realEstates: RealEstate[]) => {
           if (realEstates && realEstates.length > 0) {
+            realEstates.forEach(re => {
+              this.realEstateServce.getAveragePrice(re.type, re.microlocationId).subscribe(resp => {
+                re.averagePrice = Math.round(resp['averagePrice']);
+              })
+            })
+
             this.realEstates = realEstates;
             this.noResultsMessage = "";
           } else {
