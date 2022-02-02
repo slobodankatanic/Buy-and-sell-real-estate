@@ -37,3 +37,11 @@
 .custom-list-font {
     font-size: 18px;
 }
+
+.green {
+    color: rgb(128, 196, 128);
+}
+
+.red {
+    color: rgb(194, 85, 85);
+}

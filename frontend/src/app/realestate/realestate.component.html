@@ -98,12 +98,35 @@
                     </mat-card>
                 </div>
             </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <mat-card class="example-card card-font card-bg">
+                        <mat-card-title>Advertiser contact</mat-card-title>
+                        <mat-card-content class="custom-text">
+                            <div *ngIf="advertiserType=='agency'">
+                                {{advertiser.firstname}} {{advertiser.lastname}}<br>
+                                {{advertiser.telephone}}<br>
+                                {{agency.name}}
+                            </div>
+                            <div *ngIf="advertiserType=='owner'">
+                                {{advertiser.firstname}} {{advertiser.lastname}}<br>
+                                {{advertiser.telephone}}<br>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
         </div>
         <div class="col">
             <div class="row">
                 <div class="col-8">
                     <mat-card class="card-font p-0 m-0">
-                        <mat-card-title class="card-bg-price text-center price-text">{{realEstate.price}}€</mat-card-title>
+                        <mat-card-title
+                            [class.green]="realEstate.averagePrice >= realEstate.price/realEstate.area"
+                            [class.red]="realEstate.price/realEstate.area > realEstate.averagePrice"
+                            class="card-bg-price text-center price-text">
+                            {{realEstate.price}} €
+                        </mat-card-title>
                     </mat-card>
                 </div>
                 <div class="col text-right">
@@ -133,7 +156,7 @@
                         <mat-card-content>
                             <div class="row">
                                 <div class="col text-left custom-text">
-                                    Advertiser: &nbsp;<b>{{advertiser}}</b><br>
+                                    Advertiser: &nbsp;<b>{{advertiserType}}</b><br>
                                     Construction year: &nbsp;<b>{{realEstate.constructionYear}}</b><br>
                                     State: &nbsp;<b>{{realEstate.state}}</b><br>
                                     Heating: &nbsp;<b>{{realEstate.heating}}</b>

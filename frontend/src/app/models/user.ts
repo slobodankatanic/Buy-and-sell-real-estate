@@ -8,6 +8,7 @@ export class User {
     dob: Date;
     telephone: string;
     email: string;
-    agency: string;
+    agencyId: number;
     licence: number;
+    favorites: Array<number>;
 }

@@ -7,6 +7,12 @@ exports.UserController = void 0;
 const user_1 = __importDefault(require("../models/user"));
 class UserController {
     constructor() {
+        this.getUserById = (req, res) => {
+            let username = req.query.username;
+            user_1.default.findOne({ "username": username }, (err, user) => {
+                res.json(user);
+            });
+        };
         this.changePassword = (req, res) => {
             let currentPassword = req.body.currentPassword;
             let newPassword = req.body.newPassword;

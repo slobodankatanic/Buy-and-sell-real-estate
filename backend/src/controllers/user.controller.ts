@@ -2,6 +2,15 @@ import * as express from 'express';
 import User from '../models/user'
 
 export class UserController {
+
+    getUserById = (req: express.Request, res: express.Response) => {
+        let username = req.query.username;
+
+        User.findOne({ "username": username }, (err, user) => {
+            res.json(user);
+        })
+    }
+
     changePassword = (req: express.Request, res: express.Response) => {
         let currentPassword = req.body.currentPassword;
         let newPassword = req.body.newPassword;

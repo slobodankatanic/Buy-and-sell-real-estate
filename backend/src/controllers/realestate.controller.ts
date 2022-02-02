@@ -21,7 +21,7 @@ export class RealEstateController {
         let microlocationId = req.query.microlocation;
 
         if (type == "all") {
-            RealEstate.find({ "microlocationId": microlocationId }, (err, realEstates) => {
+            RealEstate.find({ "sold": 0, "microlocationId": microlocationId }, (err, realEstates) => {
                 let total = 0.0;
 
                 realEstates.forEach(re => {
@@ -35,7 +35,7 @@ export class RealEstateController {
                 }
             })
         } else {
-            RealEstate.find({ "type": type, "microlocationId": microlocationId }, (err, realEstates) => {
+            RealEstate.find({ "sold": 0, "type": type, "microlocationId": microlocationId }, (err, realEstates) => {
                 let total = 0.0;
 
                 realEstates.forEach(re => {
@@ -97,6 +97,7 @@ export class RealEstateController {
 
         RealEstate.find({
             "type": type,
+            "sold": 0,
             "cityId": { $gte: cityIdMin, $lte: cityIdMax },
             "municipalityId": { $gte: municipalityIdMin, $lte: municipalityIdMax },
             "microlocationId": { $gte: microlocationIdMin, $lte: microlocationIdMax },

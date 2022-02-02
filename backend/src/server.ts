@@ -8,6 +8,7 @@ import cityRouter from './routers/city.routes';
 import microlocationRouter from './routers/microlocation.routes';
 import municipalityRouter from './routers/municipality.routes';
 import userRouter from './routers/user.routes';
+import agencyRouter from './routers/agency.routes';
 
 const app = express();
 
@@ -28,6 +29,7 @@ router.use('/cities', cityRouter)
 router.use('/microlocations', microlocationRouter)
 router.use('/municipalities', municipalityRouter)
 router.use('/users', userRouter)
+router.use('/agency', agencyRouter)
 
 app.use('/', router)
 

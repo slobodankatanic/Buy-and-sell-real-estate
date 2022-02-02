@@ -22,7 +22,7 @@ class RealEstateController {
             let type = req.query.type;
             let microlocationId = req.query.microlocation;
             if (type == "all") {
-                realestate_1.default.find({ "microlocationId": microlocationId }, (err, realEstates) => {
+                realestate_1.default.find({ "sold": 0, "microlocationId": microlocationId }, (err, realEstates) => {
                     let total = 0.0;
                     realEstates.forEach(re => {
                         total += re.get('price') / re.get('area');
@@ -36,7 +36,7 @@ class RealEstateController {
                 });
             }
             else {
-                realestate_1.default.find({ "type": type, "microlocationId": microlocationId }, (err, realEstates) => {
+                realestate_1.default.find({ "sold": 0, "type": type, "microlocationId": microlocationId }, (err, realEstates) => {
                     let total = 0.0;
                     realEstates.forEach(re => {
                         total += re.get('price') / re.get('area');
@@ -93,6 +93,7 @@ class RealEstateController {
             // console.log(minRooms + ", " + maxRooms)
             realestate_1.default.find({
                 "type": type,
+                "sold": 0,
                 "cityId": { $gte: cityIdMin, $lte: cityIdMax },
                 "municipalityId": { $gte: municipalityIdMin, $lte: municipalityIdMax },
                 "microlocationId": { $gte: microlocationIdMin, $lte: microlocationIdMax },

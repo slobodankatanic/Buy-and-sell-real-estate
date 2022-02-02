@@ -30,11 +30,14 @@ let User = new Schema({
     email: {
         type: String
     },
-    agency: {
-        type: String
+    agencyId: {
+        type: Number
     },
     licence: {
         type: Number
+    },
+    favorites: {
+        type: Array
     }
 })
 

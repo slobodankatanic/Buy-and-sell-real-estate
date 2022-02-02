@@ -1,9 +1,11 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
+import { Agency } from '../models/agency';
 import { Characteristic } from '../models/characteristic';
 import { RealEstate } from '../models/realestate';
 import { User } from '../models/user';
+import { CommonService } from '../services/common.service';
 import { RealestateService } from '../services/realestate.service';
 
 @Component({
@@ -15,7 +17,8 @@ export class RealestateComponent implements OnInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private realEstateService: RealestateService) {}
+    private realEstateService: RealestateService,
+    private commonService: CommonService) { }
 
   ngOnInit(): void {
     let user: User = JSON.parse(sessionStorage.getItem("user"));
@@ -40,6 +43,19 @@ export class RealestateComponent implements OnInit {
             this.realEstate.averagePrice = Math.round(resp['averagePrice']);
           })
 
+          this.commonService.getUserById(realEstate.advertiserId).subscribe((user: User) => {
+            this.advertiser = user;
+            if (user.type == "agent") {
+              this.advertiserType = "agency";
+
+              this.commonService.getAgencyById(user.agencyId).subscribe((agency: Agency) => {
+                this.agency = agency;
+              });
+            } else {
+              this.advertiserType = "owner";
+            }
+          })
+
         })
       });
     }
@@ -50,7 +66,9 @@ export class RealestateComponent implements OnInit {
   characteristicsExists: string[] = []
   characteristicsDontExists: string[] = []
 
-  advertiser: string = "agency";
+  advertiser: User;
+  advertiserType: string;
+  agency: Agency;
 
   logout() {
     sessionStorage.removeItem("user");
@@ -58,7 +76,11 @@ export class RealestateComponent implements OnInit {
   }
 
   addToFavorites() {
+    let user: User = JSON.parse(sessionStorage.getItem("user"));
 
+    if (user.favorites.length < 5) {
+      user.favorites.push(this.realEstate.id);
+    }
   }
 
 }

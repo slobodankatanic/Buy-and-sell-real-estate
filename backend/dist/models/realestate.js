@@ -85,7 +85,7 @@ let RealEstate = new Schema({
         type: Array
     },
     advertiserId: {
-        type: Number
+        type: String
     },
     teracce: {
         type: Number

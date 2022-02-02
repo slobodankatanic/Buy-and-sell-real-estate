@@ -20,7 +20,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { RealestateComponent } from './realestate/realestate.component'
+import { RealestateComponent } from './realestate/realestate.component';
+import { FavoriteRealEstateComponent } from './favorite-real-estate/favorite-real-estate.component'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RealestateComponent } from './realestate/realestate.component'
     RegisterComponent,
     BuyerComponent,
     ChangePasswordComponent,
-    RealestateComponent
+    RealestateComponent,
+    FavoriteRealEstateComponent
   ],
   imports: [
     BrowserModule,
@@ -50,4 +52,5 @@ import { RealestateComponent } from './realestate/realestate.component'
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
