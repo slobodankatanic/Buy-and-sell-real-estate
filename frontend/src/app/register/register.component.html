@@ -45,10 +45,15 @@
         </td>
     </tr>
     <tr>
-        <td class="text-center">User type : </td>
-        <td class="text-center">
+        <!-- <td class="text-center">User type : </td> -->
+        <td colspan="2" class="text-center">
+            User type : &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
             <input (click)="buyerClicked()" type="radio" name="user-type" id="user-type-buyer" checked>
             <label for="user-type-buyer">Buyer</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <input (click)="ownerClicked()" type="radio" name="user-type" id="user-type-owner">
+            <label for="user-type-owner">Owner</label>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <input (click)="agentClicked()" type="radio" name="user-type" id="user-type-agent">
             <label for="user-type-agent">Agent</label>
@@ -58,20 +63,29 @@
         <td>
             <select class="custom-input w-100 p-2" name="agency" id="agency" [(ngModel)]="agency" disabled>
                 <option value="Choose agency" disabled>Choose agency</option>
-                <option value="a2">Agency 2</option>
-                <option value="a3">Agency 3</option>
-                <option value="a4">Agency 4</option>
-                <option value="a5">Agency 5</option>
+                <option *ngFor="let agency of agencies" value="{{agency.pib}}">{{agency.name}}</option>
             </select>
         </td>
         <td>
-            <input disabled class="form-control custom-input" placeholder="Agent licence" type="text" name="licence" id="licence" [(ngModel)]="licence">
+            <input
+                type="number"
+                disabled class="form-control custom-input"
+                placeholder="Agent licence"
+                name="licence"
+                id="licence"
+                [(ngModel)]="licence">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <span class="ml-4 mr-1">Profile image:</span>
+            <input class="m-0 p-0" type="file" (change)="selectImage($event)">
         </td>
     </tr>
     <tr>
         <td colspan="2">
             <div>
-                <re-captcha (resolved)="resolved($event)" (expiredCallback)="onChange1()"
+                <re-captcha (resolved)="resolved($event)"
                     siteKey="6LdsahseAAAAAFVVDIkqBu6uK809aLhJYPqg6O51"></re-captcha>
             </div>
         </td>

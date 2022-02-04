@@ -24,8 +24,24 @@ export class AuthService {
   }
 
   register(firstname, lastname, username, password, city,
-    dateOfBirth, telephone, email, type, agency, licence) {
+    dateOfBirth, telephone, email, type, agency, licence, image) {
 
+    const formData = new FormData();
+
+    formData.append("firstname", firstname);
+    formData.append("lastname", lastname);
+    formData.append("username", username);
+    formData.append("password", password);
+    formData.append("city", city);
+    formData.append("dateOfBirth", dateOfBirth);
+    formData.append("telephone", telephone);
+    formData.append("email", email);
+    formData.append("type", type);
+    formData.append("agencyId", agency);
+    formData.append("licence", licence);
+    formData.append("image", image);
+
+    return this.httpClient.post(`${this.uri}/auth/register`, formData);
   }
 
   changePassword(currentPass, newPass, confirmPass) {
@@ -38,6 +54,6 @@ export class AuthService {
       username: user.username
     }
 
-    return this.httpClient.post(`${this.uri}/users/changePassword`, data)
+    return this.httpClient.post(`${this.uri}/users/changePassword`, data);
   }
 }

@@ -14,6 +14,8 @@ const microlocation_routes_1 = __importDefault(require("./routers/microlocation.
 const municipality_routes_1 = __importDefault(require("./routers/municipality.routes"));
 const user_routes_1 = __importDefault(require("./routers/user.routes"));
 const agency_routes_1 = __importDefault(require("./routers/agency.routes"));
+const user_1 = __importDefault(require("./models/user"));
+const multer = require('multer');
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
@@ -30,6 +32,38 @@ router.use('/microlocations', microlocation_routes_1.default);
 router.use('/municipalities', municipality_routes_1.default);
 router.use('/users', user_routes_1.default);
 router.use('/agency', agency_routes_1.default);
+const storage = multer.diskStorage({
+    destination: (req, file, callBack) => {
+        callBack(null, 'files/images/users');
+    },
+    filename: (req, file, callBack) => {
+        callBack(null, `__img__${file.originalname}`);
+    }
+});
+const upload = multer({ storage: storage });
+app.post('/auth/register', upload.single('image'), (req, res, next) => {
+    let user = new user_1.default({
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        username: req.body.username,
+        password: req.body.password,
+        type: req.body.type,
+        city: req.body.city,
+        dob: req.body.dateOfBirth,
+        telephone: req.body.telephone,
+        email: req.body.email,
+        agencyId: Number(req.body.agencyId),
+        licence: Number(req.body.licence),
+        status: "awaiting",
+        image: "http://localhost:4000/images/users/__img__" + req.file.originalname,
+        favorites: []
+    });
+    user.save().then(user => {
+        res.status(200).json({ 'message': 'user added' });
+    }).catch(err => {
+        res.status(400).json({ 'message': 'error' });
+    });
+});
 app.use('/', router);
 app.use(express_1.default.static('files'));
 app.listen(4000, () => console.log(`Express server running on port 4000`));

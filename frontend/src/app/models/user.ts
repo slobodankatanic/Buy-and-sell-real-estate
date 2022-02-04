@@ -5,7 +5,7 @@ export class User {
     password: string;
     type: string;
     city: string;
-    dob: Date;
+    dob: string;
     telephone: string;
     email: string;
     agencyId: number;

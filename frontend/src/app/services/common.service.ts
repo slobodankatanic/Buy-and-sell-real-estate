@@ -37,4 +37,9 @@ export class CommonService {
   getAgencyById(pib) {
     return this.httpClient.get(`${this.uri}/agency/get?pib=${pib}`);
   }
+
+  getAllAgencies() {
+    return this.httpClient.get(`${this.uri}/agency/getAll`);
+  }
+
 }

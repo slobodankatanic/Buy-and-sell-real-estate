@@ -13,6 +13,11 @@ class AgencyController {
                 res.json(agency);
             });
         };
+        this.getAllAgencies = (req, res) => {
+            agency_1.default.find({}, (err, agencies) => {
+                res.json(agencies);
+            });
+        };
     }
 }
 exports.AgencyController = AgencyController;

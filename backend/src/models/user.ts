@@ -36,6 +36,12 @@ let User = new Schema({
     licence: {
         type: Number
     },
+    status: {
+        type: String
+    },
+    image: {
+        type: String
+    },
     favorites: {
         type: Array
     }

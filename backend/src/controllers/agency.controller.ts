@@ -10,4 +10,10 @@ export class AgencyController {
         })
     }
 
+    getAllAgencies = (req: express.Request, res: express.Response) => {
+        Agency.find({}, (err, agencies) => {
+            res.json(agencies);
+        })
+    }
+
 }

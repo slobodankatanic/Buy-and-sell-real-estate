@@ -7,4 +7,8 @@ agencyRouter.route('/get').get(
     (req, res) => new AgencyController().getAgencyById(req, res)
 )
 
+agencyRouter.route('/getAll').get(
+    (req, res) => new AgencyController().getAllAgencies(req, res)
+)
+
 export default agencyRouter;
