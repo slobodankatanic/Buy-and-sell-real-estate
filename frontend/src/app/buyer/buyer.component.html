@@ -17,10 +17,15 @@
                             <li id="dodaj-recept" class="nav-item">
                                 <a class="nav-link" href="">Advanced search</a>
                             </li>
+                            <li id="dodaj-recept" class="nav-item">
+                                <a class="nav-link"[routerLink]="['/buyer/favorite']">
+                                    Favorite
+                                </a>
+                            </li>
                             <li id="moj-nalog" class="nav-item ml-lg-5 ml-sm-0">
                                 <a class="nav-link" [routerLink]="['/user/changePassword']">Change password</a>
                             </li>
-                            <li id="odjava-stavka" class="nav-item ml-lg-5 ml-sm-0 pr-0">
+                            <li id="odjava-stavka" class="nav-item ml-sm-0 pr-0">
                                 <a id="odjava" class="nav-link" [routerLink]="['/login']" (click)="logout()">Log out</a>
                             </li>
                         </ul>
@@ -117,7 +122,7 @@
             <h4 *ngIf="noResultsMessage!=''" class="text-dark">
                 {{noResultsMessage}}
             </h4>
-            <a *ngFor="let realEstate of realEstates" class="custom-link" [routerLink]="[ '/realestate/details', realEstate.id]">
+            <a target="_blank" *ngFor="let realEstate of realEstates" class="custom-link" [routerLink]="[ '/realestate/details', realEstate.id]">
                 <div class="row custom-link-row m-2 nav-item">
                     <div class="col-xl-6 col-12 m-0 pl-0 pr-0 pt-3 pb-3">
                         <h2>{{realEstate.name}}</h2>

@@ -15,12 +15,17 @@
                                 </a>
                             </li>
                             <li id="dodaj-recept" class="nav-item">
-                                <a class="nav-link" href="">Advanced search</a>
+                                <a class="nav-link">Advanced search</a>
+                            </li>
+                            <li id="dodaj-recept" class="nav-item">
+                                <a class="nav-link" [routerLink]="['/buyer/favorite']">
+                                    Favorite
+                                </a>
                             </li>
                             <li id="moj-nalog" class="nav-item ml-lg-5 ml-sm-0">
                                 <a class="nav-link" [routerLink]="['/user/changePassword']">Change password</a>
                             </li>
-                            <li id="odjava-stavka" class="nav-item ml-lg-5 ml-sm-0 pr-0">
+                            <li id="odjava-stavka" class="nav-item ml-sm-0 pr-0">
                                 <a id="odjava" class="nav-link" [routerLink]="['/login']" (click)="logout()">Log out</a>
                             </li>
                         </ul>
@@ -104,13 +109,28 @@
                         <mat-card-title>Advertiser contact</mat-card-title>
                         <mat-card-content class="custom-text">
                             <div *ngIf="advertiserType=='agency'">
-                                {{advertiser.firstname}} {{advertiser.lastname}}<br>
-                                {{advertiser.telephone}}<br>
-                                {{agency.name}}
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-2">{{advertiser.firstname}} {{advertiser.lastname}}</div>
+                                        <div class="mb-2">Licence number: {{advertiser.licence}}</div>
+                                        Phone <span (click)="showPhoneToggler()" class="dot text-center bg-dark pl-1 pr-1 show-phone">+</span> <br>
+                                        <span *ngIf="showPhone==1">
+                                            {{advertiser.telephone}}
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-2">Agency:&nbsp;{{agency.name}}</div>
+                                        <div class="mb-2">PIB: {{agency.pib}}</div>
+                                        <div>{{agency.address}}, {{agency.city}}</div>
+                                    </div>
+                                </div>
                             </div>
                             <div *ngIf="advertiserType=='owner'">
-                                {{advertiser.firstname}} {{advertiser.lastname}}<br>
-                                {{advertiser.telephone}}<br>
+                                <div class="mb-2">{{advertiser.firstname}} {{advertiser.lastname}}</div>
+                                Phone <span (click)="showPhoneToggler()" class="dot text-center bg-dark pl-1 pr-1 show-phone">+</span> <br>
+                                <span *ngIf="showPhone==1">
+                                    {{advertiser.telephone}}
+                                </span>
                             </div>
                         </mat-card-content>
                     </mat-card>

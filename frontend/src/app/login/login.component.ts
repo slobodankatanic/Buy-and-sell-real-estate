@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   message: string;
 
   ngOnInit(): void {
-    let user: User = JSON.parse(sessionStorage.getItem("user"));
+    let user: User = JSON.parse(localStorage.getItem("user"));
     if (user) {
       this.router.navigate([user.type + "/home"]);
     }
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         if (response.status == 200) {
           let user: User = <User> response.body;
 
-          sessionStorage.setItem("user", JSON.stringify(user));
+          localStorage.setItem("user", JSON.stringify(user));
 
           if (user.type == "buyer") {
             this.router.navigate(['/buyer/home'])

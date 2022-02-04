@@ -21,7 +21,7 @@ export class RealestateComponent implements OnInit {
     private commonService: CommonService) { }
 
   ngOnInit(): void {
-    let user: User = JSON.parse(sessionStorage.getItem("user"));
+    let user: User = JSON.parse(localStorage.getItem("user"));
 
     if (!(user && user.type == "buyer")) {
       this.logout();
@@ -70,16 +70,26 @@ export class RealestateComponent implements OnInit {
   advertiserType: string;
   agency: Agency;
 
+  showPhone: number = 0;
+
   logout() {
-    sessionStorage.removeItem("user");
+    localStorage.removeItem("user");
     this.router.navigate(["login"]);
   }
 
   addToFavorites() {
-    let user: User = JSON.parse(sessionStorage.getItem("user"));
+    let user: User = JSON.parse(localStorage.getItem("user"));
 
     if (user.favorites.length < 5) {
       user.favorites.push(this.realEstate.id);
+    }
+  }
+
+  showPhoneToggler() {
+    if (this.showPhone == 1) {
+      this.showPhone = 0;
+    } else {
+      this.showPhone = 1;
     }
   }
 

@@ -14,7 +14,7 @@ export class ChangePasswordComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-    let user: User = JSON.parse(sessionStorage.getItem("user"));
+    let user: User = JSON.parse(localStorage.getItem("user"));
 
     if (!user) {
       this.logout();
@@ -33,7 +33,7 @@ export class ChangePasswordComponent implements OnInit {
   confPassControl = new FormControl('');
 
   logout() {
-    sessionStorage.removeItem("user");
+    localStorage.removeItem("user");
     this.router.navigate(["login"]);
   }
 

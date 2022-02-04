@@ -28,7 +28,7 @@ export class BuyerComponent implements OnInit {
   noResultsMessage: string = "No results";
 
   ngOnInit(): void {
-    let user: User = JSON.parse(sessionStorage.getItem("user"));
+    let user: User = JSON.parse(localStorage.getItem("user"));
 
     if (!(user && user.type == "buyer")) {
       this.logout();
@@ -40,7 +40,7 @@ export class BuyerComponent implements OnInit {
   }
 
   logout() {
-    sessionStorage.removeItem("user");
+    localStorage.removeItem("user");
     this.router.navigate(["login"]);
   }
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-favorite-real-estate',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoriteRealEstateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    let user: User = JSON.parse(localStorage.getItem("user"));
+
+    if (!user) {
+      this.logout();
+    }
+  }
+
+  logout() {
+    localStorage.removeItem("user");
+    this.router.navigate(["login"]);
   }
 
 }

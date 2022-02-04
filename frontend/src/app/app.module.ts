@@ -18,6 +18,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { RealestateComponent } from './realestate/realestate.component';
@@ -47,7 +48,8 @@ import { FavoriteRealEstateComponent } from './favorite-real-estate/favorite-rea
     MatDividerModule,
     MatListModule,
     MatChipsModule,
-    MatCardModule
+    MatCardModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
