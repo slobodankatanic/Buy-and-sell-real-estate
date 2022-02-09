@@ -5,7 +5,7 @@
     <tr>
         <td class="align-top">
             <input class="form-control custom-input" placeholder="Firstname" type="text" name="firstname" id="firstname" [(ngModel)]="firstname">
-            <span class="d-block error-msg text-danger">{{firstnameError}}</span>
+            <span class="error-msg text-danger">{{firstnameError}}</span>
         </td>
         <td class="align-top">
             <input class="form-control custom-input" placeholder="Lastname" type="text" name="lastname" id="lastname" [(ngModel)]="lastname">
@@ -32,21 +32,25 @@
     </tr>
     <tr>
         <td class="align-top">
-            <input class="form-control custom-input" placeholder="Telephone" type="text" name="telephone" id="telephone" [(ngModel)]="telephone">
+            <input class="form-control custom-input" placeholder="Phone (+381...)" type="text" name="telephone" id="telephone" [(ngModel)]="telephone">
+            <span class="error-msg text-danger">{{telephoneError}}</span>
         </td>
         <td class="align-top">
             <input class="form-control custom-input" placeholder="City" type="text" name="city" id="city" [(ngModel)]="city">
+            <span class="error-msg text-danger">{{cityError}}</span>
         </td>
     </tr>
     <tr>
         <td colspan="2">
             <input class="form-control custom-input" placeholder="Email" type="text" name="email" id="email" [(ngModel)]="email">
+            <span class="error-msg text-danger">{{mailError}}</span>
         </td>
     </tr>
     <tr>
-        <td class="text-center align-top">Date of birth (DOB) : </td>
-        <td class="align-top">
+        <td class="text-center align-middle">Date of birth (DOB) : </td>
+        <td class="align-bottom">
             <input class="form-control custom-input p-2" type="date" name="dob" id="dob" [(ngModel)]="dob">
+            <span class="error-msg text-danger">{{dateError}}</span>
         </td>
     </tr>
     <tr>
@@ -70,7 +74,7 @@
                 <option value="Choose agency" disabled>Choose agency</option>
                 <option *ngFor="let agency of agencies" value="{{agency.pib}}">{{agency.name}}</option>
             </select>
-            <span class="d-block error-msg">{{agencyError}}</span>
+            <span class="d-block pt-1 error-msg text-danger">{{agencyError}}</span>
         </td>
         <td class="align-top">
             <input
@@ -80,13 +84,16 @@
                 name="licence"
                 id="licence"
                 [(ngModel)]="licence">
-                <span class="error-msg text-danger">{{agencyError}}</span>
+                <span class="error-msg text-danger">{{licenceError}}</span>
         </td>
     </tr>
     <tr>
-        <td colspan="2">
-            <span class="ml-4 mr-1">Profile image:</span>
-            <input class="m-0 p-0" type="file" (change)="selectImage($event)">
+        <td colspan="2" class="text-center">
+            <div>
+                <span class="ml-4 mr-1">Profile image:</span>
+                <input class="m-0 p-0" type="file" (change)="selectImage($event)">
+            </div>
+            <span class="error-msg text-danger">{{imageError}}</span>
         </td>
     </tr>
     <tr>
@@ -99,7 +106,7 @@
     </tr>
     <tr class="text-center">
         <td colspan="2">
-            <button id="register-button" (click)="register()" class="btn-dark custom-button w-100">Register</button>
+            <button id="register-button" disabled (click)="register()" class="btn-dark custom-button w-100">Register</button>
         </td>
     </tr>
     <tr>

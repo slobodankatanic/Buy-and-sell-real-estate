@@ -19,10 +19,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { RealestateComponent } from './realestate/realestate.component';
-import { FavoriteRealEstateComponent } from './favorite-real-estate/favorite-real-estate.component'
+import { FavoriteRealEstateComponent } from './favorite-real-estate/favorite-real-estate.component';
+import { HomeComponent } from './home/home.component'
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { FavoriteRealEstateComponent } from './favorite-real-estate/favorite-rea
     BuyerComponent,
     ChangePasswordComponent,
     RealestateComponent,
-    FavoriteRealEstateComponent
+    FavoriteRealEstateComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,8 @@ import { FavoriteRealEstateComponent } from './favorite-real-estate/favorite-rea
     MatListModule,
     MatChipsModule,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Agency } from '../models/agency';
 import { AuthService } from '../services/auth.service';
 import { CommonService } from '../services/common.service';
+
 
 @Component({
   selector: 'app-register',
@@ -10,7 +12,7 @@ import { CommonService } from '../services/common.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authService: AuthService, private commonService: CommonService) {
+  constructor(private _snackBar: MatSnackBar, private authService: AuthService, private commonService: CommonService) {
     this.captcha = "";
   }
 
@@ -35,6 +37,12 @@ export class RegisterComponent implements OnInit {
   usernameError: string = "";
   passwordError: string = "";
   confirmPasswordError: string = "";
+  dateError: string = "";
+  telephoneError: string = "";
+  cityError: string = "";
+  mailError: string = "";
+  licenceError: string = "";
+  imageError: string = "";
 
   ngOnInit(): void {
     this.commonService.getAllAgencies().subscribe((agencies: Agency[]) => {
@@ -43,6 +51,21 @@ export class RegisterComponent implements OnInit {
   }
 
   agencies: Agency[] = []
+
+  formReset() {
+    this.firstname = "";
+    this.lastname = "";
+    this.username = "";
+    this.password = "";
+    this.type = "buyer";
+    this.confirmPassword = "";
+    this.city = "";
+    this.dob = "";
+    this.email = "";
+    this.telephone = "";
+    this.agency = "Choose agency";
+    this.licence = "";
+  }
 
   ownerClicked() {
     (<HTMLInputElement>document.getElementById("agency")).disabled = true;
@@ -67,16 +90,18 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    // if (this.dob) {
-    //   alert(this.dob)
-    // }
-
     this.agencyError = "";
     this.firstnameError = "";
     this.lastnameError = "";
     this.usernameError = "";
     this.passwordError = "";
     this.confirmPasswordError = "";
+    this.dateError = "";
+    this.telephoneError = "";
+    this.cityError = "";
+    this.mailError = "";
+    this.licenceError = "";
+    this.imageError = "";
 
     let regexName = new RegExp(/^[A-Za-z]{1,}$/);
 
@@ -124,30 +149,102 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
+    let phoneRegex = /^\+{0,1}381[0-9]{8,9}$/;
+
+    if (!phoneRegex.test(this.telephone)) {
+      this.telephoneError = "Wrong format";
+      return;
+    }
+
+    let cityRegex = /^[A-Za-z]+(\s[A-Za-z]+)*$/;
+
+    if (this.city == "") {
+      this.cityError = "Required field";
+      return
+    } if (!cityRegex.test(this.city)) {
+      this.cityError = "Only letters allowed";
+      return
+    }
+
+    let regexMail = /^[A-Za-z0-9]+([\.]{0,1}[A-Za-z0-9_]+)*@[a-z]+(\.[a-z]{2,})*\.[a-z]{2,3}$/;
+
+    if (!regexMail.test(this.email)) {
+      this.mailError = "Wrong format";
+      return;
+    }
+
+    if (this.dob == "") {
+      this.dateError = "Required field";
+      return;
+    }
+
+    let agencyName = "";
+
     if (this.agency == "Choose agency") {
-      if (this.type != "agent") {
-        this.agency = "";
-      } else {
+      if (this.type == "agent") {
         this.agencyError = "You must choose agency";
         return;
       }
+    } else {
+      agencyName = this.agency;
     }
 
-    // this.authService.register(
-    //   this.firstname,
-    //   this.lastname,
-    //   this.username,
-    //   this.password,
-    //   this.city,
-    //   this.dob,
-    //   this.telephone,
-    //   this.email,
-    //   this.type,
-    //   this.agency,
-    //   this.licence,
-    //   this.profileImage).subscribe(resp => {
-    //     // proveri status poruke - greske: email, username
-    //   });
+    if (this.type == "agent" && (this.licence == "" || this.licence == null)) {
+      this.licenceError = "Required field";
+      return;
+    }
+
+    if (this.profileImage == null) {
+      this.imageError = "Image is required";
+      return;
+    }
+
+    let imageNameRegexJpg = /\.jpg$/i;
+    let imageNameRegexJpeg = /\.jpeg$/i;
+    let imageNameRegexPng = /\.png$/i;
+
+    if ((!imageNameRegexJpg.test(this.profileImage.name)) &&
+        (!imageNameRegexJpeg.test(this.profileImage.name)) &&
+        (!imageNameRegexPng.test(this.profileImage.name))) {
+          this.imageError = "Image must be in jpg, jpeg or png format"
+          return;
+    }
+
+    let img = new Image()
+
+    img.src = window.URL.createObjectURL(this.profileImage)
+    img.onload = () => {
+      if (this.imageError == "") {
+        if (img.height > 300 || img.width > 300) {
+          this.imageError = "Max. image size is 300x300";
+        } else if (img.height < 100 || img.width < 100) {
+          this.imageError = "Min. image size is 100x100";
+        } else {
+          this.authService.register(
+            this.firstname,
+            this.lastname,
+            this.username,
+            this.password,
+            this.city,
+            this.dob,
+            this.telephone,
+            this.email,
+            this.type,
+            agencyName,
+            this.licence,
+            this.profileImage).subscribe(resp => {
+              if (resp['status'] == 1) {
+                this.usernameError = resp['message'];
+              } else if (resp['status'] == 2) {
+                this.mailError = resp['message'];
+              } else if (resp['status'] == 0) {
+                this.formReset();
+                this._snackBar.open("Your registration request is sent successfully!", "Ok");
+              }
+            });
+        }
+      }
+    }
   }
 
   resolved(captchaResponse: string) {
@@ -165,14 +262,8 @@ export class RegisterComponent implements OnInit {
 
   selectImage(event) {
     if (event.target.files.length == 1) {
+      this.imageError = "";
       this.profileImage = event.target.files[0];
-    }
-
-    let img = new Image()
-
-    img.src = window.URL.createObjectURL(this.profileImage)
-    img.onload = () => {
-      alert(img.width + " " + img.height + " " + this.profileImage.name);
     }
   }
 
