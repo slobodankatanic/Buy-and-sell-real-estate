@@ -3,33 +3,38 @@
         <td colspan="2" class="text-center h2">REGISTER</td>
     </tr>
     <tr>
-        <td>
+        <td class="align-top">
             <input class="form-control custom-input" placeholder="Firstname" type="text" name="firstname" id="firstname" [(ngModel)]="firstname">
+            <span class="d-block error-msg text-danger">{{firstnameError}}</span>
         </td>
-        <td>
+        <td class="align-top">
             <input class="form-control custom-input" placeholder="Lastname" type="text" name="lastname" id="lastname" [(ngModel)]="lastname">
+            <span class="error-msg text-danger">{{lastnameError}}</span>
         </td>
     </tr>
     <tr>
         <td colspan="2">
             <input class="form-control custom-input" placeholder="Username" type="text" name="username" id="username" [(ngModel)]="username">
+            <span class="error-msg text-danger">{{usernameError}}</span>
         </td>
     </tr>
     <tr>
         <td colspan="2">
             <input class="form-control custom-input" placeholder="Password" type="password" name="password" id="password" [(ngModel)]="password">
+            <span class="error-msg text-danger">{{passwordError}}</span>
         </td>
     </tr>
     <tr>
         <td colspan="2">
             <input class="form-control custom-input" placeholder="Confirm password" type="password" name="confirm-password" id="confirm-password" [(ngModel)]="confirmPassword">
+            <span class="error-msg text-danger">{{confirmPasswordError}}</span>
         </td>
     </tr>
     <tr>
-        <td>
+        <td class="align-top">
             <input class="form-control custom-input" placeholder="Telephone" type="text" name="telephone" id="telephone" [(ngModel)]="telephone">
         </td>
-        <td>
+        <td class="align-top">
             <input class="form-control custom-input" placeholder="City" type="text" name="city" id="city" [(ngModel)]="city">
         </td>
     </tr>
@@ -39,8 +44,8 @@
         </td>
     </tr>
     <tr>
-        <td class="text-center">Date of birth (DOB) : </td>
-        <td>
+        <td class="text-center align-top">Date of birth (DOB) : </td>
+        <td class="align-top">
             <input class="form-control custom-input p-2" type="date" name="dob" id="dob" [(ngModel)]="dob">
         </td>
     </tr>
@@ -60,13 +65,14 @@
         </td>
     </tr>
     <tr>
-        <td>
+        <td class="align-top">
             <select class="custom-input w-100 p-2" name="agency" id="agency" [(ngModel)]="agency" disabled>
                 <option value="Choose agency" disabled>Choose agency</option>
                 <option *ngFor="let agency of agencies" value="{{agency.pib}}">{{agency.name}}</option>
             </select>
+            <span class="d-block error-msg">{{agencyError}}</span>
         </td>
-        <td>
+        <td class="align-top">
             <input
                 type="number"
                 disabled class="form-control custom-input"
@@ -74,6 +80,7 @@
                 name="licence"
                 id="licence"
                 [(ngModel)]="licence">
+                <span class="error-msg text-danger">{{agencyError}}</span>
         </td>
     </tr>
     <tr>
@@ -92,7 +99,7 @@
     </tr>
     <tr class="text-center">
         <td colspan="2">
-            <button id="register-button" disabled (click)="register()" class="btn-dark custom-button w-100">Register</button>
+            <button id="register-button" (click)="register()" class="btn-dark custom-button w-100">Register</button>
         </td>
     </tr>
     <tr>
