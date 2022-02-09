@@ -3,11 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { BuyerComponent } from './buyer/buyer.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FavoriteRealEstateComponent } from './favorite-real-estate/favorite-real-estate.component';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RealestateComponent } from './realestate/realestate.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
+  // home
+  { path: 'home', component: HomeComponent },
+
   // auth
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -22,7 +26,7 @@ const routes: Routes = [
   // change password
   { path: 'user/changePassword', component: ChangePasswordComponent },
 
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({

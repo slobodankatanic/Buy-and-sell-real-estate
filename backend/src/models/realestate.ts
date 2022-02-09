@@ -75,6 +75,9 @@ let RealEstate = new Schema({
     lastChange: {
         type: String
     },
+    postedAt: {
+        type: String
+    },
     images: {
         type: Array
     },

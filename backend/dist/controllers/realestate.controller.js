@@ -7,6 +7,11 @@ exports.RealEstateController = void 0;
 const realestate_1 = __importDefault(require("../models/realestate"));
 class RealEstateController {
     constructor() {
+        this.getLatest = (req, res) => {
+            realestate_1.default.find().sort({ 'postedAt': -1 }).limit(5).exec((err, realEstates) => {
+                res.json(realEstates);
+            });
+        };
         this.getById = (req, res) => {
             let id = req.query.id;
             realestate_1.default.findOne({ "id": id }, (err, re) => {

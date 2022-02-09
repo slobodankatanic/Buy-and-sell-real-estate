@@ -15,4 +15,8 @@ realEstateRouter.route('/getAveragePrice').get(
     (req, res) => new RealEstateController().getAveragePrice(req, res)
 )
 
+realEstateRouter.route('/getLatest').get(
+    (req, res) => new RealEstateController().getLatest(req, res)
+)
+
 export default realEstateRouter;

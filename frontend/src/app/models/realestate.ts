@@ -25,6 +25,7 @@ export class RealEstate {
     "about" : string;
     "sold" : number;
     "lastChange" : string;
+    "postedAt": string;
     "images" : Array<string>;
     "transportLines" : Array<number>;
     "advertiserId" : number;

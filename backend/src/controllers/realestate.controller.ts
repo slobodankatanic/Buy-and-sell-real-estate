@@ -3,6 +3,12 @@ import RealEstate from '../models/realestate'
 
 export class RealEstateController {
 
+    getLatest = (req: express.Request, res: express.Response) => {
+        RealEstate.find().sort({ 'postedAt': -1 }).limit(5).exec((err, realEstates) => {
+            res.json(realEstates);
+        });
+    }
+
     getById = (req: express.Request, res: express.Response) => {
         let id = req.query.id;
 

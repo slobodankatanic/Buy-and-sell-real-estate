@@ -33,4 +33,8 @@ export class RealestateService {
     return this.httpClient.get(`${this.uri}/realestates/get?id=${realEstateId}`);
   }
 
+  getLatest() {
+    return this.httpClient.get(`${this.uri}/realestates/getLatest`);
+  }
+
 }
