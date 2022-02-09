@@ -2,6 +2,40 @@ import * as express from 'express';
 import User from '../models/user'
 
 export class UserController {
+    removeFromFavorites = (req: express.Request, res: express.Response) => {
+        let username = req.body.username;
+        let realEstateId = Number(req.body.realEstateId);
+
+        User.updateOne(
+            { "username": username },
+            { $pull: { "favorites": realEstateId } }, (err, user) => {
+                res.json({
+                    "message": "Successfully removed from favorites!"
+                });
+            })
+    }
+
+    addToFavorites = (req: express.Request, res: express.Response) => {
+        let username = req.body.username;
+        let realEstateId = Number(req.body.realEstateId);
+
+        User.findOne({ "username": username }, (err, user) => {
+            if (user.get('favorites').length < 3) {
+                User.updateOne(
+                    { "username": username },
+                    { $push: { "favorites": realEstateId } },
+                    (err, user) => {
+                        res.json({
+                            "message": "Successfully added to favorites"
+                        });
+                    })
+            } else {
+                res.json({
+                    "message": "You can't add more favorite real estates"
+                });
+            }
+        })
+    }
 
     getUserById = (req: express.Request, res: express.Response) => {
         let username = req.query.username;
@@ -45,7 +79,7 @@ export class UserController {
                                 "status": 0
                             });
                         }
-                    } )
+                    })
                 }
             } else {
                 res.json({

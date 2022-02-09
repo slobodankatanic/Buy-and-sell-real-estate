@@ -29,5 +29,6 @@ export class RealEstate {
     "images" : Array<string>;
     "transportLines" : Array<number>;
     "advertiserId" : number;
-    "characteristics": Array<Characteristic>
+    "characteristics": Array<Characteristic>;
+    "rndImg": string;
 }

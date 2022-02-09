@@ -5,8 +5,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RealEstateController = void 0;
 const realestate_1 = __importDefault(require("../models/realestate"));
+const user_1 = __importDefault(require("../models/user"));
 class RealEstateController {
     constructor() {
+        this.getFavorites = (req, res) => {
+            let username = req.query.username;
+            user_1.default.findOne({ "username": username }, (err, user) => {
+                realestate_1.default.find({ "id": { $in: user.get('favorites') } }, (err, re) => {
+                    res.json(re);
+                });
+            });
+        };
         this.getLatest = (req, res) => {
             realestate_1.default.find().sort({ 'postedAt': -1 }).limit(5).exec((err, realEstates) => {
                 res.json(realEstates);
@@ -60,10 +69,10 @@ class RealEstateController {
             let cityId = req.body.city;
             let municipalityId = req.body.municipality;
             let microlocationId = req.body.microlocation;
-            let maxPrice = Number(req.body.maxPrice);
+            let maxPrice = req.body.maxPrice;
             let minArea = Number(req.body.minArea);
             let minRooms = Number(req.body.minRooms);
-            if (isNaN(maxPrice)) {
+            if (maxPrice == null || isNaN(maxPrice)) {
                 maxPrice = Number.MAX_SAFE_INTEGER;
             }
             if (isNaN(minArea)) {

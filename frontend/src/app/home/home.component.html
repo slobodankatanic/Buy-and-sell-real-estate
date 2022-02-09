@@ -30,11 +30,46 @@
             </nav>
         </div>
     </div>
+    <div class="row mb-5">
+        <div class="col h1 mt-4 text-center">
+            Latest real estates
+        </div>
+    </div>
     <div class="row">
+        <div class="col-3"></div>
         <div class="col">
-            <div *ngFor="let re of latestRealEstates">
-                {{re.name}} - {{re.postedAt}}
+            <div *ngFor="let re of latestRealEstates" class="mb-5">
+                <mat-card class="p-0 m-0 home-card card-font card-bg">
+                    <mat-card-title class="w-100 p-2 mb-0 card-title">
+                        {{re.name}}
+                    </mat-card-title>
+                    <mat-card-content class="custom-text">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="row mt-3 mb-5">
+                                    <div class="col">
+                                        <div class="text-center price-text">
+                                            <h3>{{re.price}} €</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row pl-3">
+                                    <div class="col">
+                                        <div class="h5">Linije javnog prevoza:</div>
+                                        <span class="h4" *ngFor="let line of re.transportLines">
+                                            {{line}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-8 text-right">
+                                <img class="w-100 p-0 m-0" mat-card-xl-image src="{{re.rndImg}}">
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
             </div>
         </div>
+        <div class="col-3"></div>
     </div>
 </div>

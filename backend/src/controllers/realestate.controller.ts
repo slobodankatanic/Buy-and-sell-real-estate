@@ -1,7 +1,18 @@
 import * as express from 'express';
 import RealEstate from '../models/realestate'
+import User from '../models/user'
 
 export class RealEstateController {
+
+    getFavorites = (req: express.Request, res: express.Response) => {
+        let username = req.query.username;
+
+        User.findOne({ "username": username }, (err, user) => {
+            RealEstate.find({ "id": { $in: user.get('favorites') } }, (err, re) => {
+                res.json(re);
+            })
+        })
+    }
 
     getLatest = (req: express.Request, res: express.Response) => {
         RealEstate.find().sort({ 'postedAt': -1 }).limit(5).exec((err, realEstates) => {
@@ -12,7 +23,7 @@ export class RealEstateController {
     getById = (req: express.Request, res: express.Response) => {
         let id = req.query.id;
 
-        RealEstate.findOne({"id": id}, (err, re) => {
+        RealEstate.findOne({ "id": id }, (err, re) => {
             if (err) {
                 console.log(err);
             }
@@ -62,13 +73,14 @@ export class RealEstateController {
         let cityId = req.body.city;
         let municipalityId = req.body.municipality;
         let microlocationId = req.body.microlocation;
-        let maxPrice = Number(req.body.maxPrice);
+        let maxPrice = req.body.maxPrice;
         let minArea = Number(req.body.minArea);
         let minRooms = Number(req.body.minRooms);
 
-        if (isNaN(maxPrice)) {
+        if (maxPrice == null || isNaN(maxPrice)) {
             maxPrice = Number.MAX_SAFE_INTEGER;
         }
+
         if (isNaN(minArea)) {
             minArea = 0;
         }

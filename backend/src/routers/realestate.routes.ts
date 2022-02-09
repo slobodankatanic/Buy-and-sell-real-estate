@@ -19,4 +19,8 @@ realEstateRouter.route('/getLatest').get(
     (req, res) => new RealEstateController().getLatest(req, res)
 )
 
+realEstateRouter.route('/getFavorites').get(
+    (req, res) => new RealEstateController().getFavorites(req, res)
+)
+
 export default realEstateRouter;

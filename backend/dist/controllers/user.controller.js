@@ -7,6 +7,33 @@ exports.UserController = void 0;
 const user_1 = __importDefault(require("../models/user"));
 class UserController {
     constructor() {
+        this.removeFromFavorites = (req, res) => {
+            let username = req.body.username;
+            let realEstateId = Number(req.body.realEstateId);
+            user_1.default.updateOne({ "username": username }, { $pull: { "favorites": realEstateId } }, (err, user) => {
+                res.json({
+                    "message": "Successfully removed from favorites!"
+                });
+            });
+        };
+        this.addToFavorites = (req, res) => {
+            let username = req.body.username;
+            let realEstateId = Number(req.body.realEstateId);
+            user_1.default.findOne({ "username": username }, (err, user) => {
+                if (user.get('favorites').length < 3) {
+                    user_1.default.updateOne({ "username": username }, { $push: { "favorites": realEstateId } }, (err, user) => {
+                        res.json({
+                            "message": "Successfully added to favorites"
+                        });
+                    });
+                }
+                else {
+                    res.json({
+                        "message": "You can't add more favorite real estates"
+                    });
+                }
+            });
+        };
         this.getUserById = (req, res) => {
             let username = req.query.username;
             user_1.default.findOne({ "username": username }, (err, user) => {

@@ -35,8 +35,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
-            <h2 class="text-center">Search real estates</h2>
+        <div class="col-12 text-center h1 mt-3 mb-3">
+            Search real estates
         </div>
         <div class="col-2"></div>
         <div class="m-auto col-8 p-4 text-center custom-border">
@@ -123,8 +123,8 @@
                 {{noResultsMessage}}
             </h4>
             <a target="_blank" *ngFor="let realEstate of realEstates" class="custom-link" [routerLink]="[ '/realestate/details', realEstate.id]">
-                <div class="row custom-link-row m-2 nav-item">
-                    <div class="col-xl-6 col-12 m-0 pl-0 pr-0 pt-3 pb-3">
+                <div class="row custom-link-row pl-3 pr-3 mt-3 mb-0 nav-item">
+                    <div class="col-xl-8 col-12 m-0 pl-0 pr-0 pt-3 pb-3">
                         <h2>{{realEstate.name}}</h2>
                         <h4>{{realEstate.price}}€</h4>
                         <h5 class="text-secondary">
@@ -140,8 +140,8 @@
                             {{realEstate.about}}
                         </div>
                     </div>
-                    <div class="col-xl-6 col-12 text-xl-right text-left m-0 pl-0 pr-0 pt-3 pb-3">
-                        <img *ngIf="realEstate.images.length > 0" class="custom-img" src="{{realEstate.images[0]}}">
+                    <div class="col-xl-4 col-12 text-xl-right text-left m-auto pl-0 pr-0 pt-3 pb-3">
+                        <img *ngIf="realEstate.images.length > 0" class="w-100" src="{{realEstate.images[0]}}">
                         <img *ngIf="realEstate.images.length == 0" class="custom-img" alt="No photo">
                     </div>
                     <div class="col-12"><mat-divider></mat-divider></div>
@@ -152,7 +152,7 @@
     </div>
     <div class="row footer">
         <div class="col">
-            <p id="autori" class="p-0 m-0 mt-4">Sreten Živković 0008/2018, Slobodan Katanić 0133/2018</p><br>
+            <p id="autori" class="p-0 m-0 mt-4">Slobodan Katanić 0133/2018</p><br>
             <p id="fakultet" class="p-0 m-0">Department of Software Engineering University of Belgrade School of Electrical Engineering</p><br>
             <p class="p-0 m-0 mb-3">© Copyright 2021</p>
         </div>

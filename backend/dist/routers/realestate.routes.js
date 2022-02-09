@@ -10,5 +10,6 @@ realEstateRouter.route('/get').get((req, res) => new realestate_controller_1.Rea
 realEstateRouter.route('/getBasic').post((req, res) => new realestate_controller_1.RealEstateController().getBasicSearchResult(req, res));
 realEstateRouter.route('/getAveragePrice').get((req, res) => new realestate_controller_1.RealEstateController().getAveragePrice(req, res));
 realEstateRouter.route('/getLatest').get((req, res) => new realestate_controller_1.RealEstateController().getLatest(req, res));
+realEstateRouter.route('/getFavorites').get((req, res) => new realestate_controller_1.RealEstateController().getFavorites(req, res));
 exports.default = realEstateRouter;
 //# sourceMappingURL=realestate.routes.js.map

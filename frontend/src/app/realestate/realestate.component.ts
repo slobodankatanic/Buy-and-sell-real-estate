@@ -1,4 +1,5 @@
 import { ThrowStmt } from '@angular/compiler';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
 import { Agency } from '../models/agency';
@@ -7,6 +8,7 @@ import { RealEstate } from '../models/realestate';
 import { User } from '../models/user';
 import { CommonService } from '../services/common.service';
 import { RealestateService } from '../services/realestate.service';
+import { BuyerService } from '../services/buyer.service';
 
 @Component({
   selector: 'app-realestate',
@@ -18,7 +20,9 @@ export class RealestateComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private realEstateService: RealestateService,
-    private commonService: CommonService) { }
+    private commonService: CommonService,
+    private userService: BuyerService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     let user: User = JSON.parse(localStorage.getItem("user"));
@@ -30,6 +34,12 @@ export class RealestateComponent implements OnInit {
         this.id = params['id'];
         this.realEstateService.getById(this.id).subscribe((realEstate: RealEstate) => {
           this.realEstate = realEstate;
+
+          user.favorites.forEach(fav => {
+            if (fav == this.realEstate.id) {
+              this.inFavorites = true;
+            }
+          })
 
           this.realEstate.characteristics.forEach(charact => {
             if (charact.exists == 1) {
@@ -70,6 +80,8 @@ export class RealestateComponent implements OnInit {
   advertiserType: string;
   agency: Agency;
 
+  inFavorites: boolean = false;
+
   showPhone: number = 0;
 
   logout() {
@@ -80,9 +92,11 @@ export class RealestateComponent implements OnInit {
   addToFavorites() {
     let user: User = JSON.parse(localStorage.getItem("user"));
 
-    if (user.favorites.length < 5) {
-      user.favorites.push(this.realEstate.id);
-    }
+    user.favorites.push(this.realEstate.id);
+    this.userService.addToFavorites(user.username, this.realEstate.id).subscribe(resp => {
+      this._snackBar.open(resp['message'] + "!", "Ok");
+      this.inFavorites = true;
+    });
   }
 
   showPhoneToggler() {

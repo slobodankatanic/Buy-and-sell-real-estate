@@ -11,4 +11,14 @@ userRouter.route('/get').get(
     (req, res) => new UserController().getUserById(req, res)
 )
 
+userRouter.route('/addToFavorites').post((req, res) => {
+        new UserController().addToFavorites(req, res)
+    }
+)
+
+userRouter.route('/removeFromFavorites').post((req, res) => {
+    new UserController().removeFromFavorites(req, res)
+}
+)
+
 export default userRouter;

@@ -37,4 +37,8 @@ export class RealestateService {
     return this.httpClient.get(`${this.uri}/realestates/getLatest`);
   }
 
+  getFavorites(username) {
+    return this.httpClient.get(`${this.uri}/realestates/getFavorites?username=${username}`);
+  }
+
 }

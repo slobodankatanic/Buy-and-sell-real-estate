@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Agency } from '../models/agency';
+import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 import { CommonService } from '../services/common.service';
 
@@ -12,7 +14,10 @@ import { CommonService } from '../services/common.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private _snackBar: MatSnackBar, private authService: AuthService, private commonService: CommonService) {
+  constructor(private _snackBar: MatSnackBar,
+    private authService: AuthService,
+    private commonService: CommonService,
+    private router: Router) {
     this.captcha = "";
   }
 
@@ -45,6 +50,11 @@ export class RegisterComponent implements OnInit {
   imageError: string = "";
 
   ngOnInit(): void {
+    let user: User = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      this.router.navigate([user.type + "/home"]);
+    }
+
     this.commonService.getAllAgencies().subscribe((agencies: Agency[]) => {
       this.agencies = agencies;
     })
