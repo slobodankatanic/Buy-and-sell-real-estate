@@ -2,6 +2,28 @@ import * as express from 'express';
 import User from '../models/user'
 
 export class UserController {
+    acceptUser = (req: express.Request, res: express.Response) => {
+        let username = req.body.username;
+
+        User.updateOne({ "username": username }, { $set: { "status": "approved" } }, (err, user) => {
+            res.json({ "msg": "ok" });
+        })
+    }
+
+    declineUser = (req: express.Request, res: express.Response) => {
+        let username = req.body.username;
+
+        User.deleteOne({ "username": username }, (err) => {
+            res.json({ "msg": "ok" });
+        })
+    }
+
+    getUnregistered = (req: express.Request, res: express.Response) => {
+        User.find({ "status": "awaiting" }, (err, users) => {
+            res.json(users);
+        })
+    }
+
     removeFromFavorites = (req: express.Request, res: express.Response) => {
         let username = req.body.username;
         let realEstateId = Number(req.body.realEstateId);

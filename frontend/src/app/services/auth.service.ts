@@ -45,7 +45,7 @@ export class AuthService {
   }
 
   changePassword(currentPass, newPass, confirmPass) {
-    let user: User = JSON.parse(sessionStorage.getItem("user"));
+    let user: User = JSON.parse(localStorage.getItem("user"));
 
     const data = {
       currentPassword: currentPass,

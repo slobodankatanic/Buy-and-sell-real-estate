@@ -7,6 +7,23 @@ exports.UserController = void 0;
 const user_1 = __importDefault(require("../models/user"));
 class UserController {
     constructor() {
+        this.acceptUser = (req, res) => {
+            let username = req.body.username;
+            user_1.default.updateOne({ "username": username }, { $set: { "status": "approved" } }, (err, user) => {
+                res.json({ "msg": "ok" });
+            });
+        };
+        this.declineUser = (req, res) => {
+            let username = req.body.username;
+            user_1.default.deleteOne({ "username": username }, (err) => {
+                res.json({ "msg": "ok" });
+            });
+        };
+        this.getUnregistered = (req, res) => {
+            user_1.default.find({ "status": "awaiting" }, (err, users) => {
+                res.json(users);
+            });
+        };
         this.removeFromFavorites = (req, res) => {
             let username = req.body.username;
             let realEstateId = Number(req.body.realEstateId);

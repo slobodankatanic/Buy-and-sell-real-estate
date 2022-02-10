@@ -11,4 +11,5 @@ export class User {
     agencyId: number;
     licence: number;
     favorites: Array<number>;
+    image: string;
 }

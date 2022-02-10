@@ -25,7 +25,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { RealestateComponent } from './realestate/realestate.component';
 import { FavoriteRealEstateComponent } from './favorite-real-estate/favorite-real-estate.component';
-import { HomeComponent } from './home/home.component'
+import { HomeComponent } from './home/home.component';
+import { AdminRequestComponent } from './admin-request/admin-request.component'
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HomeComponent } from './home/home.component'
     ChangePasswordComponent,
     RealestateComponent,
     FavoriteRealEstateComponent,
-    HomeComponent
+    HomeComponent,
+    AdminRequestComponent
   ],
   imports: [
     BrowserModule,

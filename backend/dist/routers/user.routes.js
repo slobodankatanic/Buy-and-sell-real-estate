@@ -8,11 +8,12 @@ const user_controller_1 = require("../controllers/user.controller");
 const userRouter = express_1.default.Router();
 userRouter.route('/changePassword').post((req, res) => new user_controller_1.UserController().changePassword(req, res));
 userRouter.route('/get').get((req, res) => new user_controller_1.UserController().getUserById(req, res));
+userRouter.route('/getUnregistered').get((req, res) => new user_controller_1.UserController().getUnregistered(req, res));
 userRouter.route('/addToFavorites').post((req, res) => {
     new user_controller_1.UserController().addToFavorites(req, res);
 });
-userRouter.route('/removeFromFavorites').post((req, res) => {
-    new user_controller_1.UserController().removeFromFavorites(req, res);
-});
+userRouter.route('/removeFromFavorites').post((req, res) => new user_controller_1.UserController().removeFromFavorites(req, res));
+userRouter.route('/accept').post((req, res) => new user_controller_1.UserController().acceptUser(req, res));
+userRouter.route('/decline').post((req, res) => new user_controller_1.UserController().declineUser(req, res));
 exports.default = userRouter;
 //# sourceMappingURL=user.routes.js.map

@@ -1,0 +1,101 @@
+<div class="container-fluid p-0 overflow-hidden">
+    <div class="row">
+        <div class="col header">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container">
+                    <a class="navbar-brand" href=""><img class="logo img-fluid" src="../../assets/logo.png" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['/admin/home']">
+                                    <span class="act-item">Registration requests</span>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                                    Users
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item">Add user</a>
+                                    <a class="dropdown-item">Delete user</a>
+                                    <a class="dropdown-item">Edit user</a>
+                                </div>
+                            </li>
+                            <li id="dodaj-recept" class="nav-item">
+                                <a class="nav-link">Add agency</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                                    Microlocations
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item">Add microlocation</a>
+                                    <a class="dropdown-item">Delete microlocation</a>
+                                </div>
+                            </li>
+                            <li id="moj-nalog" class="nav-item ml-lg-5 ml-sm-0">
+                                <a class="nav-link" [routerLink]="['/user/changePassword']">Change password</a>
+                            </li>
+                            <li id="odjava-stavka" class="nav-item ml-sm-0 pr-0">
+                                <a id="odjava" class="nav-link" [routerLink]="['/login']" (click)="logout()">Log out</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="row mt-4 mb-4 text-center">
+        <div class="col h1">
+            Registration requests
+        </div>
+    </div>
+    <div class="row ml-2 mr-2">
+        <div class="col">
+            <table class="table table-striped tasble-responsive table-borderless">
+                <thead class="thead-dark">
+                    <tr class="text-center">
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Username</th>
+                        <!-- <th>Password</th> -->
+                        <th>Type</th>
+                        <!-- <th>City</th> -->
+                        <th>DOB</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>AgencyId</th>
+                        <th>Licence</th>
+                        <th>Image</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of unregisteredUsers">
+                        <td>{{user.firstname}}</td>
+                        <td>{{user.lastname}}</td>
+                        <td>{{user.username}}</td>
+                        <!-- <td>{{user.password}}</td> -->
+                        <td>{{user.type}}</td>
+                        <!-- <td>{{user.city}}</td> -->
+                        <td>{{user.dob}}</td>
+                        <td>{{user.telephone}}</td>
+                        <td>{{user.email}}</td>
+                        <td *ngIf="user.agencyId!=0">{{user.agencyId}}</td>
+                        <td *ngIf="user.agencyId==0">-</td>
+                        <td *ngIf="user.agencyId!=0">{{user.licence}}</td>
+                        <td *ngIf="user.agencyId==0">-</td>
+                        <td>
+                            <a target="_blank" href="{{user.image}}">Link</a>
+                        </td>
+                        <td><button (click)="accept(user)" class="btn btn-dark">Accept</button></td>
+                        <td><button (click)="decline(user)" class="btn btn-secondary">Decline</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

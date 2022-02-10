@@ -28,6 +28,8 @@ export class FavoriteRealEstateComponent implements OnInit {
     if (!user) {
       this.logout();
       return;
+    } else if (user.type != "buyer") {
+      this.router.navigate(['/'+ user.type +'/home']);
     }
 
     this.commonService.getUserById(user.username).subscribe((usr: User) => {

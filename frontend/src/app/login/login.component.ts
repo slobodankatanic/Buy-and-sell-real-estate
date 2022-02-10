@@ -32,11 +32,8 @@ export class LoginComponent implements OnInit {
 
           localStorage.setItem("user", JSON.stringify(user));
 
-          if (user.type == "buyer") {
-            this.router.navigate(['/buyer/home'])
-          } else {
+          this.router.navigate(['/'+ user.type +'/home']);
 
-          }
         } else {
           this.message = "Error";
         }

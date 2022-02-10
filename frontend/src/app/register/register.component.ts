@@ -275,6 +275,16 @@ export class RegisterComponent implements OnInit {
       this.imageError = "";
       this.profileImage = event.target.files[0];
     }
+
+    // let fileReader:FileReader = new FileReader;
+
+    // fileReader.onload = () => {
+    //   let fileContent = fileReader.result;
+    //   let obj = JSON.parse(fileContent.toString())
+    //   console.log(obj.Realestate.Name);
+    // }
+
+    // fileReader.readAsText(this.profileImage);
   }
 
 }
