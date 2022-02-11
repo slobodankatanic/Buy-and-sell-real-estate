@@ -16,12 +16,16 @@ export class AdminRequestComponent implements OnInit {
   ngOnInit(): void {
     let user: User = JSON.parse(localStorage.getItem("user"));
 
-    if (!(user && user.type == "admin")) {
-      this.logout();
+    if (user) {
+      if (user.type != "admin") {
+        this.router.navigate(['/'+ user.type +'/home']);
+      } else {
+        this.adminService.getUnergisteredUsers().subscribe((users: User[]) => {
+          this.unregisteredUsers = users;
+        })
+      }
     } else {
-      this.adminService.getUnergisteredUsers().subscribe((users: User[]) => {
-        this.unregisteredUsers = users;
-      })
+      this.logout();
     }
   }
 

@@ -60,6 +60,11 @@ app.post('/auth/register', upload.single('image'), (req, res, next) => {
                         'status': 2
                     })
                 } else {
+                    let status = "awaiting";
+                    if (req.body.admin == "admin") {
+                        status = "approved";
+                    }
+
                     let user = new User({
                         firstname: req.body.firstname,
                         lastname: req.body.lastname,
@@ -72,7 +77,7 @@ app.post('/auth/register', upload.single('image'), (req, res, next) => {
                         email: req.body.email,
                         agencyId: Number(req.body.agencyId),
                         licence: Number(req.body.licence),
-                        status: "awaiting",
+                        status: status,
                         image: "http://localhost:4000/images/users/__img__" + req.file.originalname,
                         favorites: []
                     });

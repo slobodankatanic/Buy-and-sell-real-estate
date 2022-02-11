@@ -1,1 +1,159 @@
-<p>admin-add-user works!</p>
+<div class="container-fluid p-0 overflow-hidden">
+    <div class="row">
+        <div class="col header">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container">
+                    <a class="navbar-brand" href=""><img class="logo img-fluid" src="../../assets/logo.png" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['/admin/home']">
+                                    Registration requests
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                                    <span class="act-item">Users</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" [routerLink]="['/admin/addUser']">Add user</a>
+                                    <a class="dropdown-item">Delete user</a>
+                                    <a class="dropdown-item">Edit user</a>
+                                </div>
+                            </li>
+                            <li id="dodaj-recept" class="nav-item">
+                                <a class="nav-link">Add agency</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                                    Microlocations
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item">Add microlocation</a>
+                                    <a class="dropdown-item">Delete microlocation</a>
+                                </div>
+                            </li>
+                            <li id="moj-nalog" class="nav-item ml-lg-5 ml-sm-0">
+                                <a class="nav-link" [routerLink]="['/user/changePassword']">Change password</a>
+                            </li>
+                            <li id="odjava-stavka" class="nav-item ml-sm-0 pr-0">
+                                <a id="odjava" class="nav-link" [routerLink]="['/login']" (click)="logout()">Log out</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="register-table m-auto mt-2 w-auto">
+                <tr>
+                    <td colspan="2" class="text-center h1">Add user</td>
+                </tr>
+                <tr>
+                    <td class="align-top">
+                        <input class="form-control custom-input" placeholder="Firstname" type="text" name="firstname" id="firstname" [(ngModel)]="firstname">
+                        <span class="error-msg text-danger">{{firstnameError}}</span>
+                    </td>
+                    <td class="align-top">
+                        <input class="form-control custom-input" placeholder="Lastname" type="text" name="lastname" id="lastname" [(ngModel)]="lastname">
+                        <span class="error-msg text-danger">{{lastnameError}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input class="form-control custom-input" placeholder="Username" type="text" name="username" id="username" [(ngModel)]="username">
+                        <span class="error-msg text-danger">{{usernameError}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input class="form-control custom-input" placeholder="Password" type="password" name="password" id="password" [(ngModel)]="password">
+                        <span class="error-msg text-danger">{{passwordError}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input class="form-control custom-input" placeholder="Confirm password" type="password" name="confirm-password" id="confirm-password" [(ngModel)]="confirmPassword">
+                        <span class="error-msg text-danger">{{confirmPasswordError}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="align-top">
+                        <input class="form-control custom-input" placeholder="Phone (+381...)" type="text" name="telephone" id="telephone" [(ngModel)]="telephone">
+                        <span class="error-msg text-danger">{{telephoneError}}</span>
+                    </td>
+                    <td class="align-top">
+                        <input class="form-control custom-input" placeholder="City" type="text" name="city" id="city" [(ngModel)]="city">
+                        <span class="error-msg text-danger">{{cityError}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input class="form-control custom-input" placeholder="Email" type="text" name="email" id="email" [(ngModel)]="email">
+                        <span class="error-msg text-danger">{{mailError}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center align-middle">Date of birth (DOB) : </td>
+                    <td class="align-bottom">
+                        <input class="form-control custom-input p-2" type="date" name="dob" id="dob" [(ngModel)]="dob">
+                        <span class="error-msg text-danger">{{dateError}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- <td class="text-center">User type : </td> -->
+                    <td colspan="2" class="text-center">
+                        User type : &nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input (click)="buyerClicked()" type="radio" name="user-type" id="user-type-buyer" checked>
+                        <label for="user-type-buyer">Buyer</label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input (click)="ownerClicked()" type="radio" name="user-type" id="user-type-owner">
+                        <label for="user-type-owner">Owner</label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input (click)="agentClicked()" type="radio" name="user-type" id="user-type-agent">
+                        <label for="user-type-agent">Agent</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="align-top">
+                        <select class="custom-input w-100 p-2" name="agency" id="agency" [(ngModel)]="agency" disabled>
+                            <option value="Choose agency" disabled>Choose agency</option>
+                            <option *ngFor="let agency of agencies" value="{{agency.pib}}">{{agency.name}}</option>
+                        </select>
+                        <span class="d-block pt-1 error-msg text-danger">{{agencyError}}</span>
+                    </td>
+                    <td class="align-top">
+                        <input
+                            type="number"
+                            disabled class="form-control custom-input"
+                            placeholder="Agent licence"
+                            name="licence"
+                            id="licence"
+                            [(ngModel)]="licence">
+                            <span class="error-msg text-danger">{{licenceError}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center">
+                        <div>
+                            <span class="ml-4 mr-1">Profile image:</span>
+                            <input class="m-0 p-0" type="file" (change)="selectImage($event)">
+                        </div>
+                        <span class="error-msg text-danger">{{imageError}}</span>
+                    </td>
+                </tr>
+                <tr class="text-center">
+                    <td colspan="2">
+                        <button id="register-button" (click)="register()" class="btn-dark custom-button w-100">Register</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -23,11 +23,12 @@ export class AuthService {
       { observe: 'response' });
   }
 
-  register(firstname, lastname, username, password, city,
+  register(admin, firstname, lastname, username, password, city,
     dateOfBirth, telephone, email, type, agency, licence, image) {
 
     const formData = new FormData();
 
+    formData.append("admin", admin);
     formData.append("firstname", firstname);
     formData.append("lastname", lastname);
     formData.append("username", username);

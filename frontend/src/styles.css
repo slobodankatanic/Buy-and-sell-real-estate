@@ -51,6 +51,11 @@ a.hover-link:hover {
     background-color: #686868;
 }
 
+.register-table {
+    border-collapse: separate;
+    border-spacing: 10px 20px;
+}
+
 /* .custom-button, .custom-button .disabled {
     border-radius: 30px;
     background-color: #712ff3;

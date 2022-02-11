@@ -231,6 +231,7 @@ export class RegisterComponent implements OnInit {
           this.imageError = "Min. image size is 100x100";
         } else {
           this.authService.register(
+            "noAdmin",
             this.firstname,
             this.lastname,
             this.username,
