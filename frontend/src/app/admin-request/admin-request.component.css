@@ -2,3 +2,8 @@
     width: 150px;
     height: 150px;
 }
+
+.admin-table {
+    overflow: scroll;
+    overflow-y: hidden;
+}

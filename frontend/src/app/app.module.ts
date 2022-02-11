@@ -26,7 +26,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { RealestateComponent } from './realestate/realestate.component';
 import { FavoriteRealEstateComponent } from './favorite-real-estate/favorite-real-estate.component';
 import { HomeComponent } from './home/home.component';
-import { AdminRequestComponent } from './admin-request/admin-request.component'
+import { AdminRequestComponent } from './admin-request/admin-request.component';
+import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component'
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AdminRequestComponent } from './admin-request/admin-request.component'
     RealestateComponent,
     FavoriteRealEstateComponent,
     HomeComponent,
-    AdminRequestComponent
+    AdminRequestComponent,
+    AdminAddUserComponent
   ],
   imports: [
     BrowserModule,
