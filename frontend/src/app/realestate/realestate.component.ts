@@ -35,6 +35,10 @@ export class RealestateComponent implements OnInit {
         this.realEstateService.getById(this.id).subscribe((realEstate: RealEstate) => {
           this.realEstate = realEstate;
 
+          if (realEstate.sold == 1) {
+            this.router.navigate(['/'+ user.type +'/home']);
+          }
+
           user.favorites.forEach(fav => {
             if (fav == this.realEstate.id) {
               this.inFavorites = true;

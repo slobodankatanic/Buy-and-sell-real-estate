@@ -11,12 +11,12 @@
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
                                 <a class="nav-link" [routerLink]="['/admin/home']">
-                                    <span class="act-item">Registration requests</span>
+                                    Registration requests
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                                    Users
+                                    <span class="act-item">Users</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" [routerLink]="['/admin/addUser']">Add user</a>
@@ -47,9 +47,9 @@
             </nav>
         </div>
     </div>
-    <div class="row mt-4 mb-4 text-center">
-        <div class="col h1">
-            Registration requests
+    <div class="row">
+        <div class="col h1 text-center mt-4 mb-4">
+            All users
         </div>
     </div>
     <div class="row ml-2 mr-2">
@@ -73,15 +73,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let user of unregisteredUsers">
+                    <tr *ngFor="let user of allUsers">
                         <td>{{user.firstname}}</td>
                         <td>{{user.lastname}}</td>
                         <td>{{user.username}}</td>
                         <!-- <td>{{user.password}}</td> -->
                         <td>{{user.type}}</td>
                         <!-- <td>{{user.city}}</td> -->
-                        <td>{{user.dob}}</td>
-                        <td>{{user.telephone}}</td>
+                        <td *ngIf="user.editable==false">{{user.dob}}</td>
+                        <td *ngIf="user.editable==true">
+                            <input type="date" class="from-constrol" [(ngModel)]="user.dob">
+                            <div *ngIf="errorDOB!=''" class="error-msg text-danger">{{errorDOB}}</div>
+                        </td>
+                        <td *ngIf="user.editable==false">
+                            {{user.telephone}}
+                        </td>
+                        <td *ngIf="user.editable==true">
+                            <input class="from-constrol" [(ngModel)]="user.telephone">
+                            <div *ngIf="errorPhone!=''" class="error-msg text-danger">{{errorPhone}}</div>
+                        </td>
                         <td>{{user.email}}</td>
                         <td *ngIf="user.agencyId!=0">{{user.agencyId}}</td>
                         <td *ngIf="user.agencyId==0">-</td>
@@ -90,8 +100,12 @@
                         <td>
                             <a target="_blank" href="{{user.image}}">Link</a>
                         </td>
-                        <td><button (click)="accept(user)" class="btn btn-dark">Accept</button></td>
-                        <td><button (click)="decline(user)" class="btn btn-secondary">Decline</button></td>
+                        <td *ngIf="user.editable==false&&editMode==false"><button (click)="edit(user)" class="btn btn-secondary">Edit</button></td>
+                        <td *ngIf="user.editable==false&&editMode==true"><button disabled (click)="edit(user)" class="btn btn-secondary">Edit</button></td>
+                        <td *ngIf="user.editable==true"><button (click)="cancel(user)" class="btn btn-dark">Cancel</button></td>
+                        <td *ngIf="user.editable==false&&editMode==false"><button (click)="delete(user)" class="btn btn-dark">Delete</button></td>
+                        <td *ngIf="user.editable==false&&editMode==true"><button disabled (click)="delete(user)" class="btn btn-dark">Delete</button></td>
+                        <td *ngIf="user.editable==true"><button (click)="saveEdit(user)" class="btn btn-info">Save</button></td>
                     </tr>
                 </tbody>
             </table>

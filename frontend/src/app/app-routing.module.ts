@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminAddAgencyComponent } from './admin-add-agency/admin-add-agency.component';
 import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component';
+import { AdminEditUserComponent } from './admin-edit-user/admin-edit-user.component';
 import { AdminRequestComponent } from './admin-request/admin-request.component';
 import { BuyerComponent } from './buyer/buyer.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
@@ -25,6 +27,8 @@ const routes: Routes = [
   // admin
   { path: 'admin/home', component: AdminRequestComponent },
   { path: 'admin/addUser', component: AdminAddUserComponent },
+  { path: 'admin/editDeleteUser', component: AdminEditUserComponent },
+  { path: 'admin/addAgency', component: AdminAddAgencyComponent },
 
   // realestate
   { path: 'realestate/details/:id', component: RealestateComponent },

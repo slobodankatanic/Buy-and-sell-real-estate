@@ -14,6 +14,10 @@ export class AdminService {
     return this.httpClient.get(`${this.uri}/users/getUnregistered`);
   }
 
+  getAllUsers() {
+    return this.httpClient.get(`${this.uri}/users/getAll`);
+  }
+
   acceptUser(username) {
     const data = {
       "username": username
@@ -28,6 +32,24 @@ export class AdminService {
     }
 
     return this.httpClient.post(`${this.uri}/users/decline`, data);
+  }
+
+  deleteUser(username) {
+    const data = {
+      "username": username
+    }
+
+    return this.httpClient.post(`${this.uri}/users/delete`, data);
+  }
+
+  editUser(username, phone, dob) {
+    const data = {
+      "username": username,
+      "phone": phone,
+      "dob": dob
+    }
+
+    return this.httpClient.post(`${this.uri}/users/update`, data);
   }
 
 }

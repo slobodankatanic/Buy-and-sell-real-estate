@@ -12,4 +12,5 @@ export class User {
     licence: number;
     favorites: Array<number>;
     image: string;
+    editable: boolean;
 }

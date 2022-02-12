@@ -1,7 +1,43 @@
 import * as express from 'express';
 import User from '../models/user'
+import RealEstate from '../models/realestate'
 
 export class UserController {
+    deleteUser = (req: express.Request, res: express.Response) => {
+        let username = req.body.username;
+
+        User.deleteOne({ "username": username }, (err) => {
+            RealEstate.updateMany({ "advertiserId": username }, { $set: { "sold": 1 } }, (err, re) => {
+                res.json({ "message": "ok" });
+            })
+        })
+    }
+
+    updateUser = (req: express.Request, res: express.Response) => {
+        let username = req.body.username;
+        let newDOB = req.body.dob;
+        let newPhone = req.body.phone;
+
+        let phoneRegex = /^\+{0,1}381[0-9]{8,9}$/;
+
+        if (newDOB == "") {
+            res.status(400).json({
+                "message": "Required field",
+                "status": 2
+            })
+        } else if (!phoneRegex.test(newPhone)) {
+            res.status(400).json({
+                "message": "Wrong format",
+                "status": 1
+            })
+        } else {
+            User.updateOne({ "username": username },
+                { $set: { "dob": newDOB, "telephone": newPhone } }, (err, user) => {
+                    res.status(200).json({ "message": "ok" });
+                })
+        }
+    }
+
     acceptUser = (req: express.Request, res: express.Response) => {
         let username = req.body.username;
 
@@ -15,6 +51,12 @@ export class UserController {
 
         User.deleteOne({ "username": username }, (err) => {
             res.json({ "msg": "ok" });
+        })
+    }
+
+    getAll = (req: express.Request, res: express.Response) => {
+        User.find({ "status": "approved", "type": { $in: ["owner", "buyer", "agent"] } }, (err, users) => {
+            res.json(users);
         })
     }
 

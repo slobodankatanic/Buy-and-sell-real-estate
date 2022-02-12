@@ -5,8 +5,40 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const user_1 = __importDefault(require("../models/user"));
+const realestate_1 = __importDefault(require("../models/realestate"));
 class UserController {
     constructor() {
+        this.deleteUser = (req, res) => {
+            let username = req.body.username;
+            user_1.default.deleteOne({ "username": username }, (err) => {
+                realestate_1.default.updateMany({ "advertiserId": username }, { $set: { "sold": 1 } }, (err, re) => {
+                    res.json({ "message": "ok" });
+                });
+            });
+        };
+        this.updateUser = (req, res) => {
+            let username = req.body.username;
+            let newDOB = req.body.dob;
+            let newPhone = req.body.phone;
+            let phoneRegex = /^\+{0,1}381[0-9]{8,9}$/;
+            if (newDOB == "") {
+                res.status(400).json({
+                    "message": "Required field",
+                    "status": 2
+                });
+            }
+            else if (!phoneRegex.test(newPhone)) {
+                res.status(400).json({
+                    "message": "Wrong format",
+                    "status": 1
+                });
+            }
+            else {
+                user_1.default.updateOne({ "username": username }, { $set: { "dob": newDOB, "telephone": newPhone } }, (err, user) => {
+                    res.status(200).json({ "message": "ok" });
+                });
+            }
+        };
         this.acceptUser = (req, res) => {
             let username = req.body.username;
             user_1.default.updateOne({ "username": username }, { $set: { "status": "approved" } }, (err, user) => {
@@ -17,6 +49,11 @@ class UserController {
             let username = req.body.username;
             user_1.default.deleteOne({ "username": username }, (err) => {
                 res.json({ "msg": "ok" });
+            });
+        };
+        this.getAll = (req, res) => {
+            user_1.default.find({ "status": "approved", "type": { $in: ["owner", "buyer", "agent"] } }, (err, users) => {
+                res.json(users);
             });
         };
         this.getUnregistered = (req, res) => {

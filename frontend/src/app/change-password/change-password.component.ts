@@ -18,8 +18,12 @@ export class ChangePasswordComponent implements OnInit {
 
     if (!user) {
       this.logout();
+    } else {
+      this.user = user;
     }
   }
+
+  user: User;
 
   oldPassword: string;
   newPassword: string;

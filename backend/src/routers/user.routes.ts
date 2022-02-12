@@ -15,6 +15,10 @@ userRouter.route('/getUnregistered').get(
     (req, res) => new UserController().getUnregistered(req, res)
 )
 
+userRouter.route('/getAll').get(
+    (req, res) => new UserController().getAll(req, res)
+)
+
 userRouter.route('/addToFavorites').post((req, res) => {
         new UserController().addToFavorites(req, res)
     }
@@ -30,6 +34,14 @@ userRouter.route('/accept').post(
 
 userRouter.route('/decline').post(
     (req, res) => new UserController().declineUser(req, res)
+)
+
+userRouter.route('/delete').post(
+    (req, res) => new UserController().deleteUser(req, res)
+)
+
+userRouter.route('/update').post(
+    (req, res) => new UserController().updateUser(req, res)
 )
 
 export default userRouter;
