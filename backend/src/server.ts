@@ -39,11 +39,14 @@ const storage = multer.diskStorage({
         callBack(null, 'files/images/users')
     },
     filename: (req: any, file: any, callBack: any) => {
-        callBack(null, `__img__${file.originalname}`)
+        imageName = 'img_' + Date.now() + "_" + file.originalname;
+        callBack(null, imageName)
     }
 });
 
 const upload = multer({ storage: storage });
+
+let imageName = "";
 
 app.post('/auth/register', upload.single('image'), (req, res, next) => {
     User.findOne({ username: req.body.username }, (err, user) => {
@@ -78,7 +81,7 @@ app.post('/auth/register', upload.single('image'), (req, res, next) => {
                         agencyId: req.body.agencyId,
                         licence: req.body.licence,
                         status: status,
-                        image: "http://localhost:4000/images/users/__img__" + req.file.originalname,
+                        image: "http://localhost:4000/images/users/" + imageName,
                         favorites: []
                     });
 

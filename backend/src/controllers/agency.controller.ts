@@ -64,7 +64,6 @@ export class AgencyController {
             }
 
             let cityRegex = /^[A-Za-z]+(\s[A-Za-z]+)*$/;
-            console.log(agencyCity)
             if (!cityRegex.test(agencyCity)) {
                 res.json({
                     "message": "Only letters allowed",
