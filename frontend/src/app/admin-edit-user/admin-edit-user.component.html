@@ -95,10 +95,10 @@
                             <div *ngIf="errorPhone!=''" class="error-msg text-danger">{{errorPhone}}</div>
                         </td>
                         <td>{{user.email}}</td>
-                        <td *ngIf="user.agencyId!=0">{{user.agencyId}}</td>
-                        <td *ngIf="user.agencyId==0">-</td>
-                        <td *ngIf="user.agencyId!=0">{{user.licence}}</td>
-                        <td *ngIf="user.agencyId==0">-</td>
+                        <td *ngIf="user.agencyId!='0'">{{user.agencyId}}</td>
+                        <td *ngIf="user.agencyId=='0'">-</td>
+                        <td *ngIf="user.agencyId!='0'">{{user.licence}}</td>
+                        <td *ngIf="user.agencyId=='0'">-</td>
                         <td>
                             <a target="_blank" href="{{user.image}}">Link</a>
                         </td>

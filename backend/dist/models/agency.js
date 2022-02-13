@@ -7,7 +7,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const Schema = mongoose_1.default.Schema;
 let Agency = new Schema({
     pib: {
-        type: Number
+        type: String
     },
     name: {
         type: String

@@ -166,7 +166,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    let cityRegex = /^[A-Za-z]+(\s[A-Za-z]+)*$/;
+    let cityRegex = /^[A-Za-z]+(\s+[A-Za-z]+)*$/;
 
     if (this.city == "") {
       this.cityError = "Required field";

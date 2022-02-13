@@ -1,5 +1,5 @@
 export class Agency {
-    "pib" : number;
+    "pib" : string;
     "name" : string;
     "address" : string;
     "telephone" : string;

@@ -75,8 +75,8 @@ app.post('/auth/register', upload.single('image'), (req, res, next) => {
                         dob: req.body.dateOfBirth,
                         telephone: req.body.telephone,
                         email: req.body.email,
-                        agencyId: Number(req.body.agencyId),
-                        licence: Number(req.body.licence),
+                        agencyId: req.body.agencyId,
+                        licence: req.body.licence,
                         status: status,
                         image: "http://localhost:4000/images/users/__img__" + req.file.originalname,
                         favorites: []

@@ -8,8 +8,8 @@ export class User {
     dob: string;
     telephone: string;
     email: string;
-    agencyId: number;
-    licence: number;
+    agencyId: string;
+    licence: string;
     favorites: Array<number>;
     image: string;
     editable: boolean;

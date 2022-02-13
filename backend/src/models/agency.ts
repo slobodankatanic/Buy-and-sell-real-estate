@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 let Agency = new Schema({
     pib: {
-        type: Number
+        type: String
     },
     name: {
         type: String

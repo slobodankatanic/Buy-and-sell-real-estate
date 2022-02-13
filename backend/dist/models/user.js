@@ -34,10 +34,10 @@ let User = new Schema({
         type: String
     },
     agencyId: {
-        type: Number
+        type: String
     },
     licence: {
-        type: Number
+        type: String
     },
     status: {
         type: String

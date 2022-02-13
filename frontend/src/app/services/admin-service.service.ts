@@ -52,4 +52,16 @@ export class AdminService {
     return this.httpClient.post(`${this.uri}/users/update`, data);
   }
 
+  addAgency(name, address, city, contact, pib) {
+    const data = {
+      "name": name,
+      "pib": pib,
+      "city": city,
+      "address": address,
+      "contact": contact
+    }
+
+    return this.httpClient.post(`${this.uri}/agency/add`, data);
+  }
+
 }

@@ -54,4 +54,36 @@
             Add agency
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-4 col-2"></div>
+        <div class="col-lg-4 col-8 text-center">
+            <mat-form-field id="ag-name" class="w-100 mb-3 example-full-width" appearance="fill">
+                <mat-label>Agency name</mat-label>
+                <input [(ngModel)]="agencyName" [formControl]="agencyNameControl" type="text" matInput>
+                <mat-error *ngIf="agencyNameControl.hasError('agencyName')">{{errorMessage}}</mat-error>
+            </mat-form-field>
+            <mat-form-field id="ag-pib" class="w-100 mb-3 example-full-width" appearance="fill">
+                <mat-label>Agency PIB</mat-label>
+                <input [(ngModel)]="agencyPib" [formControl]="agencyPibControl" type="number" matInput>
+                <mat-error *ngIf="agencyPibControl.hasError('agencyPib')">{{errorMessage}}</mat-error>
+            </mat-form-field>
+            <mat-form-field id="current-pass" class="w-100 mb-3 example-full-width" appearance="fill">
+                <mat-label>Agency city</mat-label>
+                <input [(ngModel)]="agencyCity" [formControl]="agencyCityControl" type="text" matInput>
+                <mat-error *ngIf="agencyCityControl.hasError('agencyCity')">{{errorMessage}}</mat-error>
+            </mat-form-field>
+            <mat-form-field id="current-pass" class="w-100 mb-3 example-full-width" appearance="fill">
+                <mat-label>Agency address</mat-label>
+                <input [(ngModel)]="agencyAddress" [formControl]="agencyAddressControl" type="text" matInput>
+                <mat-error *ngIf="agencyAddressControl.hasError('agencyAddress')">{{errorMessage}}</mat-error>
+            </mat-form-field>
+            <mat-form-field id="current-pass" class="w-100 mb-3 example-full-width" appearance="fill">
+                <mat-label>Agency contact phone</mat-label>
+                <input [(ngModel)]="agencyContact" [formControl]="agencyContactControl" type="number" matInput>
+                <mat-error *ngIf="agencyContactControl.hasError('agencyContact')">{{errorMessage}}</mat-error>
+            </mat-form-field>
+            <button (click)="addAgency()" class="w-75 btn btn-dark">Add agency</button>
+        </div>
+        <div class="col-lg-4 col-2"></div>
+    </div>
 </div>

@@ -50,11 +50,14 @@
         </div>
     </div>
     <div class="row mt-4 mb-4 text-center">
-        <div class="col h1">
+        <div class="col h1"*ngIf="unregisteredUsers.length>0">
             Registration requests
         </div>
+        <div class="col h1" *ngIf="unregisteredUsers.length==0">
+            No registration requests
+        </div>
     </div>
-    <div class="row ml-2 mr-2">
+    <div class="row ml-2 mr-2" *ngIf="unregisteredUsers.length > 0">
         <div class="col admin-table">
             <table class="table table-striped tasble-responsive table-borderless">
                 <thead class="thead-dark">
@@ -85,10 +88,10 @@
                         <td>{{user.dob}}</td>
                         <td>{{user.telephone}}</td>
                         <td>{{user.email}}</td>
-                        <td *ngIf="user.agencyId!=0">{{user.agencyId}}</td>
-                        <td *ngIf="user.agencyId==0">-</td>
-                        <td *ngIf="user.agencyId!=0">{{user.licence}}</td>
-                        <td *ngIf="user.agencyId==0">-</td>
+                        <td *ngIf="user.agencyId!='0'">{{user.agencyId}}</td>
+                        <td *ngIf="user.agencyId=='0'">-</td>
+                        <td *ngIf="user.agencyId!='0'">{{user.licence}}</td>
+                        <td *ngIf="user.agencyId=='0'">-</td>
                         <td>
                             <a target="_blank" href="{{user.image}}">Link</a>
                         </td>
