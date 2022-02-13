@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminAddAgencyComponent } from './admin-add-agency/admin-add-agency.component';
+import { AdminAddMicrolocationComponent } from './admin-add-microlocation/admin-add-microlocation.component';
 import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component';
 import { AdminEditUserComponent } from './admin-edit-user/admin-edit-user.component';
 import { AdminRequestComponent } from './admin-request/admin-request.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'admin/addUser', component: AdminAddUserComponent },
   { path: 'admin/editDeleteUser', component: AdminEditUserComponent },
   { path: 'admin/addAgency', component: AdminAddAgencyComponent },
+  { path: 'admin/addMicrolocation', component: AdminAddMicrolocationComponent },
 
   // realestate
   { path: 'realestate/details/:id', component: RealestateComponent },

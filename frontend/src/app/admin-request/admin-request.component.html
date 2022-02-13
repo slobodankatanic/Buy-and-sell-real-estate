@@ -33,8 +33,12 @@
                                     Microlocations
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item">Add microlocation</a>
-                                    <a class="dropdown-item">Delete microlocation</a>
+                                    <a class="dropdown-item" [routerLink]="['/admin/addMicrolocation']">
+                                        Add microlocation
+                                    </a>
+                                    <a class="dropdown-item" [routerLink]="['/admin/deleteMicrolocation']">
+                                        Delete microlocation
+                                    </a>
                                 </div>
                             </li>
                             <li id="moj-nalog" class="nav-item ml-lg-5 ml-sm-0">

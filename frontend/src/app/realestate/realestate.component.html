@@ -51,31 +51,55 @@
                 <div class="col">
                     <div id="carouselExampleIndicators" class="carousel slide w-auto najbolji-recepti" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            <li *ngIf="realEstate.images.length>0" data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li *ngIf="realEstate.images.length>1" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li *ngIf="realEstate.images.length>2" data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            <li *ngIf="realEstate.images.length>3" data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                            <li *ngIf="realEstate.images.length>4" data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                            <li *ngIf="realEstate.images.length>5" data-target="#carouselExampleIndicators" data-slide-to="5"></li>
                         </ol>
                         <div class="h-100 carousel-inner">
-                            <div id="prvi-slajd" class="carousel-item active bg-dark">
-                                <img id="img-r1" src="{{realEstate.images[0]}}" class="h-50 w-auto d-block img-fluid">
+                            <div *ngIf="realEstate.images.length>0" id="prvi-slajd" class="carousel-item active bg-dark">
+                                <img id="img-r1" src="{{realEstate.images[0]}}" class="h-50 w-100 d-block img-fluid">
                                 <div class="carousel-caption">
                                     <h2 id="rh1"></h2>
                                     <p id="rp1"></p>
                                 </div>
                             </div>
-                            <div id="drugi-slajd" class="carousel-item bg-dark">
+                            <div *ngIf="realEstate.images.length>1" id="drugi-slajd" class="carousel-item bg-dark">
                                 <div class="carousel-caption">
                                     <h2 id="rh2"></h2>
                                     <p id="rp2"></p>
                                 </div>
-                                <img id="img-r2" class="h-50 d-block img-fluid" src="{{realEstate.images[0]}}">
+                                <img id="img-r2" class="h-50 w-100 d-block img-fluid" src="{{realEstate.images[1]}}">
                             </div>
-                            <div id="treci-slajd" class="carousel-item bg-dark">
+                            <div *ngIf="realEstate.images.length>2" id="treci-slajd" class="carousel-item bg-dark">
                                 <div class="carousel-caption">
                                     <h2 id="rh3"></h2>
                                     <p id="rp3"></p>
                                 </div>
-                                <img id="img-r3" class="h-50 d-block img-fluid" src="{{realEstate.images[0]}}">
+                                <img id="img-r3" class="h-50 w-100 d-block img-fluid" src="{{realEstate.images[2]}}">
+                            </div>
+                            <div *ngIf="realEstate.images.length>3" id="cetvrti-slajd" class="carousel-item bg-dark">
+                                <img id="img-r4" src="{{realEstate.images[3]}}" class="h-50 w-100 d-block img-fluid">
+                                <div class="carousel-caption">
+                                    <h2 id="rh4"></h2>
+                                    <p id="rp4"></p>
+                                </div>
+                            </div>
+                            <div *ngIf="realEstate.images.length>4" id="peti-slajd" class="carousel-item bg-dark">
+                                <div class="carousel-caption">
+                                    <h2 id="rh5"></h2>
+                                    <p id="rp5"></p>
+                                </div>
+                                <img id="img-r5" class="h-50 w-100 d-block img-fluid" src="{{realEstate.images[4]}}">
+                            </div>
+                            <div *ngIf="realEstate.images.length>5" id="sesti-slajd" class="carousel-item bg-dark">
+                                <div class="carousel-caption">
+                                    <h2 id="rh6"></h2>
+                                    <p id="rp6"></p>
+                                </div>
+                                <img id="img-r6" class="h-50 w-100 d-block img-fluid" src="{{realEstate.images[5]}}">
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
