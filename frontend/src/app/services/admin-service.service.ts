@@ -64,4 +64,14 @@ export class AdminService {
     return this.httpClient.post(`${this.uri}/agency/add`, data);
   }
 
+  addMicrolocation(name, addresses, municipality) {
+    const data = {
+      "name": name,
+      "addresses": addresses,
+      "municipality": municipality,
+    }
+
+    return this.httpClient.post(`${this.uri}/microlocations/add`, data);
+  }
+
 }

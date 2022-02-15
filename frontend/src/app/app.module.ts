@@ -30,7 +30,8 @@ import { AdminRequestComponent } from './admin-request/admin-request.component';
 import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component';
 import { AdminEditUserComponent } from './admin-edit-user/admin-edit-user.component';
 import { AdminAddAgencyComponent } from './admin-add-agency/admin-add-agency.component';
-import { AdminAddMicrolocationComponent } from './admin-add-microlocation/admin-add-microlocation.component'
+import { AdminAddMicrolocationComponent } from './admin-add-microlocation/admin-add-microlocation.component';
+import { AdminDeleteMicrolocationComponent } from './admin-delete-microlocation/admin-delete-microlocation.component'
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { AdminAddMicrolocationComponent } from './admin-add-microlocation/admin-
     AdminAddUserComponent,
     AdminEditUserComponent,
     AdminAddAgencyComponent,
-    AdminAddMicrolocationComponent
+    AdminAddMicrolocationComponent,
+    AdminDeleteMicrolocationComponent
   ],
   imports: [
     BrowserModule,

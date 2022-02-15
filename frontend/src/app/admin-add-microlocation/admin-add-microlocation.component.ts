@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { City } from '../models/city';
 import { Municipality } from '../models/municipality';
 import { User } from '../models/user';
+import { AdminService } from '../services/admin-service.service';
 import { CommonService } from '../services/common.service';
 
 @Component({
@@ -13,7 +14,9 @@ import { CommonService } from '../services/common.service';
 })
 export class AdminAddMicrolocationComponent implements OnInit {
 
-  constructor(private router: Router, private commonService: CommonService) { }
+  constructor(private router: Router,
+    private commonService: CommonService,
+    private adminService: AdminService) { }
 
   ngOnInit(): void {
     let user: User = JSON.parse(localStorage.getItem("user"));
@@ -60,14 +63,55 @@ export class AdminAddMicrolocationComponent implements OnInit {
     });
   }
 
+  microlocationName: string = ""
   streetName: string = ""
-  streetControl = new FormControl('')
-  errorMessage: string = ""
+  cityControl = new FormControl('')
+  municipalityControl = new FormControl('')
+  nameControl = new FormControl('')
+  errorMessageCity: string = ""
+  errorMessageMun: string = ""
+  errorMessageName: string = ""
 
   streets: string[] = []
 
   addStreet() {
-    this.streets.push(this.streetName);
+    if (this.streetName != "") {
+      this.streets.push(this.streetName);
+    }
+    this.streetName = "";
+  }
+
+  removeAddress(address) {
+    this.streets.splice(this.streets.indexOf(address), 1);
+  }
+
+  addMicrolocation() {
+    if (this.microlocationName == "") {
+      this.errorMessageName = "Required field";
+      this.nameControl.setErrors({ name: true });
+      this.nameControl.markAsTouched();
+      this.cityControl.setErrors(null);
+      this.municipalityControl.setErrors(null);
+    } else if (this.city == 0) {
+      this.errorMessageCity = "Required field";
+      this.cityControl.setErrors({ city: true });
+      this.cityControl.markAsTouched();
+      this.municipalityControl.setErrors(null);
+      this.nameControl.setErrors(null);
+    } else if (this.municipality == 0) {
+      this.errorMessageMun = "Required field";
+      this.municipalityControl.setErrors({ municipality: true });
+      this.municipalityControl.markAsTouched();
+      this.cityControl.setErrors(null);
+      this.nameControl.setErrors(null);
+    } else {
+      this.adminService.addMicrolocation(
+        this.microlocationName,
+        this.streets,
+        this.municipality).subscribe(resp => {
+          this.router.navigate(['/admin/microlocations'])
+        })
+    }
   }
 
 }

@@ -11,4 +11,8 @@ microlocationRouter.route('/getForMunicipality').get(
     (req, res) => new MicrolocationController().getForMunicipality(req, res)
 )
 
+microlocationRouter.route('/add').post(
+    (req, res) => new MicrolocationController().addMicrolocation(req, res)
+)
+
 export default microlocationRouter;

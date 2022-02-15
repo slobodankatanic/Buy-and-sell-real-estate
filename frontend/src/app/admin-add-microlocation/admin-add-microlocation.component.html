@@ -62,26 +62,38 @@
         <div class="col-12 col-sm-4 offset-sm-2 offset-lg-1 col-lg-3 text-center">
             <mat-form-field appearance="fill">
                 <mat-label>City</mat-label>
-                <mat-select [(ngModel)]="city" (selectionChange)="citySelected()">
+                <mat-select [formControl]="cityControl" [(ngModel)]="city" (selectionChange)="citySelected()">
                     <mat-option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="cityControl.hasError('city')">{{errorMessageCity}}</mat-error>
             </mat-form-field>
         </div>
         <div class="col-12 col-sm-4 col-lg-3 text-center">
             <mat-form-field appearance="fill">
                 <mat-label>Municipality</mat-label>
-                <mat-select id="municipality" disabled="{{disabledMunicipality}}" [(ngModel)]="municipality">
+                <mat-select id="municipality" [(ngModel)]="municipality" [formControl]="municipalityControl">
                     <mat-option *ngFor="let mun of municipalities" value="{{mun.id}}">{{mun.name}}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="municipalityControl.hasError('municipality')">{{errorMessageMun}}</mat-error>
             </mat-form-field>
         </div>
         <div class="col-12 col-lg-4 text-center">
             <mat-form-field id="new-pass" class="mb-3 example-full-width" appearance="fill">
                 <mat-label>Street name</mat-label>
-                <input [(ngModel)]="streetName" [formControl]="streetControl" type="text" matInput>
-                <mat-error *ngIf="streetControl.hasError('invNew')">{{errorMessage}}</mat-error>
+                <input [(ngModel)]="streetName" type="text" matInput>
+                <!-- <mat-error *ngIf="streetControl.hasError('invNew')">{{errorMessage}}</mat-error> -->
             </mat-form-field>
-            <button (click)="addStreet()" class="ml-1 btn btn-dark">Add street</button>
+            <button (click)="addStreet()" class="ml-1 btn btn-secondary">Add street</button>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <mat-form-field appearance="fill">
+                <mat-label>Name</mat-label>
+                <input [(ngModel)]="microlocationName" [formControl]="nameControl" type="text" matInput>
+                <mat-error *ngIf="nameControl.hasError('name')">{{errorMessageName}}</mat-error>
+            </mat-form-field>
+            <button (click)="addMicrolocation()" class="ml-4 btn btn-dark">Add microlocation</button>
         </div>
     </div>
     <div class="row">
@@ -95,8 +107,14 @@
                 <mat-card class="p-0 m-0 home-card card-font card-bg">
                     <!-- <mat-card-title class="w-100 p-2 mb-0 card-title">
                     </mat-card-title> -->
-                    <mat-card-content class="street-text pt-1 pb-1">
-                        {{street}}
+                    <mat-card-content class="street-text p-1">
+                        <div class="row">
+                            <div class="col">{{street}}</div>
+                            <div class="col text-right">
+                                <button (click)="removeAddress(street)"
+                                class="btn btn-secondary">Remove</button>
+                            </div>
+                        </div>
                     </mat-card-content>
                 </mat-card>
             </div>

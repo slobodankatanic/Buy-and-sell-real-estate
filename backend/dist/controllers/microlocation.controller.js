@@ -7,6 +7,30 @@ exports.MicrolocationController = void 0;
 const microlocation_1 = __importDefault(require("../models/microlocation"));
 class MicrolocationController {
     constructor() {
+        this.addMicrolocation = (req, res) => {
+            let name = req.body.name;
+            let addresses = req.body.addresses;
+            let municipality = req.body.municipality;
+            microlocation_1.default.find({}, (err, mlocs) => {
+                let maxId = 0;
+                mlocs.forEach(loc => {
+                    if (loc.get('id') > maxId) {
+                        maxId = loc.get('id');
+                    }
+                });
+                let microlocation = new microlocation_1.default({
+                    id: maxId + 1,
+                    name: name,
+                    municipality: municipality,
+                    streets: addresses
+                });
+                microlocation.save().then(mloc => {
+                    res.json({ 'message': 'Microlocation successfully added', 'status': 0 });
+                }).catch(err => {
+                    res.json({ 'message': 'error', status: 6 });
+                });
+            });
+        };
         this.getAll = (req, res) => {
             microlocation_1.default.find({}, (err, microlocs) => {
                 if (microlocs) {
