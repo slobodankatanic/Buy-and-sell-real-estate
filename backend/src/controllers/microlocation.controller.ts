@@ -1,7 +1,26 @@
 import * as express from 'express';
 import Microlocation from '../models/microlocation'
+import RealEsatate from '../models/realestate'
 
 export class MicrolocationController {
+    deleteMicrolocation = (req: express.Request, res: express.Response) => {
+        RealEsatate.findOne({ "microlocationId": req.body.id }, (err, re) => {
+            if (re) {
+                res.json({
+                    "message": "There are active ads on this microlocation",
+                    "status": 1
+                })
+            } else {
+                Microlocation.deleteOne({ "id": req.body.id }, (err) => {
+                    res.json({
+                        "message": "Deleted",
+                        "status": 0
+                    })
+                })
+            }
+        })
+    }
+
     addMicrolocation = (req: express.Request, res: express.Response) => {
         let name = req.body.name;
         let addresses = req.body.addresses;

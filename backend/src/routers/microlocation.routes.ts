@@ -15,4 +15,8 @@ microlocationRouter.route('/add').post(
     (req, res) => new MicrolocationController().addMicrolocation(req, res)
 )
 
+microlocationRouter.route('/delete').post(
+    (req, res) => new MicrolocationController().deleteMicrolocation(req, res)
+)
+
 export default microlocationRouter;

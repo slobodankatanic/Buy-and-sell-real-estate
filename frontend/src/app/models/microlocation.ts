@@ -3,4 +3,6 @@ export class Microlocation {
     name: string;
     municipality: number;
     streets: Array<String>;
+    cityName: string;
+    municipalityName: string;
 }

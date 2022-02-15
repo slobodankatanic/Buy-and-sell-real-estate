@@ -26,6 +26,10 @@ export class CommonService {
     return this.httpClient.get(`${this.uri}/municipalities/getForCity?city=${city}`);
   }
 
+  getMunicipalityById(id) {
+    return this.httpClient.get(`${this.uri}/municipalities/getById?id=${id}`);
+  }
+
   getMicrolocationsForMunicipality(id) {
     return this.httpClient.get(`${this.uri}/microlocations/getForMunicipality?municipalityId=${id}`);
   }

@@ -7,6 +7,10 @@ municipalityRouter.route('/getAll').get(
     (req, res) => new MunicipalityController().getAll(req, res)
 )
 
+municipalityRouter.route('/getById').get(
+    (req, res) => new MunicipalityController().getById(req, res)
+)
+
 municipalityRouter.route('/getForCity').get(
     (req, res) => new MunicipalityController().getForCity(req, res)
 )
