@@ -250,7 +250,10 @@ export class RegisterComponent implements OnInit {
                 this.mailError = resp['message'];
               } else if (resp['status'] == 0) {
                 this.formReset();
-                this._snackBar.open("Your registration request is sent successfully!", "Ok");
+                this._snackBar.open("Your registration request is sent successfully!", "Ok", {
+                  horizontalPosition: "center",
+                  verticalPosition: "top"
+                });
               }
             });
         }

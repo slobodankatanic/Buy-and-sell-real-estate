@@ -73,14 +73,14 @@
         <div class="col-xl col-md-6 col-12">
             <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Price in €</mat-label>
-                <input type="number" [(ngModel)]="price" matInput>
+                <input min="0" type="number" [(ngModel)]="price" matInput>
                 <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
             </mat-form-field>
         </div>
         <div class="col-xl col-md-6 col-12">
             <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Monthly utilities in €</mat-label>
-                <input type="text" [(ngModel)]="monthlyUtilities" matInput>
+                <input min="0" type="text" [(ngModel)]="monthlyUtilities" matInput>
                 <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
             </mat-form-field>
         </div>
@@ -89,28 +89,28 @@
         <div class="col-xl col-md-6 col-12">
             <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Area in m<sup>2</sup></mat-label>
-                <input type="text" [(ngModel)]="area" matInput>
+                <input min="1" type="text" [(ngModel)]="area" matInput>
                 <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
             </mat-form-field>
         </div>
         <div class="col-xl col-md-6 col-12">
             <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Rooms</mat-label>
-                <input type="number" [(ngModel)]="rooms" matInput>
+                <input min="1" type="number" [(ngModel)]="rooms" matInput>
                 <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
             </mat-form-field>
         </div>
         <div class="col-xl col-md-6 col-12">
             <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Floor</mat-label>
-                <input type="text" [(ngModel)]="floor" matInput>
+                <input min="0" type="text" [(ngModel)]="floor" matInput>
                 <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
             </mat-form-field>
         </div>
         <div class="col-xl col-md-6 col-12">
             <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Total floors</mat-label>
-                <input type="text" [(ngModel)]="totalFloors" matInput>
+                <input min="0" type="text" [(ngModel)]="totalFloors" matInput>
                 <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
             </mat-form-field>
         </div>
@@ -119,7 +119,7 @@
         <div class="col-xl col-md-6 col-12">
             <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Construction year</mat-label>
-                <input type="number" [(ngModel)]="constructionYear" matInput>
+                <input min="1950" max="2050" type="number" [(ngModel)]="constructionYear" matInput>
                 <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
             </mat-form-field>
         </div>
@@ -221,7 +221,7 @@
                 <textarea matInput [(ngModel)]="description" cols="20" rows="5"></textarea>
             </mat-form-field>
         </div>
-        <div class="col-xl-12 col-md-12 col-12 text-center">
+        <div class="col-xl-12 col-md-12 col-12 text-left">
             <mat-checkbox class="p-2" [(ngModel)]="teracce">Teracce</mat-checkbox>
             <mat-checkbox class="p-2" [(ngModel)]="basement">Basement</mat-checkbox>
             <mat-checkbox class="p-2" [(ngModel)]="internet">Internet</mat-checkbox>
@@ -235,15 +235,16 @@
             <mat-checkbox class="p-2" [(ngModel)]="airConditioning">Air conditioning</mat-checkbox>
         </div>
     </div>
-    <div class="row">
+    <div class="row m-3">
         <div class="col text-center">
-            <span class="h5">Real estate images: </span>
-            <input type="file" multiple>
+            <span class="h5">Real estate images: &nbsp;&nbsp;</span>
+            <input type="file" (change)="selectImages($event)" multiple>
+            <div class="text-danger error-msg" *ngIf="errorMessage!=''&&status==13">{{errorMessage}}</div>
         </div>
     </div>
-    <div class="row">
+    <div class="row m-3">
         <div class="col text-center">
-            <button class="btn btn-dark">Add real estate</button>
+            <button (click)="addRealEstate()" class="btn btn-dark">Add real estate</button>
         </div>
     </div>
 </div>

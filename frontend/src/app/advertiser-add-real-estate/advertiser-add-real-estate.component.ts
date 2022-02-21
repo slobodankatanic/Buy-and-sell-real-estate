@@ -71,6 +71,9 @@ export class AdvertiserAddRealEstateComponent implements OnInit {
   disabledMicrolocation: boolean = true;
   disabledStreet: boolean = true;
 
+  errorMessage: string = ""
+  status: number = 0;
+
   citySelected() {
     this.municipality = null;
     this.disabledMunicipality = false;
@@ -111,7 +114,48 @@ export class AdvertiserAddRealEstateComponent implements OnInit {
     })
   }
 
-  onSelect(event) {
+  addRealEstate() {
+    this.errorMessage = ""
+    this.status = 0;
+
+    // images validation
+    if (this.images.length < 3 || this.images.length > 6) {
+      this.errorMessage = "You can select between 3 and 6 images"
+      this.status = 13;
+      return;
+    } else {
+      let imageNameRegexJpg = /\.jpg$/i;
+      let imageNameRegexJpeg = /\.jpeg$/i;
+      let imageNameRegexPng = /\.png$/i;
+
+      this.images.forEach(img => {
+        if ((!imageNameRegexJpg.test(img.name)) &&
+          (!imageNameRegexJpeg.test(img.name)) &&
+          (!imageNameRegexPng.test(img.name))) {
+            this.errorMessage = "Images must be in jpg, jpeg or png format"
+            this.status = 13;
+        }
+      })
+
+      if (this.status == 13) {
+        return;
+      }
+    }
+  }
+
+  images: File[] = []
+
+  selectImages(event) {
+    this.images = []
+
+    if (event.target.files.length >= 1) {
+      this.errorMessage = "";
+      for (let i = 0; i < event.target.files.length; i++) {
+        this.images.push(event.target.files[i])
+      }
+    } else {
+      this.images = [];
+    }
 
   }
 
