@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Characteristic } from '../models/characteristic';
 import { City } from '../models/city';
 import { Microlocation } from '../models/microlocation';
 import { Municipality } from '../models/municipality';
@@ -19,34 +21,40 @@ export class AdvertiserAddRealEstateComponent implements OnInit {
     private commonService: CommonService) { }
 
   ngOnInit(): void {
-    let user: User = JSON.parse(localStorage.getItem("user"));
+    this.user = JSON.parse(localStorage.getItem("user"));
 
-    if (!(user && (user.type == "owner" || user.type == "agent"))) {
+    if (!(this.user && (this.user.type == "owner" || this.user.type == "agent"))) {
       this.logout();
     } else {
       this.commonService.getAllCities().subscribe((allCities: City[]) => {
         this.cities = allCities;
       })
+
+      for (let i = 0; i < 17; i++) {
+        this.formControl.push(new FormControl(''));
+      }
     }
   }
 
+  user: User = null;
+
   name: string = "";
   type: string = "";
-  price: number = null;
-  monthlyUtilities: number = null;
+  price: string = "";
+  monthlyUtilities: string = "";
   transportLines: number[] = []
-  area: number = null;
-  floor: number = null;
-  totalFloors: number = null;
-  rooms: number = null;
+  area: string = "";
+  floor: string = "";
+  totalFloors: string = "";
+  rooms: string = "";
   heating: string = "";
-  constructionYear: number = null;
+  constructionYear: string = "";
   state: string = "";
   description: string = "";
 
-  city: number = null;
-  municipality: number = null;
-  microlocation: number = null;
+  city: number = 0;
+  municipality: number = 0;
+  microlocation: number = 0;
   street: string = "";
 
   // characteristics
@@ -62,6 +70,8 @@ export class AdvertiserAddRealEstateComponent implements OnInit {
   elevator: boolean = false;
   airConditioning: boolean = false;
 
+  parking: boolean = false;
+
   cities: City[] = [];
   municipalities: Municipality[] = [];
   microlocations: Microlocation[] = []
@@ -74,9 +84,14 @@ export class AdvertiserAddRealEstateComponent implements OnInit {
   errorMessage: string = ""
   status: number = 0;
 
+  formControl = [];
+
   citySelected() {
-    this.municipality = null;
-    this.disabledMunicipality = false;
+    this.municipality = 0;
+    this.municipalities = [];
+    this.microlocations = [];
+    this.streets = [];
+    // this.disabledMunicipality = false;
     this.disabledMicrolocation = true;
     this.disabledStreet = true;
     this.street = "";
@@ -94,8 +109,10 @@ export class AdvertiserAddRealEstateComponent implements OnInit {
   }
 
   municipalitySelected() {
-    this.disabledMicrolocation = false;
-    this.microlocation = null;
+    // this.disabledMicrolocation = false;
+    this.microlocations = [];
+    this.streets = [];
+    this.microlocation = 0;
     this.disabledStreet = true;
     this.street = "";
 
@@ -105,7 +122,8 @@ export class AdvertiserAddRealEstateComponent implements OnInit {
   }
 
   microSelected() {
-    this.disabledStreet = false;
+    // this.disabledStreet = false;
+    this.streets = [];
     this.street = "";
     this.microlocations.forEach(mloc => {
       if (mloc.id == this.microlocation) {
@@ -120,8 +138,8 @@ export class AdvertiserAddRealEstateComponent implements OnInit {
 
     // images validation
     if (this.images.length < 3 || this.images.length > 6) {
-      this.errorMessage = "You can select between 3 and 6 images"
-      this.status = 13;
+      this.errorMessage = "You need to select between 3 and 6 images"
+      this.status = 17;
       return;
     } else {
       let imageNameRegexJpg = /\.jpg$/i;
@@ -132,14 +150,229 @@ export class AdvertiserAddRealEstateComponent implements OnInit {
         if ((!imageNameRegexJpg.test(img.name)) &&
           (!imageNameRegexJpeg.test(img.name)) &&
           (!imageNameRegexPng.test(img.name))) {
-            this.errorMessage = "Images must be in jpg, jpeg or png format"
-            this.status = 13;
+          this.errorMessage = "Images must be in jpg, jpeg or png format"
+          this.status = 17;
         }
       })
 
-      if (this.status == 13) {
+      if (this.status == 17) {
         return;
       }
+
+      // add
+      let parkingExists: string;
+      if (this.parking == true) {
+        parkingExists = "DA";
+      } else {
+        parkingExists = "NE";
+      }
+
+      let characteristics: Characteristic[] = []
+      if (this.teracce) {
+        characteristics.push({
+          name: "terrace",
+          exists: 1
+        })
+      } else {
+        characteristics.push({
+          name: "terrace",
+          exists: 0
+        })
+      }
+      if (this.basement) {
+        characteristics.push({
+          name: "basement",
+          exists: 1
+        })
+      } else {
+        characteristics.push({
+          name: "basement",
+          exists: 0
+        })
+      }
+      if (this.internet) {
+        characteristics.push({
+          name: "internet",
+          exists: 1
+        })
+      } else {
+        characteristics.push({
+          name: "internet",
+          exists: 0
+        })
+      }
+      if (this.loggia) {
+        characteristics.push({
+          name: "loggia",
+          exists: 1
+        })
+      } else {
+        characteristics.push({
+          name: "loggia",
+          exists: 0
+        })
+      }
+      if (this.garage) {
+        characteristics.push({
+          name: "garage",
+          exists: 1
+        })
+      } else {
+        characteristics.push({
+          name: "garage",
+          exists: 0
+        })
+      }
+      if (this.interphone) {
+        characteristics.push({
+          name: "interphone",
+          exists: 1
+        })
+      } else {
+        characteristics.push({
+          name: "interphone",
+          exists: 0
+        })
+      }
+      if (this.balcony) {
+        characteristics.push({
+          name: "balcony",
+          exists: 1
+        })
+      } else {
+        characteristics.push({
+          name: "balcony",
+          exists: 0
+        })
+      }
+      if (this.garden) {
+        characteristics.push({
+          name: "garden",
+          exists: 1
+        })
+      } else {
+        characteristics.push({
+          name: "garden",
+          exists: 0
+        })
+      }
+      if (this.telephone) {
+        characteristics.push({
+          name: "telephone",
+          exists: 1
+        })
+      } else {
+        characteristics.push({
+          name: "telephone",
+          exists: 0
+        })
+      }
+      if (this.elevator) {
+        characteristics.push({
+          name: "elevator",
+          exists: 1
+        })
+      } else {
+        characteristics.push({
+          name: "elevator",
+          exists: 0
+        })
+      }
+      if (this.airConditioning) {
+        characteristics.push({
+          name: "airConditioning",
+          exists: 1
+        })
+      } else {
+        characteristics.push({
+          name: "airConditioning",
+          exists: 0
+        })
+      }
+
+      let cityName;
+      this.cities.forEach(cty => {
+        if (cty.id == this.city) {
+          cityName = cty.name;
+        }
+      })
+
+      let munName;
+      this.municipalities.forEach(mun => {
+        if (mun.id == this.municipality) {
+          munName = mun.name;
+        }
+      })
+
+      let mlocName;
+      this.microlocations.forEach(ml => {
+        if (ml.id == this.microlocation) {
+          mlocName = ml.name;
+        }
+      })
+
+      if (this.price == null) {
+        this.price = "";
+      }
+      if (this.monthlyUtilities == null) {
+        this.monthlyUtilities = "";
+      }
+      if (this.area == null) {
+        this.area = "";
+      }
+      if (this.rooms == null) {
+        this.rooms = "";
+      }
+      if (this.floor == null) {
+        this.floor = "";
+      }
+      if (this.totalFloors == null) {
+        this.totalFloors = "";
+      }
+      if (this.constructionYear == null) {
+        this.constructionYear = "";
+      }
+
+      this.realEstateService.addRealEstate(
+        this.name,
+        this.type,
+        this.price,
+        this.monthlyUtilities,
+        this.area,
+        this.rooms,
+        this.floor,
+        this.totalFloors,
+        this.constructionYear,
+        this.state,
+        this.heating,
+        this.transportLines,
+        this.city,
+        cityName,
+        munName,
+        this.street,
+        this.municipality,
+        mlocName,
+        this.microlocation,
+        this.description,
+        JSON.stringify(characteristics),
+        this.images,
+        parkingExists,
+        this.user.username
+      ).subscribe(resp => {
+        this.status = resp['status'];
+        if (resp['status'] == 0) {
+          this.router.navigate(['advertiser/home']);
+        } else {
+          this.errorMessage = resp['message'];
+          this.formControl[this.status - 1].setErrors({ err: true });
+          this.formControl[this.status - 1].markAsTouched();
+          for (let i = 0; i < 17; i++) {
+            if ((i + 1) != this.status) {
+              this.formControl[i].setErrors(null);
+            }
+          }
+        }
+      })
     }
   }
 

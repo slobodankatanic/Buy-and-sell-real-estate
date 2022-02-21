@@ -45,21 +45,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-3"></div>
+        <div class="col-xl-3 col-lg-2 col-1"></div>
         <div class="col">
             <div *ngFor="let re of favoriteRealEstates" class="mb-5">
                 <mat-card class="p-0 m-0 home-card card-font card-bg">
                     <a target="_blank" class="custom-link" [routerLink]="[ '/realestate/details', re.id]">
                         <mat-card-title class="w-100 p-2 mb-0 card-title">
                             <div class="row">
-                                <div class="col">{{re.name}}</div>
-                                <div class="col font-italic m-auto h5 text-right">{{re.city}}</div>
+                                <div class="col-12 col-sm-9 text-sm-left text-center">{{re.name}}</div>
+                                <div class="col-12 col-sm-3 font-italic m-auto h5 text-center text-sm-right">{{re.city}}</div>
                             </div>
                         </mat-card-title>
                     </a>
                     <mat-card-content class="custom-text">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-12 col-sm-4 mb-3 mb-sm-0">
                                 <div class="row mt-2 mb-2">
                                     <div class="col">
                                         <div class="text-center price-text">
@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-8 text-right">
+                            <div class="col-12 col-sm-8 text-right">
                                 <a target="_blank" class="custom-link" [routerLink]="[ '/realestate/details', re.id]">
                                     <img class="w-100 p-0 m-0" mat-card-xl-image src="{{re.images[0]}}">
                                 </a>
@@ -90,6 +90,6 @@
                 </mat-card>
             </div>
         </div>
-        <div class="col-3"></div>
+        <div class="col-xl-3 col-lg-2 col-1"></div>
     </div>
 </div>

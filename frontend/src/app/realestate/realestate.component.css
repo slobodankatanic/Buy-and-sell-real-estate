@@ -17,6 +17,11 @@
     vertical-align: middle;
 }
 
+.resp-img {
+    max-height: 700px;
+    min-height: 300px;
+}
+
 .custom-text {
     font-size: 17px;
 }

@@ -38,9 +38,9 @@
         <div class="col-12 text-center h1 mt-3 mb-3">
             Search real estates
         </div>
-        <div class="col-2"></div>
-        <div class="m-auto col-8 p-4 text-center custom-border">
-            <div class="row mb-xl-3 mb-0">
+        <div class="col-1"></div>
+        <div class="m-auto col-9 p-xl-3 text-center custom-border">
+            <div class="row mb-xl-3 mb-0 mt-3">
                 <div class="col-xl-3 col-sm-6 col-12 p-xl-0 p-2">
                     <mat-form-field appearance="fill">
                         <mat-label>Type</mat-label>
@@ -114,7 +114,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-2"></div>
+        <div class="col-1"></div>
     </div>
     <div class="row">
         <div class="col-2"></div>
@@ -136,13 +136,13 @@
                         <h6 class="text-secondary">
                             {{realEstate.city}} - {{realEstate.municipality}} - {{realEstate.microlocation}}
                         </h6>
-                        <div class="text-secondary">
+                        <div class="text-secondary mr-2">
                             {{realEstate.about}}
                         </div>
                     </div>
                     <div class="col-xl-4 col-12 text-xl-right text-left m-auto pl-0 pr-0 pt-3 pb-3">
-                        <img *ngIf="realEstate.images.length > 0" class="w-100" src="{{realEstate.images[0]}}">
-                        <img *ngIf="realEstate.images.length == 0" class="custom-img" alt="No photo">
+                        <img *ngIf="realEstate.images.length > 0" class="resp-img w-100" src="{{realEstate.images[0]}}">
+                        <img *ngIf="realEstate.images.length == 0" class="resp-img custom-img" alt="No photo">
                     </div>
                     <div class="col-12"><mat-divider></mat-divider></div>
                 </div>

@@ -40,7 +40,7 @@ class RealEstateController {
             });
         };
         this.getLatest = (req, res) => {
-            realestate_1.default.find().sort({ 'postedAt': -1 }).limit(5).exec((err, realEstates) => {
+            realestate_1.default.find({ "sold": 0 }).sort({ 'postedAt': -1 }).limit(5).exec((err, realEstates) => {
                 res.json(realEstates);
             });
         };

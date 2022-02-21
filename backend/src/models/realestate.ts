@@ -87,39 +87,42 @@ let RealEstate = new Schema({
     advertiserId: {
         type: String
     },
-    teracce: {
-        type: Number
-    },
-    basement: {
-        type: Number
-    },
-    internet: {
-        type: Number
-    },
-    loggia: {
-        type: Number
-    },
-    garage: {
-        type: Number
-    },
-    interphone: {
-        type: Number
-    },
-    balcony: {
-        type: Number
-    },
-    garden: {
-        type: Number
-    },
-    telephone: {
-        type: Number
-    },
-    elevator: {
-        type: Number
-    },
-    airConditioning: {
-        type: Number
+    characteristics: {
+        type: Array
     }
+    // teracce: {
+    //     type: Number
+    // },
+    // basement: {
+    //     type: Number
+    // },
+    // internet: {
+    //     type: Number
+    // },
+    // loggia: {
+    //     type: Number
+    // },
+    // garage: {
+    //     type: Number
+    // },
+    // interphone: {
+    //     type: Number
+    // },
+    // balcony: {
+    //     type: Number
+    // },
+    // garden: {
+    //     type: Number
+    // },
+    // telephone: {
+    //     type: Number
+    // },
+    // elevator: {
+    //     type: Number
+    // },
+    // airConditioning: {
+    //     type: Number
+    // }
 })
 
 export default mongoose.model('RealEstate', RealEstate, 'realestates');

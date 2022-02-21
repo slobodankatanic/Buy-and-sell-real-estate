@@ -51,103 +51,103 @@
     </div>
     <div class="row text-center mt-4 mt-lg-0 ml-5 mr-5 pl-5 pr-5">
         <div class="col-xl col-md-6 col-12">
-            <mat-form-field class="w-100" appearance="fill">
+            <mat-form-field class="w-100 mb-2" appearance="fill">
                 <mat-label>Real estate name</mat-label>
-                <input type="text" [(ngModel)]="name" matInput>
-                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                <input [formControl]="formControl[0]" type="text" [(ngModel)]="name" matInput>
+                <mat-error class="pb-2" *ngIf="formControl[0].hasError('err')&&status==1">{{errorMessage}}</mat-error>
             </mat-form-field>
         </div>
         <div class="col-xl col-md-6 col-12">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>Type</mat-label>
-                <mat-select [(ngModel)]="type">
+                <mat-select [formControl]="formControl[1]" [(ngModel)]="type">
                     <mat-option value="stan">Apartment</mat-option>
                     <mat-option value="kuca">House</mat-option>
                     <mat-option value="vikendica">Cottage</mat-option>
                     <mat-option value="lokal">Store</mat-option>
                     <mat-option value="magacin">Warehouse</mat-option>
                 </mat-select>
-                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                <mat-error class="pb-2" *ngIf="formControl[1].hasError('err')&&status==2">{{errorMessage}}</mat-error>
             </mat-form-field>
         </div>
         <div class="col-xl col-md-6 col-12">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>Price in €</mat-label>
-                <input min="0" type="number" [(ngModel)]="price" matInput>
-                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                <input [formControl]="formControl[2]" min="0" type="number" [(ngModel)]="price" matInput>
+                <mat-error class="pb-2" *ngIf="formControl[2].hasError('err')&&status==3">{{errorMessage}}</mat-error>
             </mat-form-field>
         </div>
         <div class="col-xl col-md-6 col-12">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>Monthly utilities in €</mat-label>
-                <input min="0" type="text" [(ngModel)]="monthlyUtilities" matInput>
-                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                <input [formControl]="formControl[3]" min="0" type="text" [(ngModel)]="monthlyUtilities" matInput>
+                <mat-error class="pb-2" *ngIf="formControl[3].hasError('err')&&status==4">{{errorMessage}}</mat-error>
             </mat-form-field>
         </div>
     </div>
     <div class="row text-center ml-5 mr-5 pl-5 pr-5">
         <div class="col-xl col-md-6 col-12">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>Area in m<sup>2</sup></mat-label>
-                <input min="1" type="text" [(ngModel)]="area" matInput>
-                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                <input [formControl]="formControl[4]" min="1" type="text" [(ngModel)]="area" matInput>
+                <mat-error class="pb-2" *ngIf="formControl[4].hasError('err')&&status==5">{{errorMessage}}</mat-error>
             </mat-form-field>
         </div>
         <div class="col-xl col-md-6 col-12">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>Rooms</mat-label>
-                <input min="1" type="number" [(ngModel)]="rooms" matInput>
-                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                <input [formControl]="formControl[5]" min="1" type="number" [(ngModel)]="rooms" matInput>
+                <mat-error class="pb-2" *ngIf="formControl[5].hasError('err')&&status==6">{{errorMessage}}</mat-error>
             </mat-form-field>
         </div>
         <div class="col-xl col-md-6 col-12">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>Floor</mat-label>
-                <input min="0" type="text" [(ngModel)]="floor" matInput>
-                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                <input [formControl]="formControl[6]" min="0" type="text" [(ngModel)]="floor" matInput>
+                <mat-error class="pb-2" *ngIf="formControl[6].hasError('err')&&status==7">{{errorMessage}}</mat-error>
             </mat-form-field>
         </div>
         <div class="col-xl col-md-6 col-12">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>Total floors</mat-label>
-                <input min="0" type="text" [(ngModel)]="totalFloors" matInput>
-                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                <input [formControl]="formControl[7]" min="0" type="text" [(ngModel)]="totalFloors" matInput>
+                <mat-error class="pb-2" *ngIf="formControl[7].hasError('err')&&status==8">{{errorMessage}}</mat-error>
             </mat-form-field>
         </div>
     </div>
     <div class="row text-center ml-5 mr-5 pl-5 pr-5">
         <div class="col-xl col-md-6 col-12">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>Construction year</mat-label>
-                <input min="1950" max="2050" type="number" [(ngModel)]="constructionYear" matInput>
-                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                <input [formControl]="formControl[8]" min="1950" max="2050" type="number" [(ngModel)]="constructionYear" matInput>
+                <mat-error class="pb-2" *ngIf="formControl[8].hasError('err')&&status==9">{{errorMessage}}</mat-error>
             </mat-form-field>
         </div>
         <div class="col-xl col-md-6 col-12">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>State</mat-label>
-                <mat-select [(ngModel)]="state">
+                <mat-select [formControl]="formControl[9]" [(ngModel)]="state">
                     <mat-option value="izvorno">New</mat-option>
                     <mat-option value="renovirano">Renovated</mat-option>
                     <mat-option value="lux">LUX</mat-option>
                 </mat-select>
-                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                <mat-error class="pb-2" *ngIf="formControl[9].hasError('err')&&status==10">{{errorMessage}}</mat-error>
             </mat-form-field>
         </div>
         <div class="col-xl col-md-6 col-12">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>Heating</mat-label>
-                <mat-select [(ngModel)]="heating">
+                <mat-select [formControl]="formControl[10]" [(ngModel)]="heating">
                     <mat-option value="centralno grejanje">Central heating</mat-option>
                     <mat-option value="etazno grejanje">Floor heating</mat-option>
                     <mat-option value="TA pec">Thermal storage furnace</mat-option>
                     <mat-option value="toplotne pumpe">Heat pumps</mat-option>
                 </mat-select>
-                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                <mat-error class="pb-2" *ngIf="formControl[10].hasError('err')&&status==11">{{errorMessage}}</mat-error>
             </mat-form-field>
         </div>
         <div class="col-xl col-md-6 col-12">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>Transport lines</mat-label>
                 <mat-select multiple [(ngModel)]="transportLines">
                     <mat-option value=1>1</mat-option>
@@ -173,50 +173,54 @@
                     <mat-option value=301>301</mat-option>
                     <mat-option value=312>312</mat-option>
                 </mat-select>
-                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                <!-- <mat-error class="pb-2" *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
             </mat-form-field>
         </div>
     </div>
     <div class="row text-center ml-5 mr-5 pl-5 pr-5">
         <div class="col-xl col-md-6 col-12">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>City</mat-label>
-                <mat-select [(ngModel)]="city" (selectionChange)="citySelected()">
+                <mat-select [formControl]="formControl[12]" [(ngModel)]="city" (selectionChange)="citySelected()">
                     <mat-option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</mat-option>
                 </mat-select>
+                <mat-error class="pb-2" *ngIf="formControl[12].hasError('err')&&status==13">{{errorMessage}}</mat-error>
             </mat-form-field>
         </div>
         <div class="col-xl col-md-6 col-12">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>Municipality</mat-label>
-                <mat-select id="municipality" disabled="{{disabledMunicipality}}" [(ngModel)]="municipality"
-                    (selectionChange)="municipalitySelected()">
+                <mat-select id="municipality" [(ngModel)]="municipality"
+                    (selectionChange)="municipalitySelected()" [formControl]="formControl[13]">
                     <mat-option *ngFor="let mun of municipalities" value="{{mun.id}}">{{mun.name}}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="formControl[13].hasError('err')&&status==14">{{errorMessage}}</mat-error>
             </mat-form-field>
         </div>
         <div class="col-xl col-md-6 col-12">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>Microlocation</mat-label>
-                <mat-select (selectionChange)="microSelected()" id="microlocation" disabled="{{disabledMicrolocation}}"
+                <mat-select [formControl]="formControl[14]" (selectionChange)="microSelected()" id="microlocation"
                     [(ngModel)]="microlocation">
                     <mat-option *ngFor="let microlocation of microlocations" value="{{microlocation.id}}">
                         {{microlocation.name}}</mat-option>
                 </mat-select>
+                <mat-error class="pb-2" *ngIf="formControl[14].hasError('err')&&status==15">{{errorMessage}}</mat-error>
             </mat-form-field>
         </div>
         <div class="col-xl col-md-6 col-12">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>Street</mat-label>
-                <mat-select id="street" disabled="{{disabledStreet}}" [(ngModel)]="street">
+                <mat-select [formControl]="formControl[15]" id="street" [(ngModel)]="street">
                     <mat-option *ngFor="let street of streets" value="{{street}}">{{street}}</mat-option>
                 </mat-select>
+                <mat-error class="pb-2" *ngIf="formControl[15].hasError('err')&&status==16">{{errorMessage}}</mat-error>
             </mat-form-field>
         </div>
     </div>
     <div class="row text-center ml-5 mr-5 pl-5 pr-5">
         <div class="col-xl-12 col-md-12 col-12">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
                 <mat-label>Description</mat-label>
                 <textarea matInput [(ngModel)]="description" cols="20" rows="5"></textarea>
             </mat-form-field>
@@ -233,13 +237,14 @@
             <mat-checkbox class="p-2" [(ngModel)]="telephone">Telephone</mat-checkbox>
             <mat-checkbox class="p-2" [(ngModel)]="elevator">Elevator</mat-checkbox>
             <mat-checkbox class="p-2" [(ngModel)]="airConditioning">Air conditioning</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="parking">Parking</mat-checkbox>
         </div>
     </div>
     <div class="row m-3">
         <div class="col text-center">
             <span class="h5">Real estate images: &nbsp;&nbsp;</span>
             <input type="file" (change)="selectImages($event)" multiple>
-            <div class="text-danger error-msg" *ngIf="errorMessage!=''&&status==13">{{errorMessage}}</div>
+            <div class="text-danger error-msg" *ngIf="errorMessage!=''&&status==17">{{errorMessage}}</div>
         </div>
     </div>
     <div class="row m-3">

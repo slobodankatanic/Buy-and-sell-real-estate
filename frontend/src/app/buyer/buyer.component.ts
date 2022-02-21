@@ -8,6 +8,7 @@ import { RealestateService } from '../services/realestate.service';
 import { CommonService } from '../services/common.service';
 import { Microlocation } from '../models/microlocation';
 import { Municipality } from '../models/municipality';
+import { raceWith } from 'rxjs';
 
 @Component({
   selector: 'app-buyer',
@@ -98,6 +99,15 @@ export class BuyerComponent implements OnInit {
             })
 
             this.realEstates = realEstates;
+
+            this.realEstates.forEach(re => {
+              let words = re.about.split(" ");
+              if (words.length > 50) {
+                let brief = words.slice(0, 50).join(' ');
+                re.about = brief + "...";
+              }
+            })
+
             this.noResultsMessage = "";
           } else {
             this.noResultsMessage = "No results";

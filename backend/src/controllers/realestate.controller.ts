@@ -40,7 +40,7 @@ export class RealEstateController {
     }
 
     getLatest = (req: express.Request, res: express.Response) => {
-        RealEstate.find().sort({ 'postedAt': -1 }).limit(5).exec((err, realEstates) => {
+        RealEstate.find({ "sold": 0 }).sort({ 'postedAt': -1 }).limit(5).exec((err, realEstates) => {
             res.json(realEstates);
         });
     }
