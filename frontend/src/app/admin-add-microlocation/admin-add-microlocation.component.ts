@@ -109,7 +109,7 @@ export class AdminAddMicrolocationComponent implements OnInit {
         this.microlocationName,
         this.streets,
         this.municipality).subscribe(resp => {
-          this.router.navigate(['/admin/microlocations'])
+          this.router.navigate(['/admin/deleteMicrolocation'])
         })
     }
   }

@@ -22,7 +22,7 @@
                                 </a>
                             </li>
                             <li id="dodaj-recept" class="nav-item" [routerLink]="['/advertiser/myInfo']">
-                                <a class="nav-link"[routerLink]="['/buyer/favorite']">
+                                <a class="nav-link" [routerLink]="['/buyer/favorite']">
                                     My info
                                 </a>
                             </li>
@@ -41,8 +41,209 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-
+        <div class="col-12 offset-0 col-lg-4 offset-lg-4 text-center mt-4 mb-4 h2">
+            Add new real estate
+        </div>
+        <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
+            <span class="dot text-center bg-dark mr-2">+</span>
+            Import using JSON file
+        </div>
+    </div>
+    <div class="row text-center mt-4 mt-lg-0 ml-5 mr-5 pl-5 pr-5">
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Real estate name</mat-label>
+                <input type="text" [(ngModel)]="name" matInput>
+                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Type</mat-label>
+                <mat-select [(ngModel)]="type">
+                    <mat-option value="stan">Apartment</mat-option>
+                    <mat-option value="kuca">House</mat-option>
+                    <mat-option value="vikendica">Cottage</mat-option>
+                    <mat-option value="lokal">Store</mat-option>
+                    <mat-option value="magacin">Warehouse</mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Price in €</mat-label>
+                <input type="number" [(ngModel)]="price" matInput>
+                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Monthly utilities in €</mat-label>
+                <input type="text" [(ngModel)]="monthlyUtilities" matInput>
+                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row text-center ml-5 mr-5 pl-5 pr-5">
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Area in m<sup>2</sup></mat-label>
+                <input type="text" [(ngModel)]="area" matInput>
+                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Rooms</mat-label>
+                <input type="number" [(ngModel)]="rooms" matInput>
+                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Floor</mat-label>
+                <input type="text" [(ngModel)]="floor" matInput>
+                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Total floors</mat-label>
+                <input type="text" [(ngModel)]="totalFloors" matInput>
+                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row text-center ml-5 mr-5 pl-5 pr-5">
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Construction year</mat-label>
+                <input type="number" [(ngModel)]="constructionYear" matInput>
+                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>State</mat-label>
+                <mat-select [(ngModel)]="state">
+                    <mat-option value="izvorno">New</mat-option>
+                    <mat-option value="renovirano">Renovated</mat-option>
+                    <mat-option value="lux">LUX</mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Heating</mat-label>
+                <mat-select [(ngModel)]="heating">
+                    <mat-option value="centralno grejanje">Central heating</mat-option>
+                    <mat-option value="etazno grejanje">Floor heating</mat-option>
+                    <mat-option value="TA pec">Thermal storage furnace</mat-option>
+                    <mat-option value="toplotne pumpe">Heat pumps</mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Transport lines</mat-label>
+                <mat-select multiple [(ngModel)]="transportLines">
+                    <mat-option value=1>1</mat-option>
+                    <mat-option value=2>2</mat-option>
+                    <mat-option value=5>5</mat-option>
+                    <mat-option value=9>9</mat-option>
+                    <mat-option value=12>12</mat-option>
+                    <mat-option value=17>17</mat-option>
+                    <mat-option value=27>27</mat-option>
+                    <mat-option value=28>28</mat-option>
+                    <mat-option value=32>32</mat-option>
+                    <mat-option value=40>40</mat-option>
+                    <mat-option value=48>48</mat-option>
+                    <mat-option value=65>65</mat-option>
+                    <mat-option value=77>77</mat-option>
+                    <mat-option value=79>79</mat-option>
+                    <mat-option value=81>81</mat-option>
+                    <mat-option value=85>85</mat-option>
+                    <mat-option value=90>90</mat-option>
+                    <mat-option value=109>109</mat-option>
+                    <mat-option value=120>120</mat-option>
+                    <mat-option value=307>307</mat-option>
+                    <mat-option value=301>301</mat-option>
+                    <mat-option value=312>312</mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row text-center ml-5 mr-5 pl-5 pr-5">
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>City</mat-label>
+                <mat-select [(ngModel)]="city" (selectionChange)="citySelected()">
+                    <mat-option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Municipality</mat-label>
+                <mat-select id="municipality" disabled="{{disabledMunicipality}}" [(ngModel)]="municipality"
+                    (selectionChange)="municipalitySelected()">
+                    <mat-option *ngFor="let mun of municipalities" value="{{mun.id}}">{{mun.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Microlocation</mat-label>
+                <mat-select (selectionChange)="microSelected()" id="microlocation" disabled="{{disabledMicrolocation}}"
+                    [(ngModel)]="microlocation">
+                    <mat-option *ngFor="let microlocation of microlocations" value="{{microlocation.id}}">
+                        {{microlocation.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Street</mat-label>
+                <mat-select id="street" disabled="{{disabledStreet}}" [(ngModel)]="street">
+                    <mat-option *ngFor="let street of streets" value="{{street}}">{{street}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row text-center ml-5 mr-5 pl-5 pr-5">
+        <div class="col-xl-12 col-md-12 col-12">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Description</mat-label>
+                <textarea matInput [(ngModel)]="description" cols="20" rows="5"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="col-xl-12 col-md-12 col-12 text-center">
+            <mat-checkbox class="p-2" [(ngModel)]="teracce">Teracce</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="basement">Basement</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="internet">Internet</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="loggia">Loggia</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="garage">Garage</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="interphone">Interphone</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="balcony">Balcony</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="garden">Garden</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="telephone">Telephone</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="elevator">Elevator</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="airConditioning">Air conditioning</mat-checkbox>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <span class="h5">Real estate images: </span>
+            <input type="file" multiple>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <button class="btn btn-dark">Add real estate</button>
         </div>
     </div>
 </div>

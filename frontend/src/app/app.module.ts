@@ -20,7 +20,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { RealestateComponent } from './realestate/realestate.component';
@@ -70,7 +71,9 @@ import { AdvertiserAddRealEstateComponent } from './advertiser-add-real-estate/a
     MatChipsModule,
     MatCardModule,
     MatExpansionModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTabsModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
