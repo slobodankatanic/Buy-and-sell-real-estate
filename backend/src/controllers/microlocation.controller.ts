@@ -7,13 +7,13 @@ export class MicrolocationController {
         RealEsatate.findOne({ "microlocationId": req.body.id }, (err, re) => {
             if (re) {
                 res.json({
-                    "message": "There are active ads on this microlocation",
+                    "message": "There are active realestates on this microlocation",
                     "status": 1
                 })
             } else {
                 Microlocation.deleteOne({ "id": req.body.id }, (err) => {
                     res.json({
-                        "message": "Deleted",
+                        "message": "Deleted successsfully",
                         "status": 0
                     })
                 })

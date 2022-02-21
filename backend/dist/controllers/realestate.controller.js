@@ -8,6 +8,29 @@ const realestate_1 = __importDefault(require("../models/realestate"));
 const user_1 = __importDefault(require("../models/user"));
 class RealEstateController {
     constructor() {
+        this.sellRealEstate = (req, res) => {
+            let id = req.body.id;
+            realestate_1.default.updateOne({ "id": id }, { $set: { "sold": 1 } }, (err, re) => {
+                if (re && !err) {
+                    res.json({
+                        "message": "Successully sold",
+                        "status": 0
+                    });
+                }
+                else {
+                    res.json({
+                        "message": "Error occurred",
+                        "status": 1
+                    });
+                }
+            });
+        };
+        this.getAdvertiserRealEstates = (req, res) => {
+            let advId = req.query.id;
+            realestate_1.default.find({ "advertiserId": advId }, (err, realEstates) => {
+                res.json(realEstates);
+            });
+        };
         this.getFavorites = (req, res) => {
             let username = req.query.username;
             user_1.default.findOne({ "username": username }, (err, user) => {

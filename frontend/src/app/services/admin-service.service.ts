@@ -74,4 +74,12 @@ export class AdminService {
     return this.httpClient.post(`${this.uri}/microlocations/add`, data);
   }
 
+  deleteMicrolocation(microlocationId) {
+    const data = {
+      "id": microlocationId
+    }
+
+    return this.httpClient.post(`${this.uri}/microlocations/delete`, data);
+  }
+
 }

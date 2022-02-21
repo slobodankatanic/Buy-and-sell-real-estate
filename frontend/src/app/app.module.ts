@@ -31,7 +31,9 @@ import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component
 import { AdminEditUserComponent } from './admin-edit-user/admin-edit-user.component';
 import { AdminAddAgencyComponent } from './admin-add-agency/admin-add-agency.component';
 import { AdminAddMicrolocationComponent } from './admin-add-microlocation/admin-add-microlocation.component';
-import { AdminDeleteMicrolocationComponent } from './admin-delete-microlocation/admin-delete-microlocation.component'
+import { AdminDeleteMicrolocationComponent } from './admin-delete-microlocation/admin-delete-microlocation.component';
+import { AdvertiserRealEstateListComponent } from './advertiser-real-estate-list/advertiser-real-estate-list.component';
+import { AdvertiserAddRealEstateComponent } from './advertiser-add-real-estate/advertiser-add-real-estate.component'
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { AdminDeleteMicrolocationComponent } from './admin-delete-microlocation/
     AdminEditUserComponent,
     AdminAddAgencyComponent,
     AdminAddMicrolocationComponent,
-    AdminDeleteMicrolocationComponent
+    AdminDeleteMicrolocationComponent,
+    AdvertiserRealEstateListComponent,
+    AdvertiserAddRealEstateComponent
   ],
   imports: [
     BrowserModule,

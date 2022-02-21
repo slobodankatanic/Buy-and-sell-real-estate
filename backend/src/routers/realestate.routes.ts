@@ -23,4 +23,12 @@ realEstateRouter.route('/getFavorites').get(
     (req, res) => new RealEstateController().getFavorites(req, res)
 )
 
+realEstateRouter.route('/getForAdvertiser').get(
+    (req, res) => new RealEstateController().getAdvertiserRealEstates(req, res)
+)
+
+realEstateRouter.route('/sell').post(
+    (req, res) => new RealEstateController().sellRealEstate(req, res)
+)
+
 export default realEstateRouter;

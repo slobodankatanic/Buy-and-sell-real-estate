@@ -3,6 +3,31 @@ import RealEstate from '../models/realestate'
 import User from '../models/user'
 
 export class RealEstateController {
+    sellRealEstate = (req: express.Request, res: express.Response) => {
+        let id = req.body.id;
+
+        RealEstate.updateOne({ "id": id }, { $set: { "sold": 1 } }, (err, re) => {
+            if (re && !err) {
+                res.json({
+                    "message": "Successully sold",
+                    "status": 0
+                })
+            } else {
+                res.json({
+                    "message": "Error occurred",
+                    "status": 1
+                })
+            }
+        })
+    }
+
+    getAdvertiserRealEstates = (req: express.Request, res: express.Response) => {
+        let advId = req.query.id;
+
+        RealEstate.find({ "advertiserId": advId }, (err, realEstates) => {
+            res.json(realEstates);
+        })
+    }
 
     getFavorites = (req: express.Request, res: express.Response) => {
         let username = req.query.username;

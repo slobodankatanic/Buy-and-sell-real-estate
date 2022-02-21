@@ -5,8 +5,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MicrolocationController = void 0;
 const microlocation_1 = __importDefault(require("../models/microlocation"));
+const realestate_1 = __importDefault(require("../models/realestate"));
 class MicrolocationController {
     constructor() {
+        this.deleteMicrolocation = (req, res) => {
+            realestate_1.default.findOne({ "microlocationId": req.body.id }, (err, re) => {
+                if (re) {
+                    res.json({
+                        "message": "There are active realestates on this microlocation",
+                        "status": 1
+                    });
+                }
+                else {
+                    microlocation_1.default.deleteOne({ "id": req.body.id }, (err) => {
+                        res.json({
+                            "message": "Deleted successsfully",
+                            "status": 0
+                        });
+                    });
+                }
+            });
+        };
         this.addMicrolocation = (req, res) => {
             let name = req.body.name;
             let addresses = req.body.addresses;

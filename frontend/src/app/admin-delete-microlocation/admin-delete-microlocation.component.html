@@ -11,7 +11,7 @@
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
                                 <a class="nav-link" [routerLink]="['/admin/home']">
-                                    <span class="act-item">Registration requests</span>
+                                    Registration requests
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
@@ -30,7 +30,7 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                                    Microlocations
+                                    <span class="act-item">Microlocations</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" [routerLink]="['/admin/addMicrolocation']">
@@ -75,7 +75,7 @@
                         <td>{{mloc.cityName}}</td>
                         <td>{{mloc.municipalityName}}</td>
                         <td>
-                            <button class="btn btn-dark">Delete</button>
+                            <button (click)="delete(mloc.id)" class="btn btn-dark">Delete</button>
                         </td>
                     </tr>
                 </tbody>

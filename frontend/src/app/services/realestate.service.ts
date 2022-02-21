@@ -33,12 +33,24 @@ export class RealestateService {
     return this.httpClient.get(`${this.uri}/realestates/get?id=${realEstateId}`);
   }
 
+  getByAdvertiser(advertiserId) {
+    return this.httpClient.get(`${this.uri}/realestates/getForAdvertiser?id=${advertiserId}`);
+  }
+
   getLatest() {
     return this.httpClient.get(`${this.uri}/realestates/getLatest`);
   }
 
   getFavorites(username) {
     return this.httpClient.get(`${this.uri}/realestates/getFavorites?username=${username}`);
+  }
+
+  sellRealEstate(realEstateId) {
+    const data = {
+      "id": realEstateId
+    }
+
+    return this.httpClient.post(`${this.uri}/realestates/sell`, data);
   }
 
 }

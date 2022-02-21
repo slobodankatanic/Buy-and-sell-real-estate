@@ -6,6 +6,8 @@ import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component
 import { AdminDeleteMicrolocationComponent } from './admin-delete-microlocation/admin-delete-microlocation.component';
 import { AdminEditUserComponent } from './admin-edit-user/admin-edit-user.component';
 import { AdminRequestComponent } from './admin-request/admin-request.component';
+import { AdvertiserAddRealEstateComponent } from './advertiser-add-real-estate/advertiser-add-real-estate.component';
+import { AdvertiserRealEstateListComponent } from './advertiser-real-estate-list/advertiser-real-estate-list.component';
 import { BuyerComponent } from './buyer/buyer.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FavoriteRealEstateComponent } from './favorite-real-estate/favorite-real-estate.component';
@@ -26,13 +28,19 @@ const routes: Routes = [
   { path: 'buyer/home', component: BuyerComponent },
   { path: 'buyer/favorite', component: FavoriteRealEstateComponent },
 
+  // advertiser
+  { path: 'advertiser/home', component: AdvertiserRealEstateListComponent },
+  { path: 'owner/home', redirectTo: 'advertiser/home', pathMatch: 'full' },
+  { path: 'agent/home', redirectTo: 'advertiser/home', pathMatch: 'full' },
+  { path: 'advertiser/addRealEstate', component: AdvertiserAddRealEstateComponent },
+
   // admin
   { path: 'admin/home', component: AdminRequestComponent },
   { path: 'admin/addUser', component: AdminAddUserComponent },
   { path: 'admin/editDeleteUser', component: AdminEditUserComponent },
   { path: 'admin/addAgency', component: AdminAddAgencyComponent },
   { path: 'admin/addMicrolocation', component: AdminAddMicrolocationComponent },
-  { path: 'admin/microlocations', component: AdminDeleteMicrolocationComponent },
+  { path: 'admin/deleteMicrolocation', component: AdminDeleteMicrolocationComponent },
 
   // realestate
   { path: 'realestate/details/:id', component: RealestateComponent },
