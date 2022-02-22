@@ -8,6 +8,141 @@ const realestate_1 = __importDefault(require("../models/realestate"));
 const user_1 = __importDefault(require("../models/user"));
 class RealEstateController {
     constructor() {
+        this.editRealEstate = (req, res) => {
+            let id = req.body.id;
+            if (req.body.name == "") {
+                res.json({
+                    "message": "Required field",
+                    "status": 1
+                });
+                return;
+            }
+            if (req.body.type == "") {
+                res.json({
+                    "message": "Required field",
+                    "status": 2
+                });
+                return;
+            }
+            if (req.body.price == "") {
+                res.json({
+                    "message": "Required field",
+                    "status": 3
+                });
+                return;
+            }
+            if (req.body.monthlyUtilities == "") {
+                res.json({
+                    "message": "Required field",
+                    "status": 4
+                });
+                return;
+            }
+            if (req.body.area == "") {
+                res.json({
+                    "message": "Required field",
+                    "status": 5
+                });
+                return;
+            }
+            if (req.body.rooms == "") {
+                res.json({
+                    "message": "Required field",
+                    "status": 6
+                });
+                return;
+            }
+            if (req.body.floor == "") {
+                res.json({
+                    "message": "Required field",
+                    "status": 7
+                });
+                return;
+            }
+            if (req.body.totalFloors == "") {
+                res.json({
+                    "message": "Required field",
+                    "status": 8
+                });
+                return;
+            }
+            if (req.body.constructionYear == "") {
+                res.json({
+                    "message": "Required field",
+                    "status": 9
+                });
+                return;
+            }
+            if (req.body.state == "") {
+                res.json({
+                    "message": "Required field",
+                    "status": 10
+                });
+                return;
+            }
+            if (req.body.heating == "") {
+                res.json({
+                    "message": "Required field",
+                    "status": 11
+                });
+                return;
+            }
+            if (req.body.cityId == 0) {
+                res.json({
+                    "message": "Required field",
+                    "status": 13
+                });
+                return;
+            }
+            if (req.body.municipalityId == 0) {
+                res.json({
+                    "message": "Required field",
+                    "status": 14
+                });
+                return;
+            }
+            if (req.body.microlocationId == 0) {
+                res.json({
+                    "message": "Required field",
+                    "status": 15
+                });
+                return;
+            }
+            if (req.body.street == "") {
+                res.json({
+                    "message": "Required field",
+                    "status": 16
+                });
+                return;
+            }
+            realestate_1.default.updateOne({ "id": id }, {
+                $set: {
+                    "type": req.body.type,
+                    "name": req.body.name,
+                    "cityId": req.body.cityId,
+                    "municipalityId": req.body.municipalityId,
+                    "microlocationId": req.body.microlocationId,
+                    "city": req.body.city,
+                    "municipality": req.body.municipality,
+                    "microlocation": req.body.microlocation,
+                    "street": req.body.street,
+                    "area": Number(req.body.area),
+                    "rooms": Number(req.body.rooms),
+                    "constructionYear": Number(req.body.constructionYear),
+                    "state": req.body.state,
+                    "heating": req.body.heating,
+                    "floor": Number(req.body.floor),
+                    "totalFloors": Number(req.body.totalFloors),
+                    "parking": req.body.parking,
+                    "monthlyUtilities": Number(req.body.monthlyUtilities),
+                    "price": Number(req.body.price),
+                    "about": req.body.description,
+                    "lastChange": this.formatDate(new Date())
+                }
+            }, (err, re) => {
+                res.json({ "message": "Successfully changed", "status": 0 });
+            });
+        };
         this.sellRealEstate = (req, res) => {
             let id = req.body.id;
             realestate_1.default.updateOne({ "id": id }, { $set: { "sold": 1 } }, (err, re) => {
@@ -146,6 +281,39 @@ class RealEstateController {
                 }
             });
         };
+    }
+    formatDate(date) {
+        let month = "" + (date.getMonth() + 1);
+        if ((date.getMonth() + 1) < 10) {
+            month = "0" + month;
+        }
+        let day = "" + date.getDate();
+        if (date.getDate() < 10) {
+            day = "0" + day;
+        }
+        let hours = "" + date.getHours();
+        if (date.getHours() < 10) {
+            hours = "0" + hours;
+        }
+        let minutes = "" + date.getMinutes();
+        if (date.getMinutes() < 10) {
+            minutes = "0" + minutes;
+        }
+        let seconds = "" + date.getSeconds();
+        if (date.getSeconds() < 10) {
+            seconds = "0" + seconds;
+        }
+        return ([
+            date.getFullYear(),
+            month,
+            day,
+        ].join('-') +
+            ' ' +
+            [
+                hours,
+                minutes,
+                seconds,
+            ].join(':'));
     }
 }
 exports.RealEstateController = RealEstateController;

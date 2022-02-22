@@ -25,6 +25,7 @@ class UserController {
             let type = "agent";
             if (agency == "") {
                 type = "owner";
+                licence = "";
             }
             let phoneRegex = /^\+{0,1}381[0-9]{8,9}$/;
             let regexEmail = /^[A-Za-z0-9]+([\.]{0,1}[A-Za-z0-9_]+)*@[a-z]+(\.[a-z]{2,})*\.[a-z]{2,3}$/;

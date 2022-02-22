@@ -28,6 +28,10 @@ export class AdvertiserRealEstateListComponent implements OnInit {
 
   allRealEstates: RealEstate[] = []
 
+  editRealEstate() {
+
+  }
+
   sellRealEstate(realEstate) {
     this.realEstateService.sellRealEstate(realEstate.id).subscribe(resp => {
       if (resp['status'] == 0) {

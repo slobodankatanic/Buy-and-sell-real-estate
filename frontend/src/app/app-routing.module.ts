@@ -8,6 +8,7 @@ import { AdminEditUserComponent } from './admin-edit-user/admin-edit-user.compon
 import { AdminRequestComponent } from './admin-request/admin-request.component';
 import { AdvertiserAddJSONComponent } from './advertiser-add-json/advertiser-add-json.component';
 import { AdvertiserAddRealEstateComponent } from './advertiser-add-real-estate/advertiser-add-real-estate.component';
+import { AdvertiserEditRealEstateComponent } from './advertiser-edit-real-estate/advertiser-edit-real-estate.component';
 import { AdvertiserProfileComponent } from './advertiser-profile/advertiser-profile.component';
 import { AdvertiserRealEstateListComponent } from './advertiser-real-estate-list/advertiser-real-estate-list.component';
 import { BuyerComponent } from './buyer/buyer.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'advertiser/addRealEstate', component: AdvertiserAddRealEstateComponent },
   { path: 'advertiser/addRealEstateJSON', component: AdvertiserAddJSONComponent },
   { path: 'advertiser/info', component: AdvertiserProfileComponent },
+  { path: 'advertiser/editRealEstate/:id', component: AdvertiserEditRealEstateComponent },
 
   // admin
   { path: 'admin/home', component: AdminRequestComponent },

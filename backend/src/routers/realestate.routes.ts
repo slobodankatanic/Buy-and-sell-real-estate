@@ -31,4 +31,8 @@ realEstateRouter.route('/sell').post(
     (req, res) => new RealEstateController().sellRealEstate(req, res)
 )
 
+realEstateRouter.route('/edit').post(
+    (req, res) => new RealEstateController().editRealEstate(req, res)
+)
+
 export default realEstateRouter;

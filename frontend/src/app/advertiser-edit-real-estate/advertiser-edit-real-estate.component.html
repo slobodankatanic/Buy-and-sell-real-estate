@@ -1,0 +1,250 @@
+<div class="container-fluid p-0 overflow-hidden">
+    <div class="row">
+        <div class="col header">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container">
+                    <a class="navbar-brand" href=""><img class="logo img-fluid" src="../../assets/logo.png" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['/advertiser/home']">
+                                    My real estates
+                                </a>
+                            </li>
+                            <li id="dodaj-recept" class="nav-item">
+                                <a class="nav-link" [routerLink]="['/advertiser/addRealEstate']">
+                                    <span class="act-item">
+                                        Add real estate
+                                    </span>
+                                </a>
+                            </li>
+                            <li id="dodaj-recept" class="nav-item" [routerLink]="['/advertiser/myInfo']">
+                                <a class="nav-link" [routerLink]="['/advertiser/info']">
+                                    My info
+                                </a>
+                            </li>
+                            <li id="moj-nalog" class="nav-item ml-lg-5 ml-sm-0">
+                                <a class="nav-link" [routerLink]="['/user/changePassword']">
+                                    Change password
+                                </a>
+                            </li>
+                            <li id="odjava-stavka" class="nav-item ml-sm-0 pr-0">
+                                <a id="odjava" class="nav-link" [routerLink]="['/login']" (click)="logout()">Log out</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 offset-0 col-lg-4 offset-lg-4 text-center mt-4 mb-4 h2">
+            Edit real estate
+        </div>
+        <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
+            <button (click)="addRealEstate()" class="btn btn-outline-info">Save</button>
+            <button [routerLink]="['/advertiser/home']" class="btn btn-outline-dark ml-2">Cancel</button>
+        </div>
+    </div>
+    <div class="row text-center mt-4 mt-lg-0 ml-5 mr-5 pl-5 pr-5">
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field class="w-100 mb-2" appearance="fill">
+                <mat-label>Real estate name</mat-label>
+                <input [formControl]="formControl[0]" type="text" [(ngModel)]="name" matInput>
+                <mat-error class="pb-2" *ngIf="formControl[0].hasError('err')&&status==1">{{errorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>Type</mat-label>
+                <mat-select [formControl]="formControl[1]" [(ngModel)]="type">
+                    <mat-option value="stan">Apartment</mat-option>
+                    <mat-option value="kuca">House</mat-option>
+                    <mat-option value="vikendica">Cottage</mat-option>
+                    <mat-option value="lokal">Store</mat-option>
+                    <mat-option value="magacin">Warehouse</mat-option>
+                </mat-select>
+                <mat-error class="pb-2" *ngIf="formControl[1].hasError('err')&&status==2">{{errorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>Price in €</mat-label>
+                <input [formControl]="formControl[2]" min="0" type="number" [(ngModel)]="price" matInput>
+                <mat-error class="pb-2" *ngIf="formControl[2].hasError('err')&&status==3">{{errorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>Monthly utilities in €</mat-label>
+                <input [formControl]="formControl[3]" min="0" type="text" [(ngModel)]="monthlyUtilities" matInput>
+                <mat-error class="pb-2" *ngIf="formControl[3].hasError('err')&&status==4">{{errorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row text-center ml-5 mr-5 pl-5 pr-5">
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>Area in m<sup>2</sup></mat-label>
+                <input [formControl]="formControl[4]" min="1" type="text" [(ngModel)]="area" matInput>
+                <mat-error class="pb-2" *ngIf="formControl[4].hasError('err')&&status==5">{{errorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>Rooms</mat-label>
+                <input [formControl]="formControl[5]" min="1" type="number" [(ngModel)]="rooms" matInput>
+                <mat-error class="pb-2" *ngIf="formControl[5].hasError('err')&&status==6">{{errorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>Floor</mat-label>
+                <input [formControl]="formControl[6]" min="0" type="text" [(ngModel)]="floor" matInput>
+                <mat-error class="pb-2" *ngIf="formControl[6].hasError('err')&&status==7">{{errorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>Total floors</mat-label>
+                <input [formControl]="formControl[7]" min="0" type="text" [(ngModel)]="totalFloors" matInput>
+                <mat-error class="pb-2" *ngIf="formControl[7].hasError('err')&&status==8">{{errorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row text-center ml-5 mr-5 pl-5 pr-5">
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>Construction year</mat-label>
+                <input [formControl]="formControl[8]" min="1950" max="2050" type="number" [(ngModel)]="constructionYear" matInput>
+                <mat-error class="pb-2" *ngIf="formControl[8].hasError('err')&&status==9">{{errorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>State</mat-label>
+                <mat-select [formControl]="formControl[9]" [(ngModel)]="state">
+                    <mat-option value="izvorno">New</mat-option>
+                    <mat-option value="renovirano">Renovated</mat-option>
+                    <mat-option value="lux">LUX</mat-option>
+                </mat-select>
+                <mat-error class="pb-2" *ngIf="formControl[9].hasError('err')&&status==10">{{errorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>Heating</mat-label>
+                <mat-select [formControl]="formControl[10]" [(ngModel)]="heating">
+                    <mat-option value="centralno grejanje">Central heating</mat-option>
+                    <mat-option value="etazno grejanje">Floor heating</mat-option>
+                    <mat-option value="TA pec">Thermal storage furnace</mat-option>
+                    <mat-option value="toplotne pumpe">Heat pumps</mat-option>
+                </mat-select>
+                <mat-error class="pb-2" *ngIf="formControl[10].hasError('err')&&status==11">{{errorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>Transport lines</mat-label>
+                <mat-select multiple [(ngModel)]="transportLines">
+                    <mat-option value=1>1</mat-option>
+                    <mat-option value=2>2</mat-option>
+                    <mat-option value=5>5</mat-option>
+                    <mat-option value=9>9</mat-option>
+                    <mat-option value=12>12</mat-option>
+                    <mat-option value=17>17</mat-option>
+                    <mat-option value=27>27</mat-option>
+                    <mat-option value=28>28</mat-option>
+                    <mat-option value=32>32</mat-option>
+                    <mat-option value=40>40</mat-option>
+                    <mat-option value=48>48</mat-option>
+                    <mat-option value=65>65</mat-option>
+                    <mat-option value=77>77</mat-option>
+                    <mat-option value=79>79</mat-option>
+                    <mat-option value=81>81</mat-option>
+                    <mat-option value=85>85</mat-option>
+                    <mat-option value=90>90</mat-option>
+                    <mat-option value=109>109</mat-option>
+                    <mat-option value=120>120</mat-option>
+                    <mat-option value=307>307</mat-option>
+                    <mat-option value=301>301</mat-option>
+                    <mat-option value=312>312</mat-option>
+                </mat-select>
+                <!-- <mat-error class="pb-2" *ngIf="typeControl.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row text-center ml-5 mr-5 pl-5 pr-5">
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>City</mat-label>
+                <mat-select [formControl]="formControl[12]" [(ngModel)]="city" (selectionChange)="citySelected()">
+                    <mat-option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</mat-option>
+                </mat-select>
+                <mat-error class="pb-2" *ngIf="formControl[12].hasError('err')&&status==13">{{errorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>Municipality</mat-label>
+                <mat-select id="municipality" [(ngModel)]="municipality"
+                    (selectionChange)="municipalitySelected()" [formControl]="formControl[13]">
+                    <mat-option *ngFor="let mun of municipalities" value="{{mun.id}}">{{mun.name}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="formControl[13].hasError('err')&&status==14">{{errorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>Microlocation</mat-label>
+                <mat-select [formControl]="formControl[14]" (selectionChange)="microSelected()" id="microlocation"
+                    [(ngModel)]="microlocation">
+                    <mat-option *ngFor="let microlocation of microlocations" value="{{microlocation.id}}">
+                        {{microlocation.name}}</mat-option>
+                </mat-select>
+                <mat-error class="pb-2" *ngIf="formControl[14].hasError('err')&&status==15">{{errorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-xl col-md-6 col-12">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>Street</mat-label>
+                <mat-select [formControl]="formControl[15]" id="street" [(ngModel)]="street">
+                    <mat-option *ngFor="let street of streets" value="{{street}}">{{street}}</mat-option>
+                </mat-select>
+                <mat-error class="pb-2" *ngIf="formControl[15].hasError('err')&&status==16">{{errorMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row text-center ml-5 mr-5 pl-5 pr-5">
+        <div class="col-xl-12 col-md-12 col-12">
+            <mat-form-field appearance="fill" class="w-100 mb-2">
+                <mat-label>Description</mat-label>
+                <textarea matInput [(ngModel)]="description" cols="20" rows="5"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="col-xl-12 col-md-12 col-12 text-left">
+            <mat-checkbox class="p-2" [(ngModel)]="teracce">Teracce</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="basement">Basement</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="internet">Internet</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="loggia">Loggia</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="garage">Garage</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="interphone">Interphone</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="balcony">Balcony</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="garden">Garden</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="telephone">Telephone</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="elevator">Elevator</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="airConditioning">Air conditioning</mat-checkbox>
+            <mat-checkbox class="p-2" [(ngModel)]="parking">Parking</mat-checkbox>
+        </div>
+    </div>
+    <!-- <div class="row m-3">
+        <div class="col text-center">
+            <span class="h5">Real estate images: &nbsp;&nbsp;</span>
+            <input type="file" (change)="selectImages($event)" multiple>
+            <div class="text-danger error-msg" *ngIf="errorMessage!=''&&status==17">{{errorMessage}}</div>
+        </div>
+    </div> -->
+</div>

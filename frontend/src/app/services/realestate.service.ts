@@ -108,4 +108,59 @@ export class RealestateService {
     return this.httpClient.post(`${this.uri}/realestates/add`, formData);
   }
 
+  editRealEstate(
+    name,
+    type,
+    price,
+    monthlyUtilities,
+    area,
+    rooms,
+    floor,
+    totalFloors,
+    constructionYear,
+    state,
+    heating,
+    transportLines,
+    cityId,
+    city,
+    municipality,
+    street,
+    municipalityId,
+    microlocation,
+    microlocationId,
+    description,
+    characteristics,
+    parking,
+    advertiser,
+    id) {
+    const formData = {
+      "id": id,
+      "type": type,
+      "name": name,
+      "cityId": cityId,
+      "municipalityId": municipalityId,
+      "microlocationId": microlocationId,
+      "city": city,
+      "municipality": municipality,
+      "microlocation": microlocation,
+      "street": street,
+      "area": area,
+      "rooms": rooms,
+      "constructionYear": constructionYear,
+      "state": state,
+      "heating": heating,
+      "floor": floor,
+      "totalFloors": totalFloors,
+      "parking": parking,
+      "monthlyUtilities": monthlyUtilities,
+      "price": price,
+      "description": description,
+      "transportLines": transportLines,
+      "advertiser": advertiser,
+      "characteristics": characteristics
+    }
+
+    return this.httpClient.post(`${this.uri}/realestates/edit`, formData);
+  }
+
 }

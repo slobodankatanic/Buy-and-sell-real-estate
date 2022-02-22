@@ -60,7 +60,7 @@
                                 <h3>{{re.price}} €</h3>
                             </div>
                             <div class="col-12 col-sm-6 d-flex justify-content-center justify-content-sm-end align-items-center pr-0 pr-sm-5 mb-sm-0 mb-4">
-                                <button class="btn btn-secondary mr-1">Edit</button>
+                                <button [routerLink]="[ '/advertiser/editRealEstate', re.id]" class="btn btn-secondary mr-1">Edit</button>
                                 <button (click)="sellRealEstate(re)" *ngIf="re.sold==0" class="ml-1 btn btn-info">Sell</button>
                                 <button *ngIf="re.sold==1" disabled class="btn ml-1 btn-success">SOLD</button>
                             </div>
