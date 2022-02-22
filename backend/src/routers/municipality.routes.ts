@@ -15,4 +15,8 @@ municipalityRouter.route('/getForCity').get(
     (req, res) => new MunicipalityController().getForCity(req, res)
 )
 
+municipalityRouter.route('/getByNameAndCity').get(
+    (req, res) => new MunicipalityController().getByNameAndCity(req, res)
+)
+
 export default municipalityRouter;

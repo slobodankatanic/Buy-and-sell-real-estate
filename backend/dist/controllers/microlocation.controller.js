@@ -8,6 +8,13 @@ const microlocation_1 = __importDefault(require("../models/microlocation"));
 const realestate_1 = __importDefault(require("../models/realestate"));
 class MicrolocationController {
     constructor() {
+        this.getByMunAndName = (req, res) => {
+            let id = req.query.id;
+            let mloc = req.query.mloc;
+            microlocation_1.default.findOne({ "municipality": id, "name": mloc }, (err, micro) => {
+                res.json(micro);
+            });
+        };
         this.deleteMicrolocation = (req, res) => {
             realestate_1.default.findOne({ "microlocationId": req.body.id }, (err, re) => {
                 if (re) {

@@ -19,4 +19,8 @@ microlocationRouter.route('/delete').post(
     (req, res) => new MicrolocationController().deleteMicrolocation(req, res)
 )
 
+microlocationRouter.route('/getByNameAndMun').get(
+    (req, res) => new MicrolocationController().getByMunAndName(req, res)
+)
+
 export default microlocationRouter;

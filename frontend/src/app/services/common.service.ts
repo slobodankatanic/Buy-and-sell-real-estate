@@ -46,4 +46,14 @@ export class CommonService {
     return this.httpClient.get(`${this.uri}/agency/getAll`);
   }
 
+  getMunicipalityByCityAndName(cityName, munName) {
+    return this.httpClient.
+      get(`${this.uri}/municipalities/getByNameAndCity?city=${cityName}&mun=${munName}`);
+  }
+
+  getMicroloctionByMunAndName(id, mlocName) {
+    return this.httpClient
+      .get(`${this.uri}/microlocations/getByNameAndMun?id=${id}&mloc=${mlocName}`);
+  }
+
 }

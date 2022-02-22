@@ -7,6 +7,13 @@ exports.MunicipalityController = void 0;
 const municipality_1 = __importDefault(require("../models/municipality"));
 class MunicipalityController {
     constructor() {
+        this.getByNameAndCity = (req, res) => {
+            let city = req.query.city;
+            let mun = req.query.mun;
+            municipality_1.default.findOne({ "name": mun, "city": city }, (err, mun) => {
+                res.json(mun);
+            });
+        };
         this.getById = (req, res) => {
             let id = req.query.id;
             municipality_1.default.findOne({ "id": id }, (err, mun) => {

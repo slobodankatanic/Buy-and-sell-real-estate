@@ -10,5 +10,6 @@ microlocationRouter.route('/getAll').get((req, res) => new microlocation_control
 microlocationRouter.route('/getForMunicipality').get((req, res) => new microlocation_controller_1.MicrolocationController().getForMunicipality(req, res));
 microlocationRouter.route('/add').post((req, res) => new microlocation_controller_1.MicrolocationController().addMicrolocation(req, res));
 microlocationRouter.route('/delete').post((req, res) => new microlocation_controller_1.MicrolocationController().deleteMicrolocation(req, res));
+microlocationRouter.route('/getByNameAndMun').get((req, res) => new microlocation_controller_1.MicrolocationController().getByMunAndName(req, res));
 exports.default = microlocationRouter;
 //# sourceMappingURL=microlocation.routes.js.map

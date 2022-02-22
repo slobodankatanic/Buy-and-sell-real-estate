@@ -3,6 +3,15 @@ import Microlocation from '../models/microlocation'
 import RealEsatate from '../models/realestate'
 
 export class MicrolocationController {
+    getByMunAndName = (req: express.Request, res: express.Response) => {
+        let id = req.query.id;
+        let mloc = req.query.mloc;
+
+        Microlocation.findOne({"municipality": id, "name": mloc}, (err, micro) => {
+            res.json(micro);
+        })
+    }
+
     deleteMicrolocation = (req: express.Request, res: express.Response) => {
         RealEsatate.findOne({ "microlocationId": req.body.id }, (err, re) => {
             if (re) {

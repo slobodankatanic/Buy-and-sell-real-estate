@@ -2,7 +2,16 @@ import * as express from 'express';
 import Municipality from '../models/municipality'
 
 export class MunicipalityController {
-    getById =  (req: express.Request, res: express.Response) => {
+    getByNameAndCity = (req: express.Request, res: express.Response) => {
+        let city = req.query.city;
+        let mun = req.query.mun;
+
+        Municipality.findOne({ "name": mun, "city": city }, (err, mun) => {
+            res.json(mun);
+        })
+    }
+
+    getById = (req: express.Request, res: express.Response) => {
         let id = req.query.id;
 
         Municipality.findOne({ "id": id }, (err, mun) => {

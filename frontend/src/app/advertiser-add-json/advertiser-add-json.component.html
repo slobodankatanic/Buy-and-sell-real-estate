@@ -1,0 +1,112 @@
+<div class="container-fluid p-0 overflow-hidden">
+    <div class="row">
+        <div class="col header">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container">
+                    <a class="navbar-brand" href=""><img class="logo img-fluid" src="../../assets/logo.png" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['/advertiser/home']">
+                                    My real estates
+                                </a>
+                            </li>
+                            <li id="dodaj-recept" class="nav-item">
+                                <a class="nav-link" [routerLink]="['/advertiser/addRealEstate']">
+                                    <span class="act-item">
+                                        Add real estate
+                                    </span>
+                                </a>
+                            </li>
+                            <li id="dodaj-recept" class="nav-item" [routerLink]="['/advertiser/myInfo']">
+                                <a class="nav-link" [routerLink]="['/buyer/favorite']">
+                                    My info
+                                </a>
+                            </li>
+                            <li id="moj-nalog" class="nav-item ml-lg-5 ml-sm-0">
+                                <a class="nav-link" [routerLink]="['/user/changePassword']">
+                                    Change password
+                                </a>
+                            </li>
+                            <li id="odjava-stavka" class="nav-item ml-sm-0 pr-0">
+                                <a id="odjava" class="nav-link" [routerLink]="['/login']" (click)="logout()">Log out</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="row mt-4 mb-4">
+        <div class="col offset-2 text-center h2">
+            Add real estate using JSON file
+        </div>
+        <div class="col-2">
+            <button class="btn btn-dark" (click)="back()">Cancel</button>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row text-center d-flex justify-content-center align-items-center">
+        <div class="col-1 p-0 m-0"></div>
+        <div *ngIf="state==1" class="col-2 p-0 m-0">
+            <span class="dot text-center bg-info mr-2">1</span>
+            File
+        </div>
+        <div *ngIf="state>1" class="col-2 p-0 m-0">
+            <span class="dot text-center bg-info mr-2">✓</span>
+            File
+        </div>
+        <div class="col p-0 m-0 w-100">
+            <hr class="w-100 hr-custom">
+        </div>
+        <div *ngIf="state==2" class="col-2 p-0 m-0">
+            <span class="dot text-center bg-info mr-2">2</span>
+            Images
+        </div>
+        <div *ngIf="state>2" class="col-2 p-0 m-0">
+            <span class="dot text-center bg-info mr-2">✓</span>
+            Images
+        </div>
+        <div *ngIf="state<2" class="col-2 p-0 m-0">
+            <span (click)="toStep2()" class="dot text-center bg-dark mr-2">2</span>
+            Images
+        </div>
+        <div class="col p-0 m-0 w-100">
+            <hr class="w-100 hr-custom">
+        </div>
+        <div *ngIf="state==3" class="col-2 p-0 m-0">
+            <span class="dot text-center bg-info mr-2">✓</span>
+            Done
+        </div>
+        <div *ngIf="state<3" class="col-2 p-0 m-0">
+            <span (click)="toStep3()" class="dot text-center bg-dark mr-2">3</span>
+            Done
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row mt-5">
+        <div *ngIf="state==1" class="col offset-1">
+            <div class="h5">
+                Choose JSON file with real estate information
+            </div>
+            <input type="file" (change)="selectImage($event)">
+            <div class="error-msg text-danger mt-2">{{fileError}}</div>
+        </div>
+        <div *ngIf="state==2" class="col offset-1">
+            <div class="h5">
+                Choose images for real estate
+            </div>
+            <input type="file" (change)="selectImages($event)" multiple>
+            <div class="error-msg text-danger mt-2">{{fileError}}</div>
+        </div>
+        <div *ngIf="state==3" class="col offset-1">
+            <div class="h5">
+                Click to add new real estate
+            </div>
+            <button class="btn btn-dark" (click)="addRealEstate()">Confirm</button>
+        </div>
+    </div>
+</div>
