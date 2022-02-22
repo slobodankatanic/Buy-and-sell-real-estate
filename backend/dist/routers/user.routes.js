@@ -18,5 +18,6 @@ userRouter.route('/accept').post((req, res) => new user_controller_1.UserControl
 userRouter.route('/decline').post((req, res) => new user_controller_1.UserController().declineUser(req, res));
 userRouter.route('/delete').post((req, res) => new user_controller_1.UserController().deleteUser(req, res));
 userRouter.route('/update').post((req, res) => new user_controller_1.UserController().updateUser(req, res));
+userRouter.route('/updateAdvertiser').post((req, res) => new user_controller_1.UserController().updateAdvertiser(req, res));
 exports.default = userRouter;
 //# sourceMappingURL=user.routes.js.map

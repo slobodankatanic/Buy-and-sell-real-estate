@@ -39,8 +39,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col h2 mt-4 mb-4 text-center">
+        <div *ngIf="allRealEstates.length>0" class="col h2 mt-4 mb-4 text-center">
             My real estates
+        </div>
+        <div *ngIf="allRealEstates.length==0" class="col h2 mt-4 mb-4 text-center">
+            No real estates
         </div>
     </div>
     <div class="row">

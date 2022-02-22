@@ -44,4 +44,8 @@ userRouter.route('/update').post(
     (req, res) => new UserController().updateUser(req, res)
 )
 
+userRouter.route('/updateAdvertiser').post(
+    (req, res) => new UserController().updateAdvertiser(req, res)
+)
+
 export default userRouter;

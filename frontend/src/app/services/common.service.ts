@@ -56,4 +56,16 @@ export class CommonService {
       .get(`${this.uri}/microlocations/getByNameAndMun?id=${id}&mloc=${mlocName}`);
   }
 
+  editAdvertiser(username, phone, email, agency, licence) {
+    const data = {
+      "username": username,
+      "phone": phone,
+      "email": email,
+      "agency": agency,
+      "licence": licence
+    }
+
+    return this.httpClient.post(`${this.uri}/users/updateAdvertiser`, data);
+  }
+
 }

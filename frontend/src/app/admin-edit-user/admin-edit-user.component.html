@@ -88,14 +88,14 @@
                         <!-- <td>{{user.city}}</td> -->
                         <td *ngIf="user.editable==false">{{user.dob}}</td>
                         <td *ngIf="user.editable==true">
-                            <input type="date" class="from-constrol" [(ngModel)]="user.dob">
+                            <input type="date" class="from-control" [(ngModel)]="user.dob">
                             <div *ngIf="errorDOB!=''" class="error-msg text-danger">{{errorDOB}}</div>
                         </td>
                         <td *ngIf="user.editable==false">
                             {{user.telephone}}
                         </td>
                         <td *ngIf="user.editable==true">
-                            <input class="from-constrol" [(ngModel)]="user.telephone">
+                            <input class="from-control" [(ngModel)]="user.telephone">
                             <div *ngIf="errorPhone!=''" class="error-msg text-danger">{{errorPhone}}</div>
                         </td>
                         <td>{{user.email}}</td>

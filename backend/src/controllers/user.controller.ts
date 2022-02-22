@@ -13,6 +13,47 @@ export class UserController {
         })
     }
 
+    updateAdvertiser = (req: express.Request, res: express.Response) => {
+        let username = req.body.username;
+        let email = req.body.email;
+        let phone = req.body.phone;
+        let agency = req.body.agency;
+        let licence = req.body.licence;
+
+        let type = "agent";
+        if (agency == "") {
+            type = "owner";
+            licence = "";
+        }
+
+        let phoneRegex = /^\+{0,1}381[0-9]{8,9}$/;
+        let regexEmail = /^[A-Za-z0-9]+([\.]{0,1}[A-Za-z0-9_]+)*@[a-z]+(\.[a-z]{2,})*\.[a-z]{2,3}$/;
+
+        if (!phoneRegex.test(phone)) {
+            res.json({
+                "message": "Wrong format",
+                "status": 1
+            })
+        } else if (!regexEmail.test(email)) {
+            res.json({
+                "message": "Wrong format",
+                "status": 2
+            })
+        } else {
+            User.updateOne(
+                { "username": username },
+                {
+                    $set: {
+                        "email": email, "telephone": phone, "agencyId": agency,
+                        "licence": licence, "type": type
+                    }
+                },
+                (err, user) => {
+                    res.json({ "message": "ok", "status": 0, "user": user });
+                })
+        }
+    }
+
     updateUser = (req: express.Request, res: express.Response) => {
         let username = req.body.username;
         let newDOB = req.body.dob;
